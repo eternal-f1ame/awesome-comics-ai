@@ -1,7 +1,7 @@
 """Build README.md and the site from data/*.yaml.
 
 data/papers.yaml is the single source of the list; data/sections.yaml gives the sections in order; data/resources.yaml holds the
-tools, workshops and related lists. This script writes README.md and docs/papers.json (which docs/index.html reads). Run it after
+tools, workshops and related lists. This script writes README.md and docs/papers.json (which the site pages in docs/ read). Run it after
 every change to the data, and commit its output with the change. `--check` exits non-zero when the committed output is stale.
 
 Usage: python scripts/build.py [--check]
