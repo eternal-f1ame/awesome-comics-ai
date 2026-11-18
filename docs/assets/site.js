@@ -1,6 +1,7 @@
 // Shared by every page. Each page names itself in <body data-page="...">; the list itself comes from papers.json.
-// The first visit loads the data and all five pages once. After that, a link between the pages swaps only the
-// content of <main>: no reload, the navigation stays, and its pill slides to the new tab.
+// The first visit loads the data, the five pages and the blog posts once. After that, a link between the pages swaps
+// only the content of <main>: no reload, the navigation stays, and its pill slides to the new tab. A blog post is a
+// file named blog-<slug>.html; its tab is Blog.
 
 // theme: the system setting by default, the reader's choice once made (kept only on this device)
 (function () {
@@ -21,17 +22,20 @@
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = id => document.getElementById(id);
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  const PAGE_OF = { "index.html": "home", "papers.html": "papers", "topics.html": "topics", "essay.html": "essay", "tools.html": "tools" };
+  const PAGE_OF = { "index.html": "home", "papers.html": "papers", "topics.html": "topics", "blog.html": "blog", "tools.html": "tools" };
+  const TAB_OF = { post: "blog" };                                             // the tab that a page lights up
+  const MOVED = { "essay.html": "blog-comics-are-a-modality.html" };           // old files, now elsewhere
+  const isPost = f => /^blog-[a-z0-9-]+\.html$/.test(f);
   const dir = location.pathname.replace(/[^/]*$/, "");
   function fileOf(href) {
     let u; try { u = new URL(href, location.href); } catch (e) { return null; }
     if (u.origin !== location.origin || !u.pathname.startsWith(dir)) return null;
     const f = u.pathname.slice(dir.length) || "index.html";
-    return PAGE_OF[f] ? f : null;
+    return PAGE_OF[f] || isPost(f) || MOVED[f] ? f : null;
   }
 
   // links to the old one-page sections open their pages
-  const moved = { "#list": "papers.html", "#papers": "papers.html", "#topics": "topics.html", "#why": "essay.html", "#essay": "essay.html", "#tools": "tools.html", "#resources": "tools.html" };
+  const moved = { "#list": "papers.html", "#papers": "papers.html", "#topics": "topics.html", "#why": MOVED["essay.html"], "#essay": MOVED["essay.html"], "#tools": "tools.html", "#resources": "tools.html" };
   if (document.body.dataset.page === "home" && moved[location.hash]) { location.replace(moved[location.hash]); return; }
 
   // ---- the pages, each fetched once and kept ----
@@ -53,8 +57,9 @@
   let current = document.body.dataset.page;
   function setNav(page, instant) {
     let on = null;
+    const want = TAB_OF[page] || page;
     nav.querySelectorAll("a.tab").forEach(t => {
-      const yes = PAGE_OF[fileOf(t.href)] === page;
+      const yes = PAGE_OF[fileOf(t.href)] === want;
       t.classList.toggle("on", yes);
       if (yes) { t.setAttribute("aria-current", "page"); on = t; } else t.removeAttribute("aria-current");
     });
@@ -76,7 +81,7 @@
 
   // ---- the data, loaded once ----
   const dataP = fetch("papers.json", { cache: "no-cache" }).then(r => r.json());
-  let sections, papers, resources, meta, maxY, minY, recent;
+  let sections, papers, resources, posts, meta, maxY, minY, recent;
   const short = t => t.startsWith("Adjacent: ") ? t.slice(10, 11).toUpperCase() + t.slice(11) + " (adjacent)" : t;
   const byCat = id => papers.filter(p => p.category === id);
   const matches = (p, terms) => terms.every(t => (p.title + " " + p.venue + " " + p.year + " " + (p.authors || "")).toLowerCase().includes(t));
@@ -95,7 +100,7 @@
     const my = ++gen;
     document.querySelectorAll("main .reveal").forEach(watch);
     if (!papers) {
-      try { ({ sections, papers, resources } = await dataP); }
+      try { ({ sections, papers, resources, posts = [] } = await dataP); }
       catch (e) {
         const p = document.createElement("p"); p.className = "empty"; p.textContent = "The list could not be loaded. Read it in the README on GitHub.";
         document.querySelector("main").insertBefore(p, document.querySelector("footer")); return;
@@ -103,19 +108,21 @@
       meta = resources.meta || {};
       const years = papers.map(p => p.year); maxY = Math.max(...years); minY = Math.min(...years);
       recent = papers.filter(p => p.year >= maxY - 2).length;
-      setTimeout(() => Object.keys(PAGE_OF).forEach(f => load(f).catch(() => {})), 300);   // preload the other pages
+      setTimeout(() => [...Object.keys(PAGE_OF), ...posts.map(p => p.file)].forEach(f => load(f).catch(() => {})), 300);   // preload the other pages and the posts
     }
     if (my !== gen) return;
     if (meta.repo) document.querySelectorAll("[data-repo]").forEach(a => { a.href = meta.repo + a.dataset.repo; });
     const counts = { papers: `${papers.length} papers`, "papers-n": String(papers.length), topics: `${sections.length} topics`, tools: `${resources.tools.length} tools` };
     document.querySelectorAll("main [data-count]").forEach(el => { if (counts[el.dataset.count]) el.textContent = counts[el.dataset.count]; });
-    ({ home, papers: papersPage, topics, essay, tools }[page] || (() => {}))(my);
+    ({ home, papers: papersPage, topics, blog, post, tools }[page] || (() => {}))(my);
   }
 
   // ---- move between pages without a reload ----
   let navTo = 0;
   async function go(url, push) {
-    const my = ++navTo, file = fileOf(url.href);
+    let file = fileOf(url.href);
+    if (MOVED[file]) { file = MOVED[file]; url = new URL(file, location.href); }
+    const my = ++navTo;
     let next;
     try { next = await load(file); } catch (e) { location.href = url.href; return; }
     if (my !== navTo) return;
@@ -251,9 +258,18 @@
     $("topic-grid").querySelectorAll(".topic").forEach((el, i) => { el.style.transitionDelay = (i % 4) * 60 + "ms"; watch(el); });
   }
 
-  function essay() {
+  function blog() {
+    if (!posts.length) return;
+    const fmt = d => new Date(d + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+    $("posts").innerHTML = [...posts].sort((a, b) => String(b.date).localeCompare(String(a.date))).map(p => `<a class="postrow" href="${esc(p.file)}">
+      <time class="mono" datetime="${esc(p.date)}">${esc(fmt(String(p.date)))}</time><div><h2>${esc(p.title)}</h2><p>${esc(p.dek)}</p>
+      <span class="rt mono">${p.minutes} min read</span></div></a>`).join("");
+  }
+
+  function post() {
+    if (!$("recent-line")) return;
     $("recent-line").textContent = `Of the ${papers.length} papers on this map, ${recent} appeared in ${maxY - 2}–${maxY}.`;
-    $("updated").textContent = meta.updated ? " · updated " + meta.updated : "";
+    if ($("updated")) $("updated").textContent = meta.updated ? " · updated " + meta.updated : "";
     const span = []; for (let y = minY; y <= maxY; y++) span.push(y);
     const per = span.map(y => papers.filter(p => p.year === y).length), top = Math.max(...per);
     $("bars").innerHTML = per.map((n, i) => `<div class="${span[i] >= maxY - 2 ? "hot" : ""}" data-h="${n ? Math.max(3, 100 * n / top) : 0}" title="${span[i]}: ${n}">${n ? `<span class="mono">${n}</span>` : ""}</div>`).join("");

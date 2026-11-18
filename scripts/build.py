@@ -1,7 +1,7 @@
 """Build README.md and the site from data/*.yaml.
 
 data/papers.yaml is the single source of the list; data/sections.yaml gives the sections in order; data/resources.yaml holds the
-tools, workshops and related lists. This script writes README.md and docs/papers.json (which the site pages in docs/ read). Run it after
+tools, workshops and related lists; data/posts.yaml lists the blog posts (each post is its own page in docs/). This script writes README.md and docs/papers.json (which the site pages in docs/ read). Run it after
 every change to the data, and commit its output with the change. `--check` exits non-zero when the committed output is stale.
 
 Usage: python scripts/build.py [--check]
@@ -22,7 +22,8 @@ def load():
     papers = yaml.safe_load((DATA / "papers.yaml").read_text(encoding="utf-8")) or []
     sections = yaml.safe_load((DATA / "sections.yaml").read_text(encoding="utf-8"))
     resources = yaml.safe_load((DATA / "resources.yaml").read_text(encoding="utf-8"))
-    return papers, sections, resources
+    posts = yaml.safe_load((DATA / "posts.yaml").read_text(encoding="utf-8")) if (DATA / "posts.yaml").exists() else []
+    return papers, sections, resources, posts or []
 
 
 def anchor(title):
@@ -117,21 +118,24 @@ def readme(papers, sections, resources):
     return "\n".join(L)
 
 
-def site_json(papers, sections, resources):
+def site_json(papers, sections, resources, posts):
     sections = [s for s in sections if any(p["category"] == s["id"] for p in papers)]
     return json.dumps({"sections": sections, "papers": sorted(papers, key=lambda p: (-p["year"], p["title"].lower())),
-                       "resources": resources}, ensure_ascii=False, indent=1) + "\n"
+                       "resources": resources, "posts": posts}, ensure_ascii=False, indent=1) + "\n"
 
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--check", action="store_true")
     a = ap.parse_args()
-    papers, sections, resources = load()
+    papers, sections, resources, posts = load()
+    missing = [q["file"] for q in posts if not (ROOT / "docs" / q["file"]).exists()]
+    if missing:
+        sys.exit(f"a post in data/posts.yaml has no page in docs/: {missing}")
     ids = {s["id"] for s in sections}
     bad = [p["title"] for p in papers if p.get("category") not in ids]
     if bad:
         sys.exit(f"unknown section for: {bad[:5]}")
-    outputs = {ROOT / "README.md": readme(papers, sections, resources), ROOT / "docs" / "papers.json": site_json(papers, sections, resources)}
+    outputs = {ROOT / "README.md": readme(papers, sections, resources), ROOT / "docs" / "papers.json": site_json(papers, sections, resources, posts)}
     stale = [p for p, text in outputs.items() if not p.exists() or p.read_text(encoding="utf-8") != text]
     if a.check:
         if stale:
