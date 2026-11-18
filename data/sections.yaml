@@ -1,0 +1,52 @@
+# The sections of the list, in order. Each paper in papers.yaml names one section by its id.
+- id: surveys
+  title: Surveys and overviews
+  blurb: Reviews of the field and of comics research in computer science.
+- id: datasets
+  title: Datasets
+  blurb: Annotated collections of pages, panels, text and characters. Benchmarks built for vision-language models are in the next section.
+- id: vlm
+  title: Understanding and reasoning
+  blurb: Reading comics with vision-language models and multimodal transformers, including question answering, panel cloze, narrative understanding, humor and the benchmarks that measure them.
+- id: analysis
+  title: Page and panel analysis
+  blurb: Detection and segmentation of panels, characters and faces, reading order, layout, depth, pose, genre and style.
+- id: text
+  title: Text, balloons and speakers
+  blurb: Text detection and recognition, speech balloons, onomatopoeia, speaker attribution, transcription and dialogue.
+- id: identity
+  title: Character identification
+  blurb: Recognizing, re-identifying and clustering characters across panels, pages and chapters.
+- id: retrieval
+  title: Retrieval and recommendation
+  blurb: Finding pages, panels and characters by sketch, text or example, and recommending titles.
+- id: translation
+  title: Translation and localization
+  blurb: Machine translation of comics with the page in view, from balloon text to onomatopoeia and visual adaptation.
+- id: accessibility
+  title: Accessibility
+  blurb: Making comics readable for blind and low-vision readers, from descriptions to accessible readers.
+- id: generation
+  title: Comic and manga generation
+  blurb: Creating comics from stories, scripts, photographs or videos, with layout, characters and lettering.
+- id: creation
+  title: Colorization, screentones and line art
+  blurb: Tools for the drawing itself, including colorization, screentone and shading, line extraction and line-art correspondence.
+- id: restoration
+  title: Restoration, vectorization and editing
+  blurb: Inpainting, super-resolution, dewarping, vectorization, retargeting and editing of comic images.
+- id: animation
+  title: Animation, sound and motion comics
+  blurb: Bringing pages to life with motion, voices, speech and music.
+- id: probe
+  title: Comics as a probe for models
+  blurb: Work that uses comic strips to study how multimodal models attend, reason and stay safe.
+- id: studies
+  title: Computational comics studies
+  blurb: Large-scale and quantitative analysis of comics as a medium, including layout, genre, narrative structure and reader response.
+- id: hci
+  title: Comics in HCI, education and data storytelling
+  blurb: Comics as an interface, a teaching tool and a form for explaining data, and tools that support comic creators.
+- id: storyviz
+  title: "Adjacent: story visualization"
+  blurb: Generating consistent image sequences from stories, the line of work that comic generation builds on.

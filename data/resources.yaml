@@ -1,0 +1,65 @@
+# Settings, tools, workshops and related lists. Each tool's repository was checked on GitHub (2026-11-18).
+meta:
+  repo: "https://github.com/eternal-f1ame/awesome-comics-ai"
+  site_url: ""    # set when GitHub Pages is on
+  updated: "2026-11-18"   # the day the list was last reviewed; the refresh pull request updates it
+
+tools:
+  - name: Magi
+    what: Detects panels, text and characters on manga pages, clusters characters and writes a chapter transcript with speaker names.
+    url: https://github.com/ragavsachdeva/magi
+  - name: manga-ocr
+    what: Optical character recognition for Japanese manga text, vertical or horizontal, with or without furigana.
+    url: https://github.com/kha-white/manga-ocr
+  - name: mokuro
+    what: Turns manga pages into a browser reader with selectable Japanese text, using manga-ocr.
+    url: https://github.com/kha-white/mokuro
+  - name: comic-text-detector
+    what: Text detection and segmentation for manga and comics.
+    url: https://github.com/dmMaze/comic-text-detector
+  - name: BallonsTranslator
+    what: Computer-aided comic and manga translation with machine translation and image and text editing.
+    url: https://github.com/dmMaze/BallonsTranslator
+  - name: manga-image-translator
+    what: Detects, translates and re-letters the text in manga and other images.
+    url: https://github.com/zyddnys/manga-image-translator
+  - name: Kumiko
+    what: Cuts comic pages into panels and orders them for reading.
+    url: https://github.com/njean42/kumiko
+  - name: manga109api
+    what: A Python API for reading the Manga109 annotations.
+    url: https://github.com/manga109/manga109api
+  - name: Manga109 public annotations
+    what: Additional annotations of Manga109 released by the community, such as onomatopoeia and dialogue.
+    url: https://github.com/manga109/public-annotations
+  - name: CoMix
+    what: A framework that unifies comics datasets and annotations for detection, captioning and other tasks.
+    url: https://github.com/emanuelevivoli/CoMix
+  - name: Open Mantra dataset
+    what: A manga translation evaluation set with Japanese, English and Chinese text.
+    url: https://github.com/mantra-inc/open-mantra-dataset
+
+workshops:
+  - name: MANPU
+    what: The IAPR International Workshop on coMics ANalysis, Processing and Understanding, first held with ICPR 2016; its seventh edition ran with ICPR 2026 in Lyon.
+    link_text: proceedings on DBLP
+    url: https://dblp.org/search?q=MANPU
+  - name: AI4VA at ECCV 2024
+    what: The AI for Visual Arts workshop and challenges, with depth, segmentation and saliency tracks on Franco-Belgian comics.
+    link_text: workshop page
+    url: https://sites.google.com/view/ai4vaeccv2024
+  - name: ICDAR 2021 competition on multimodal emotion recognition on comics scenes
+    what: A shared task on recognizing emotions in comic panels from the image and the text together.
+    link_text: paper
+    url: https://doi.org/10.1007/978-3-030-86337-1_51
+
+related:
+  - name: Awesome Comics Understanding
+    url: https://github.com/emanuelevivoli/awesome-comics-understanding
+    what: the companion list of the 2024 comics-understanding survey by Vivoli et al., organized by its layers of understanding.
+  - name: AwesomeAnimeResearch
+    url: https://github.com/SerialLain3170/AwesomeAnimeResearch
+    what: a large, active list of anime and manga research, strongest on generation, colorization and illustration.
+  - name: awesome-acg-machine-learning
+    url: https://github.com/dimpurr/awesome-acg-machine-learning
+    what: an earlier list of machine learning for anime, comics and games.

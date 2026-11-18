@@ -1,0 +1,6 @@
+sweep*.json
+issue.md
+refresh.log
+__pycache__/
+*.pyc
+.DS_Store

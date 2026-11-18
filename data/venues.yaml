@@ -1,0 +1,110 @@
+# Every venue that appears in papers.yaml or not_included.yaml, with its kind and its CORE rank.
+# Ranks: CORE2023 for conferences, CORE2020 (the latest CORE journal list) for journals, read on 2026-11-18 from portal.core.edu.au.
+# "unranked" means the venue is not in the CORE list. scripts/policy.py turns kind and rank into the inclusion rule.
+#
+# kind: conference | journal | workshop | track | preprint | repository
+#   workshop: a workshop held with a conference, at any rank.
+#   track:    a peer-reviewed track published in an A* or A conference's proceedings (Findings, briefs, extended abstracts), not posters.
+
+# A* conferences
+CVPR: {kind: conference, rank: "A*"}
+ICCV: {kind: conference, rank: "A*"}
+ECCV: {kind: conference, rank: "A*"}
+NeurIPS: {kind: conference, rank: "A*"}
+AAAI: {kind: conference, rank: "A*"}
+ACL: {kind: conference, rank: "A*"}
+EMNLP: {kind: conference, rank: "A*"}
+ACM MM: {kind: conference, rank: "A*"}
+SIGGRAPH: {kind: conference, rank: "A*"}
+SIGGRAPH Asia: {kind: conference, rank: "A*", note: "CORE lists SIGGRAPH Asia as journal-published (ACM TOG, A*)"}
+CHI: {kind: conference, rank: "A*"}
+UIST: {kind: conference, rank: "A*"}
+ICML: {kind: conference, rank: "A*"}
+ICLR: {kind: conference, rank: "A*"}
+IJCAI: {kind: conference, rank: "A*"}
+# A conferences
+ICDAR: {kind: conference, rank: "A"}
+WACV: {kind: conference, rank: "A"}
+EACL: {kind: conference, rank: "A"}
+NAACL: {kind: conference, rank: "A"}
+ICME: {kind: conference, rank: "A"}
+IUI: {kind: conference, rank: "A"}
+SIGCSE: {kind: conference, rank: "A"}
+ECAI: {kind: conference, rank: "A"}
+# A* and A journals
+ACM TOG: {kind: journal, rank: "A*"}
+TPAMI: {kind: journal, rank: "A*"}
+IJCV: {kind: journal, rank: "A*"}
+TIP: {kind: journal, rank: "A*"}
+TMM: {kind: journal, rank: "A*"}
+TVCG: {kind: journal, rank: "A"}
+TIFS: {kind: journal, rank: "A"}
+# Workshops and tracks
+CVPR Workshops: {kind: workshop, rank: unranked}
+ICCV Workshops: {kind: workshop, rank: unranked}
+ECCV Workshops: {kind: workshop, rank: unranked}
+ICML Workshops: {kind: workshop, rank: unranked}
+ICDAR Workshops: {kind: workshop, rank: unranked}
+ICPR Workshops: {kind: workshop, rank: unranked}
+ECAI Workshops: {kind: workshop, rank: unranked}
+MANPU: {kind: workshop, rank: unranked, note: "the IAPR workshop on comics, held with ICPR or ICDAR"}
+Findings of EMNLP: {kind: track, rank: unranked}
+Findings of EACL: {kind: track, rank: unranked}
+NeurIPS Creative AI: {kind: track, rank: unranked}
+SIGGRAPH Asia Technical Briefs: {kind: track, rank: unranked}
+CHI EA: {kind: track, rank: unranked}
+# Below the rule: B and C, or not in the CORE lists
+ICPR: {kind: conference, rank: "B"}
+ACCV: {kind: conference, rank: "B"}
+ICIP: {kind: conference, rank: "B"}
+MMM: {kind: conference, rank: "B"}
+DAS: {kind: conference, rank: "B"}
+IJCNN: {kind: conference, rank: "B"}
+ICAART: {kind: conference, rank: "B"}
+COLING: {kind: conference, rank: "B"}
+CogSci: {kind: conference, rank: "B"}
+ISM: {kind: conference, rank: "C"}
+ICIDS: {kind: conference, rank: "C"}
+ICCC: {kind: conference, rank: "C"}
+iiWAS: {kind: conference, rank: "C"}
+VCIP: {kind: conference, rank: "C"}
+ACM MM Asia: {kind: conference, rank: unranked}
+ACPR: {kind: conference, rank: unranked}
+DICTA: {kind: conference, rank: unranked, note: "CORE: Australasian"}
+ICIAP: {kind: conference, rank: unranked, note: "CORE: national (Italy)"}
+WMT: {kind: conference, rank: unranked}
+ISEA: {kind: conference, rank: unranked}
+EC-TEL: {kind: conference, rank: unranked}
+AIST: {kind: conference, rank: unranked}
+CSNT: {kind: conference, rank: unranked}
+IWAIT: {kind: conference, rank: unranked}
+ITNG: {kind: conference, rank: unranked}
+SNPD: {kind: conference, rank: unranked}
+ISPACS: {kind: conference, rank: unranked}
+CAIDCD: {kind: conference, rank: unranked}
+GrC: {kind: conference, rank: unranked}
+ACM TURC: {kind: conference, rank: unranked}
+ICKECS: {kind: conference, rank: unranked}
+IIAI-AAI: {kind: conference, rank: unranked}
+LACLO: {kind: conference, rank: unranked}
+SIGGRAPH Posters: {kind: conference, rank: unranked, note: "posters"}
+MTAP: {kind: journal, rank: "B"}
+CGF: {kind: journal, rank: "B"}
+THMS: {kind: journal, rank: "B"}
+The Visual Computer: {kind: journal, rank: "B"}
+CAVW: {kind: journal, rank: "B"}
+ACM TOMM: {kind: journal, rank: "B"}
+IEEE MultiMedia: {kind: journal, rank: "C"}
+IJDAR: {kind: journal, rank: unranked}
+TCSVT: {kind: journal, rank: unranked}
+TACL: {kind: journal, rank: unranked}
+ACM TACCESS: {kind: journal, rank: unranked}
+PACM HCI: {kind: journal, rank: unranked}
+IEEE Access: {kind: journal, rank: unranked}
+Applied Sciences: {kind: journal, rank: unranked}
+J. Imaging: {kind: journal, rank: unranked}
+Topics in Cognitive Science: {kind: journal, rank: unranked}
+Information Engineering Express: {kind: journal, rank: unranked}
+# Other
+arXiv: {kind: preprint, rank: unranked}
+DataverseNL: {kind: repository, rank: unranked}

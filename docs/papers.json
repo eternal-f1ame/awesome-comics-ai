@@ -1,0 +1,1209 @@
+{
+ "sections": [
+  {
+   "id": "datasets",
+   "title": "Datasets",
+   "blurb": "Annotated collections of pages, panels, text and characters. Benchmarks built for vision-language models are in the next section."
+  },
+  {
+   "id": "vlm",
+   "title": "Understanding and reasoning",
+   "blurb": "Reading comics with vision-language models and multimodal transformers, including question answering, panel cloze, narrative understanding, humor and the benchmarks that measure them."
+  },
+  {
+   "id": "analysis",
+   "title": "Page and panel analysis",
+   "blurb": "Detection and segmentation of panels, characters and faces, reading order, layout, depth, pose, genre and style."
+  },
+  {
+   "id": "text",
+   "title": "Text, balloons and speakers",
+   "blurb": "Text detection and recognition, speech balloons, onomatopoeia, speaker attribution, transcription and dialogue."
+  },
+  {
+   "id": "identity",
+   "title": "Character identification",
+   "blurb": "Recognizing, re-identifying and clustering characters across panels, pages and chapters."
+  },
+  {
+   "id": "retrieval",
+   "title": "Retrieval and recommendation",
+   "blurb": "Finding pages, panels and characters by sketch, text or example, and recommending titles."
+  },
+  {
+   "id": "translation",
+   "title": "Translation and localization",
+   "blurb": "Machine translation of comics with the page in view, from balloon text to onomatopoeia and visual adaptation."
+  },
+  {
+   "id": "accessibility",
+   "title": "Accessibility",
+   "blurb": "Making comics readable for blind and low-vision readers, from descriptions to accessible readers."
+  },
+  {
+   "id": "generation",
+   "title": "Comic and manga generation",
+   "blurb": "Creating comics from stories, scripts, photographs or videos, with layout, characters and lettering."
+  },
+  {
+   "id": "creation",
+   "title": "Colorization, screentones and line art",
+   "blurb": "Tools for the drawing itself, including colorization, screentone and shading, line extraction and line-art correspondence."
+  },
+  {
+   "id": "restoration",
+   "title": "Restoration, vectorization and editing",
+   "blurb": "Inpainting, super-resolution, dewarping, vectorization, retargeting and editing of comic images."
+  },
+  {
+   "id": "animation",
+   "title": "Animation, sound and motion comics",
+   "blurb": "Bringing pages to life with motion, voices, speech and music."
+  },
+  {
+   "id": "probe",
+   "title": "Comics as a probe for models",
+   "blurb": "Work that uses comic strips to study how multimodal models attend, reason and stay safe."
+  },
+  {
+   "id": "studies",
+   "title": "Computational comics studies",
+   "blurb": "Large-scale and quantitative analysis of comics as a medium, including layout, genre, narrative structure and reader response."
+  },
+  {
+   "id": "hci",
+   "title": "Comics in HCI, education and data storytelling",
+   "blurb": "Comics as an interface, a teaching tool and a form for explaining data, and tools that support comic creators."
+  },
+  {
+   "id": "storyviz",
+   "title": "Adjacent: story visualization",
+   "blurb": "Generating consistent image sequences from stories, the line of work that comic generation builds on."
+  }
+ ],
+ "papers": [
+  {
+   "title": "CHROMIC: Chronological Reasoning Across Multi-Panel Comics",
+   "authors": "Bingxuan Hou et al.",
+   "year": 2026,
+   "venue": "EACL",
+   "category": "vlm",
+   "paper": "https://doi.org/10.18653/v1/2026.eacl-long.205"
+  },
+  {
+   "title": "Drawing the Line: Where AI Guidance and Human Creativity Meet in Emotion-Driven Comic Storyboarding",
+   "authors": "Jocelyn Shen et al.",
+   "year": 2026,
+   "venue": "arXiv",
+   "category": "hci",
+   "arxiv": "2610.09155",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "Investigating Social Bias in Narrative Image Generation",
+   "authors": "Junyeong Park et al.",
+   "year": 2026,
+   "venue": "arXiv",
+   "category": "generation",
+   "arxiv": "2608.01780",
+   "date": "2026-08-03"
+  },
+  {
+   "title": "Manga109-v2026: Revisiting Manga109 Annotations for Modern Manga Understanding",
+   "authors": "Jeonghun Baek et al.",
+   "year": 2026,
+   "venue": "ICML Workshops",
+   "category": "datasets",
+   "arxiv": "2605.21182",
+   "paper": "https://icml.cc/virtual/2026/74741"
+  },
+  {
+   "title": "Manga2Animate: An Agentic Framework for Faithful Manga Animation with Script and Storyboard Planning",
+   "authors": "Sheng-Wei Zhang et al.",
+   "year": 2026,
+   "venue": "arXiv",
+   "category": "animation",
+   "arxiv": "2610.26851",
+   "date": "2026-10-19"
+  },
+  {
+   "title": "MangaFlow: An End-to-End Agentic Framework for Controllable Story to Manga Generation",
+   "authors": "Muyao Wang et al.",
+   "year": 2026,
+   "venue": "EMNLP",
+   "category": "generation",
+   "paper": "https://doi.org/10.18653/2026.emnlp-main.263",
+   "arxiv": "2605.28173"
+  },
+  {
+   "title": "MangaVQA and MangaLMM: A Benchmark and Specialized Model for Multimodal Manga Understanding",
+   "authors": "Jeonghun Baek et al.",
+   "year": 2026,
+   "venue": "Findings of EACL",
+   "category": "vlm",
+   "paper": "https://doi.org/10.18653/v1/2026.findings-eacl.284",
+   "arxiv": "2505.20298"
+  },
+  {
+   "title": "ManGo: Manga Active Narrative Grounding Optimization",
+   "authors": "Hao Qiu et al.",
+   "year": 2026,
+   "venue": "Findings of EMNLP",
+   "category": "vlm",
+   "paper": "https://doi.org/10.18653/2026.findings-emnlp.753",
+   "arxiv": "2608.29865"
+  },
+  {
+   "title": "Memes-as-Replies: Can Models Select Humorous Manga Panel Responses?",
+   "authors": "Ryosuke Kohita et al.",
+   "year": 2026,
+   "venue": "Findings of EMNLP",
+   "category": "vlm",
+   "paper": "https://doi.org/10.18653/2026.findings-emnlp.2076",
+   "arxiv": "2602.15842"
+  },
+  {
+   "title": "One Kiss: Emojis as Agents of Genre Flux in Generative Comics",
+   "authors": "Xiruo Wang et al.",
+   "year": 2026,
+   "venue": "CHI EA",
+   "category": "generation",
+   "paper": "https://doi.org/10.1145/3772363.3798758",
+   "arxiv": "2603.16359"
+  },
+  {
+   "title": "Onomatopoeia Cursor: Verbal Mirroring of Mouse Movement with Comic-Style Lettering",
+   "authors": "Yoichi Ochiai et al.",
+   "year": 2026,
+   "venue": "arXiv",
+   "category": "hci",
+   "arxiv": "2609.13184",
+   "date": "2026-07-31"
+  },
+  {
+   "title": "Re:Cognize -- A Framework For Open-Set Comic Character Re-Identification",
+   "authors": "Aaditya Baranwal et al.",
+   "year": 2026,
+   "venue": "NeurIPS",
+   "category": "identity",
+   "arxiv": "2609.34032"
+  },
+  {
+   "title": "Region-Wise Correspondence Prediction between Manga Line Art Images",
+   "authors": "Yingxuan Li et al.",
+   "year": 2026,
+   "venue": "CVPR",
+   "category": "creation",
+   "arxiv": "2509.09501",
+   "paper": "https://cvpr.thecvf.com/virtual/2026/poster/39720",
+   "code": "https://github.com/liyingxuan1012/r2r-lineart-correspondence"
+  },
+  {
+   "title": "Sequential Comics for Jailbreaking Multimodal Large Language Models via Structured Visual Storytelling",
+   "authors": "Deyue Zhang et al.",
+   "year": 2026,
+   "venue": "TIFS",
+   "category": "probe",
+   "paper": "https://doi.org/10.1109/tifs.2026.3734766",
+   "arxiv": "2510.15068"
+  },
+  {
+   "title": "Studying Comics at Scale with Artificial Intelligence: The PAGE Framework and Three Studies of American Comics and Japanese Manga",
+   "authors": "Emilio Ferrara",
+   "year": 2026,
+   "venue": "arXiv",
+   "category": "studies",
+   "arxiv": "2610.13840",
+   "date": "2026-10-09"
+  },
+  {
+   "title": "Advancing Manga Analysis: Comprehensive Segmentation Annotations for the Manga109 Dataset",
+   "authors": "Minshan Xie et al.",
+   "year": 2025,
+   "venue": "CVPR",
+   "category": "datasets",
+   "paper": "https://doi.org/10.1109/cvpr52734.2025.00829"
+  },
+  {
+   "title": "Cobra: Efficient Line Art COlorization with BRoAder References",
+   "authors": "Junhao Zhuang et al.",
+   "year": 2025,
+   "venue": "SIGGRAPH",
+   "category": "creation",
+   "paper": "https://doi.org/10.1145/3721238.3730660",
+   "arxiv": "2504.12240",
+   "project": "https://zhuang2002.github.io/Cobra/"
+  },
+  {
+   "title": "ComicScene154: A Scene Dataset for Comic Analysis",
+   "authors": "Sandro Paval et al.",
+   "year": 2025,
+   "venue": "EMNLP",
+   "category": "datasets",
+   "paper": "https://doi.org/10.18653/v1/2025.emnlp-main.1608",
+   "arxiv": "2508.16190"
+  },
+  {
+   "title": "ComicsPAP: understanding comic strips by picking the correct panel",
+   "authors": "Emanuele Vivoli et al.",
+   "year": 2025,
+   "venue": "ICDAR",
+   "category": "vlm",
+   "paper": "https://doi.org/10.1007/978-3-032-04614-7_19",
+   "arxiv": "2503.08561"
+  },
+  {
+   "title": "CoSMo: A Multimodal Transformer for Page Stream Segmentation in Comic Books",
+   "authors": "Marc Serra Ortega et al.",
+   "year": 2025,
+   "venue": "ICCV Workshops",
+   "category": "analysis",
+   "paper": "https://doi.org/10.1109/iccvw69036.2025.00778",
+   "arxiv": "2507.10053"
+  },
+  {
+   "title": "DancingBoard: Streamlining the Creation of Motion Comics to Enhance Narratives",
+   "authors": "Longfei Chen et al.",
+   "year": 2025,
+   "venue": "IUI",
+   "category": "animation",
+   "paper": "https://doi.org/10.1145/3708359.3712167",
+   "arxiv": "2503.09061"
+  },
+  {
+   "title": "DG Comics: Semi-Automatically Authoring Graph Comics for Dynamic Graphs",
+   "authors": "Joohee Kim et al.",
+   "year": 2025,
+   "venue": "TVCG",
+   "category": "hci",
+   "paper": "https://doi.org/10.1109/tvcg.2024.3456340",
+   "arxiv": "2408.04874"
+  },
+  {
+   "title": "DiffSensei: Bridging Multi-Modal LLMs and Diffusion Models for Customized Manga Generation",
+   "authors": "Jianzong Wu et al.",
+   "year": 2025,
+   "venue": "CVPR",
+   "category": "generation",
+   "paper": "https://doi.org/10.1109/cvpr52734.2025.02671",
+   "arxiv": "2412.07589"
+  },
+  {
+   "title": "From Panels to Prose: Generating Literary Narratives from Comics",
+   "authors": "Ragav Sachdeva et al.",
+   "year": 2025,
+   "venue": "ICCV",
+   "category": "vlm",
+   "paper": "https://doi.org/10.1109/iccv51701.2025.02030",
+   "arxiv": "2503.23344"
+  },
+  {
+   "title": "Humor in Pixels: Benchmarking Large Multimodal Models Understanding of Online Comics",
+   "authors": "Yuriel Ryan et al.",
+   "year": 2025,
+   "venue": "Findings of EMNLP",
+   "category": "vlm",
+   "paper": "https://doi.org/10.18653/v1/2025.findings-emnlp.755",
+   "arxiv": "2509.12248"
+  },
+  {
+   "title": "MangaNinja: Line Art Colorization with Precise Reference Following",
+   "authors": "Zhiheng Liu et al.",
+   "year": 2025,
+   "venue": "CVPR",
+   "category": "creation",
+   "paper": "https://doi.org/10.1109/cvpr52734.2025.00532",
+   "arxiv": "2501.08332",
+   "project": "https://johanan528.github.io/MangaNinjia/"
+  },
+  {
+   "title": "MangaUB: A Manga Understanding Benchmark for Large Multimodal Models",
+   "authors": "Hikaru Ikuta et al.",
+   "year": 2025,
+   "venue": "IEEE MultiMedia",
+   "category": "vlm",
+   "paper": "https://doi.org/10.1109/mmul.2025.3550451",
+   "arxiv": "2407.19034",
+   "dataset": true
+  },
+  {
+   "title": "OnomatoGen: Onomatopoeia Generation with the Alpha-Channel in Manga",
+   "authors": "Takara Taniguchi et al.",
+   "year": 2025,
+   "venue": "ICCV Workshops",
+   "category": "creation",
+   "arxiv": "2509.24331",
+   "project": "https://comiq-iccv25.github.io"
+  },
+  {
+   "title": "Panel-by-Panel Souls: A Performative Workflow for Expressive Faces in AI-Assisted Manga Creation",
+   "authors": "Qing Zhang et al.",
+   "year": 2025,
+   "venue": "NeurIPS Creative AI",
+   "category": "hci",
+   "arxiv": "2511.16038",
+   "paper": "https://papers.neurips.cc/paper_files/paper/2025/hash/a3386597cce5ce1b2fe0f5c5c5a531db-Abstract-Creative_AI_Track.html"
+  },
+  {
+   "title": "Re:Verse -- Can Your VLM Read a Manga?",
+   "authors": "Aaditya Baranwal et al.",
+   "year": 2025,
+   "venue": "ICCV Workshops",
+   "category": "vlm",
+   "paper": "https://doi.org/10.1109/iccvw69036.2025.00398",
+   "arxiv": "2508.08508"
+  },
+  {
+   "title": "A Comprehensive Gold Standard and Benchmark for Comics Text Detection and Recognition",
+   "authors": "Gürkan Soykan et al.",
+   "year": 2024,
+   "venue": "ICDAR Workshops",
+   "category": "text",
+   "paper": "https://doi.org/10.1007/978-3-031-70645-5_12",
+   "arxiv": "2212.14674",
+   "code": "https://github.com/gurkansoykan/comic-text-detection-benchmark"
+  },
+  {
+   "title": "Collaborative Comic Generation: Integrating Visual Narrative Theories with AI Models for Enhanced Creativity",
+   "authors": "Yi-Chun Chen et al.",
+   "year": 2024,
+   "venue": "ECAI Workshops",
+   "category": "generation",
+   "arxiv": "2409.17263",
+   "paper": "https://ceur-ws.org/Vol-3810/paper8.pdf"
+  },
+  {
+   "title": "ComiCap: A VLMs pipeline for dense captioning of Comic Panels",
+   "authors": "Emanuele Vivoli et al.",
+   "year": 2024,
+   "venue": "ECCV Workshops",
+   "category": "vlm",
+   "paper": "https://doi.org/10.1007/978-3-031-92808-6_4",
+   "arxiv": "2409.16159"
+  },
+  {
+   "title": "ComicBERT: A Transformer Model and Pre-training Strategy for Contextual Understanding in Comics",
+   "authors": "Gürkan Soykan et al.",
+   "year": 2024,
+   "venue": "ICDAR Workshops",
+   "category": "vlm",
+   "paper": "https://doi.org/10.1007/978-3-031-70645-5_16",
+   "code": "https://github.com/gsoykan/comicbert"
+  },
+  {
+   "title": "Comics Datasets Framework: Mix of Comics datasets for detection benchmarking",
+   "authors": "Emanuele Vivoli et al.",
+   "year": 2024,
+   "venue": "ICDAR Workshops",
+   "category": "datasets",
+   "paper": "https://doi.org/10.1007/978-3-031-70645-5_11",
+   "arxiv": "2407.03540"
+  },
+  {
+   "title": "CoMix: A Comprehensive Benchmark for Multi-Task Comic Understanding",
+   "authors": "Emanuele Vivoli et al.",
+   "year": 2024,
+   "venue": "NeurIPS",
+   "category": "datasets",
+   "paper": "https://doi.org/10.52202/079017-4470",
+   "arxiv": "2407.03550",
+   "code": "https://github.com/emanuelevivoli/CoMix"
+  },
+  {
+   "title": "Cracking the Code of Juxtaposition: Can AI Models Understand the Humorous Contradictions",
+   "authors": "Zhe Hu et al.",
+   "year": 2024,
+   "venue": "NeurIPS",
+   "category": "vlm",
+   "paper": "https://doi.org/10.52202/079017-1494",
+   "arxiv": "2405.19088"
+  },
+  {
+   "title": "Investigating Neural Networks and Transformer Models for Enhanced Comic Decoding",
+   "authors": "Eleanna Kouletou et al.",
+   "year": 2024,
+   "venue": "ICDAR Workshops",
+   "category": "vlm",
+   "paper": "https://doi.org/10.1007/978-3-031-70645-5_10"
+  },
+  {
+   "title": "Manga109Dialog: A Large-scale Dialogue Dataset for Comics Speaker Detection",
+   "authors": "Yingxuan Li et al.",
+   "year": 2024,
+   "venue": "ICME",
+   "category": "text",
+   "paper": "https://doi.org/10.1109/icme57554.2024.10687709",
+   "arxiv": "2306.17469",
+   "code": "https://github.com/manga109/public-annotations"
+  },
+  {
+   "title": "Multimodal Transformer for Comics Text-Cloze",
+   "authors": "Emanuele Vivoli et al.",
+   "year": 2024,
+   "venue": "ICDAR",
+   "category": "vlm",
+   "paper": "https://doi.org/10.1007/978-3-031-70552-6_8",
+   "arxiv": "2403.03719"
+  },
+  {
+   "title": "Shading-Guided Manga Screening from Reference",
+   "authors": "Huisi Wu et al.",
+   "year": 2024,
+   "venue": "TVCG",
+   "category": "creation",
+   "paper": "https://doi.org/10.1109/tvcg.2023.3282223"
+  },
+  {
+   "title": "Spatially Augmented Speech Bubble to Character Association via Comic Multi-task Learning",
+   "authors": "Gürkan Soykan et al.",
+   "year": 2024,
+   "venue": "ICDAR Workshops",
+   "category": "text",
+   "paper": "https://doi.org/10.1007/978-3-031-70645-5_15",
+   "code": "https://github.com/gsoykan/spatially_augmented_comic_mtl"
+  },
+  {
+   "title": "Synthesizing Coherent Story with Auto-Regressive Latent Diffusion Models",
+   "authors": "Xichen Pan et al.",
+   "year": 2024,
+   "venue": "WACV",
+   "category": "storyviz",
+   "paper": "https://doi.org/10.1109/wacv57701.2024.00290",
+   "arxiv": "2211.10950",
+   "code": "https://github.com/xichenpan/ARLDM"
+  },
+  {
+   "title": "The Manga Whisperer: Automatically Generating Transcriptions for Comics",
+   "authors": "Ragav Sachdeva et al.",
+   "year": 2024,
+   "venue": "CVPR",
+   "category": "text",
+   "paper": "https://doi.org/10.1109/cvpr52733.2024.01232",
+   "arxiv": "2401.10224",
+   "code": "https://github.com/ragavsachdeva/magi"
+  },
+  {
+   "title": "Toward accessible comics for blind and low vision readers",
+   "authors": "Christophe Rigaud et al.",
+   "year": 2024,
+   "venue": "ICDAR Workshops",
+   "category": "accessibility",
+   "paper": "https://doi.org/10.1007/978-3-031-70645-5_13",
+   "arxiv": "2407.08248"
+  },
+  {
+   "title": "Unlocking Comics: The AI4VA Dataset for Visual Understanding",
+   "authors": "Peter Grönquist et al.",
+   "year": 2024,
+   "venue": "ECCV Workshops",
+   "category": "datasets",
+   "paper": "https://doi.org/10.1007/978-3-031-92808-6_10",
+   "arxiv": "2410.20459",
+   "code": "https://github.com/IVRL/AI4VA"
+  },
+  {
+   "title": "Zero-Shot Character Identification and Speaker Prediction in Comics via Iterative Multimodal Fusion",
+   "authors": "Yingxuan Li et al.",
+   "year": 2024,
+   "venue": "ACM MM",
+   "category": "identity",
+   "paper": "https://doi.org/10.1145/3664647.3681659",
+   "arxiv": "2404.13993"
+  },
+  {
+   "title": "ChartStory: Automated Partitioning, Layout, and Captioning of Charts into Comic-Style Narratives",
+   "authors": "Jian Zhao et al.",
+   "year": 2023,
+   "venue": "TVCG",
+   "category": "hci",
+   "paper": "https://doi.org/10.1109/tvcg.2021.3114211",
+   "arxiv": "2103.03996"
+  },
+  {
+   "title": "Dense Multitask Learning to Reconfigure Comics",
+   "authors": "Deblina Bhattacharjee et al.",
+   "year": 2023,
+   "venue": "CVPR Workshops",
+   "category": "analysis",
+   "paper": "https://doi.org/10.1109/cvprw59228.2023.00598",
+   "arxiv": "2307.08071"
+  },
+  {
+   "title": "Developing Comic-based Learning Toolkits for Teaching Computing to Elementary School Learners",
+   "authors": "Francisco Castro et al.",
+   "year": 2023,
+   "venue": "SIGCSE",
+   "category": "hci",
+   "paper": "https://doi.org/10.1145/3545947.3576272"
+  },
+  {
+   "title": "M2C: Towards Automatic Multimodal Manga Complement",
+   "authors": "Hongcheng Guo et al.",
+   "year": 2023,
+   "venue": "Findings of EMNLP",
+   "category": "vlm",
+   "paper": "https://doi.org/10.18653/v1/2023.findings-emnlp.661",
+   "arxiv": "2310.17130"
+  },
+  {
+   "title": "Make-A-Story: Visual Memory Conditioned Consistent Story Generation",
+   "authors": "Tanzila Rahman et al.",
+   "year": 2023,
+   "venue": "CVPR",
+   "category": "storyviz",
+   "paper": "https://doi.org/10.1109/cvpr52729.2023.00246"
+  },
+  {
+   "title": "Multimodal Persona Based Generation of Comic Dialogs",
+   "authors": "Harsh Agrawal et al.",
+   "year": 2023,
+   "venue": "ACL",
+   "category": "text",
+   "paper": "https://doi.org/10.18653/v1/2023.acl-long.791"
+  },
+  {
+   "title": "Panel-Page-Aware Comic Genre Understanding",
+   "authors": "Chenshu Xu et al.",
+   "year": 2023,
+   "venue": "TIP",
+   "category": "analysis",
+   "paper": "https://doi.org/10.1109/tip.2023.3270105"
+  },
+  {
+   "title": "BCBId: First Bangla Comic Dataset and Its Applications",
+   "authors": "Arpita Dutta et al.",
+   "year": 2022,
+   "venue": "IJDAR",
+   "category": "datasets",
+   "paper": "https://doi.org/10.1007/s10032-022-00412-9"
+  },
+  {
+   "title": "Character-Centric Story Visualization via Visual Planning and Token Alignment",
+   "authors": "Hong Chen et al.",
+   "year": 2022,
+   "venue": "EMNLP",
+   "category": "storyviz",
+   "paper": "https://doi.org/10.18653/v1/2022.emnlp-main.565",
+   "arxiv": "2210.08465",
+   "code": "https://github.com/PlusLabNLP/VP-CSV"
+  },
+  {
+   "title": "CodeToon: Story Ideation, Auto Comic Generation, and Structure Mapping for Code-Driven Storytelling",
+   "authors": "Sangho Suh et al.",
+   "year": 2022,
+   "venue": "UIST",
+   "category": "hci",
+   "paper": "https://doi.org/10.1145/3526113.3545617",
+   "arxiv": "2208.12981"
+  },
+  {
+   "title": "ComicLib: A New Large-Scale Comic Dataset for Sketch Understanding",
+   "authors": "Xin Wei et al.",
+   "year": 2022,
+   "venue": "DICTA",
+   "category": "datasets",
+   "paper": "https://doi.org/10.1109/dicta56598.2022.10034579"
+  },
+  {
+   "title": "COO: Comic Onomatopoeia Dataset for Recognizing Arbitrary or Truncated Texts",
+   "authors": "Jeonghun Baek et al.",
+   "year": 2022,
+   "venue": "ECCV",
+   "category": "text",
+   "paper": "https://doi.org/10.1007/978-3-031-19815-1_16",
+   "arxiv": "2207.04675",
+   "code": "https://github.com/ku21fan/COO-Comic-Onomatopoeia"
+  },
+  {
+   "title": "Estimating Image Depth in the Comics Domain",
+   "authors": "Deblina Bhattacharjee et al.",
+   "year": 2022,
+   "venue": "WACV",
+   "category": "analysis",
+   "paper": "https://doi.org/10.1109/wacv51458.2022.00118",
+   "arxiv": "2110.03575",
+   "code": "https://github.com/IVRL/ComicsDepth"
+  },
+  {
+   "title": "FlatMagic: Improving Flat Colorization through AI-driven Design for Digital Comic Professionals",
+   "authors": "Chuan Yan et al.",
+   "year": 2022,
+   "venue": "CHI",
+   "category": "creation",
+   "paper": "https://doi.org/10.1145/3491102.3502075"
+  },
+  {
+   "title": "Interactive Data Comics",
+   "authors": "Zezhong Wang et al.",
+   "year": 2022,
+   "venue": "TVCG",
+   "category": "hci",
+   "paper": "https://doi.org/10.1109/tvcg.2021.3114849"
+  },
+  {
+   "title": "StoryDALL-E: Adapting Pretrained Text-to-Image Transformers for Story Continuation",
+   "authors": "Adyasha Maharana et al.",
+   "year": 2022,
+   "venue": "ECCV",
+   "category": "storyviz",
+   "paper": "https://doi.org/10.1007/978-3-031-19836-6_5",
+   "arxiv": "2209.06192",
+   "code": "https://github.com/adymaharana/storydalle"
+  },
+  {
+   "title": "The Visual Language Research Corpus (VLRC) Project",
+   "authors": "Neil Cohn",
+   "year": 2022,
+   "venue": "DataverseNL",
+   "category": "datasets",
+   "paper": "https://doi.org/10.34894/LWMZ7G"
+  },
+  {
+   "title": "Towards Content-Aware Pixel-Wise Comic Panel Segmentation",
+   "authors": "Hikaru Ikuta et al.",
+   "year": 2022,
+   "venue": "ICPR Workshops",
+   "category": "analysis",
+   "paper": "https://doi.org/10.1007/978-3-031-37742-6_1"
+  },
+  {
+   "title": "WebtoonMe: A Data-Centric Approach for Full-Body Portrait Stylization",
+   "authors": "Jihye Back et al.",
+   "year": 2022,
+   "venue": "SIGGRAPH Asia",
+   "category": "generation",
+   "paper": "https://doi.org/10.1145/3550340.3564226",
+   "arxiv": "2210.10335"
+  },
+  {
+   "title": "C2VNet: A Deep Learning Framework Towards Comic Strip to Audio-Visual Scene Synthesis",
+   "authors": "Vaibhavi Gupta et al.",
+   "year": 2021,
+   "venue": "ICDAR",
+   "category": "animation",
+   "paper": "https://doi.org/10.1007/978-3-030-86331-9_11",
+   "code": "https://github.com/gesstalt/IMCDB"
+  },
+  {
+   "title": "Comic Image Inpainting via Distance Transform",
+   "authors": "Naoki Ono et al.",
+   "year": 2021,
+   "venue": "SIGGRAPH Asia",
+   "category": "restoration",
+   "paper": "https://doi.org/10.1145/3478512.3488607"
+  },
+  {
+   "title": "Exploiting Aliasing for Manga Restoration",
+   "authors": "Minshan Xie et al.",
+   "year": 2021,
+   "venue": "CVPR",
+   "category": "restoration",
+   "paper": "https://doi.org/10.1109/cvpr46437.2021.01320",
+   "arxiv": "2105.06830",
+   "code": "https://github.com/msxie92/MangaRestoration"
+  },
+  {
+   "title": "Generating Manga from Illustrations via Mimicking Manga Creation Workflow",
+   "authors": "Lvmin Zhang et al.",
+   "year": 2021,
+   "venue": "CVPR",
+   "category": "creation",
+   "paper": "https://doi.org/10.1109/cvpr46437.2021.00559",
+   "code": "https://github.com/lllyasviel/MangaFilter"
+  },
+  {
+   "title": "ICDAR 2021 Competition on Multimodal Emotion Recognition on Comics Scenes",
+   "authors": "Nhu-Van Nguyen et al.",
+   "year": 2021,
+   "venue": "ICDAR",
+   "category": "analysis",
+   "paper": "https://doi.org/10.1007/978-3-030-86337-1_51"
+  },
+  {
+   "title": "Improving Generation and Evaluation of Visual Stories via Semantic Consistency",
+   "authors": "Adyasha Maharana et al.",
+   "year": 2021,
+   "venue": "NAACL",
+   "category": "storyviz",
+   "paper": "https://doi.org/10.18653/v1/2021.naacl-main.194",
+   "arxiv": "2105.10026",
+   "code": "https://github.com/adymaharana/StoryViz"
+  },
+  {
+   "title": "Integrating Visuospatial, Linguistic and Commonsense Structure intoStory Visualization",
+   "authors": "Adyasha Maharana et al.",
+   "year": 2021,
+   "venue": "EMNLP",
+   "category": "storyviz",
+   "paper": "https://doi.org/10.18653/v1/2021.emnlp-main.543",
+   "arxiv": "2110.10834",
+   "code": "https://github.com/adymaharana/VLCStoryGan"
+  },
+  {
+   "title": "Interactive Manga Colorization with Fast Flat Coloring",
+   "authors": "Delong Ouyang et al.",
+   "year": 2021,
+   "venue": "SIGGRAPH Asia",
+   "category": "creation",
+   "paper": "https://doi.org/10.1145/3476124.3488628"
+  },
+  {
+   "title": "Manga-MMTL: Multimodal Multitask Transfer Learning for Manga Character Analysis",
+   "authors": "Nhu-Van Nguyen et al.",
+   "year": 2021,
+   "venue": "ICDAR",
+   "category": "identity",
+   "paper": "https://doi.org/10.1007/978-3-030-86331-9_27"
+  },
+  {
+   "title": "MangaGAN: Unpaired Photo-to-Manga Translation Based on The Methodology of Manga Drawing",
+   "authors": "Hao Su et al.",
+   "year": 2021,
+   "venue": "AAAI",
+   "category": "generation",
+   "paper": "https://doi.org/10.1609/aaai.v35i3.16364",
+   "arxiv": "2004.10634"
+  },
+  {
+   "title": "Seamless Manga Inpainting with Semantics Awareness",
+   "authors": "Minshan Xie et al.",
+   "year": 2021,
+   "venue": "ACM TOG",
+   "category": "restoration",
+   "paper": "https://doi.org/10.1145/3450626.3459822"
+  },
+  {
+   "title": "Towards Fully Automated Manga Translation",
+   "authors": "Ryota Hinami et al.",
+   "year": 2021,
+   "venue": "AAAI",
+   "category": "translation",
+   "paper": "https://doi.org/10.1609/aaai.v35i14.17537",
+   "arxiv": "2012.14271"
+  },
+  {
+   "title": "Using Comics to Introduce and Reinforce Programming Concepts in CS1",
+   "authors": "Sangho Suh et al.",
+   "year": 2021,
+   "venue": "SIGCSE",
+   "category": "hci",
+   "paper": "https://doi.org/10.1145/3408877.3432465"
+  },
+  {
+   "title": "Building a Manga Dataset \"Manga109\" with Annotations for Multimedia Applications",
+   "authors": "Kiyoharu Aizawa et al.",
+   "year": 2020,
+   "venue": "IEEE MultiMedia",
+   "category": "datasets",
+   "paper": "https://doi.org/10.1109/mmul.2020.2987895",
+   "arxiv": "2005.04425"
+  },
+  {
+   "title": "Manga Filling Style Conversion with Screentone Variational Autoencoder",
+   "authors": "Minshan Xie et al.",
+   "year": 2020,
+   "venue": "ACM TOG",
+   "category": "creation",
+   "paper": "https://doi.org/10.1145/3414685.3417873"
+  },
+  {
+   "title": "Unconstrained Text Detection in Manga: a New Dataset and Baseline",
+   "authors": "Julián Del Gobbo et al.",
+   "year": 2020,
+   "venue": "ECCV Workshops",
+   "category": "text",
+   "paper": "https://doi.org/10.1007/978-3-030-67070-2_38",
+   "arxiv": "2009.04042",
+   "code": "https://github.com/juvian/Manga-Text-Segmentation"
+  },
+  {
+   "title": "Analysis Based on Distributed Representations of Various Parts Images in Four-Scene Comics Story Dataset",
+   "authors": "Akira Terauchi et al.",
+   "year": 2019,
+   "venue": "ICDAR Workshops",
+   "category": "studies",
+   "paper": "https://doi.org/10.1109/icdarw.2019.00014"
+  },
+  {
+   "title": "CNN based Extraction of Panels/Characters from Bengali Comic Book Page Images",
+   "authors": "Arpita Dutta et al.",
+   "year": 2019,
+   "venue": "ICDAR Workshops",
+   "category": "analysis",
+   "paper": "https://doi.org/10.1109/icdarw.2019.00012",
+   "arxiv": "1910.09233"
+  },
+  {
+   "title": "Comic-Guided Speech Synthesis",
+   "authors": "Yujia Wang et al.",
+   "year": 2019,
+   "venue": "ACM TOG",
+   "category": "animation",
+   "paper": "https://doi.org/10.1145/3355089.3356487",
+   "project": "https://bitwangyujia.github.io/research/project/comic2speech.html"
+  },
+  {
+   "title": "Deep CNN-based Speech Balloon Detection and Segmentation for Comic Books",
+   "authors": "David Dubray et al.",
+   "year": 2019,
+   "venue": "ICDAR",
+   "category": "text",
+   "paper": "https://doi.org/10.1109/icdar.2019.00200",
+   "arxiv": "1902.08137"
+  },
+  {
+   "title": "StoryGAN: A Sequential Conditional GAN for Story Visualization",
+   "authors": "Yitong Li et al.",
+   "year": 2019,
+   "venue": "CVPR",
+   "category": "storyviz",
+   "paper": "https://doi.org/10.1109/cvpr.2019.00649",
+   "arxiv": "1812.02784",
+   "code": "https://github.com/yitong91/StoryGAN"
+  },
+  {
+   "title": "What Do We Expect from Comic Panel Extraction?",
+   "authors": "Van Nguyen Nhu et al.",
+   "year": 2019,
+   "venue": "ICDAR Workshops",
+   "category": "analysis",
+   "paper": "https://doi.org/10.1109/icdarw.2019.00013"
+  },
+  {
+   "title": "Cross-Domain Weakly-Supervised Object Detection through Progressive Domain Adaptation",
+   "authors": "Naoto Inoue et al.",
+   "year": 2018,
+   "venue": "CVPR",
+   "category": "analysis",
+   "paper": "https://doi.org/10.1109/cvpr.2018.00525",
+   "arxiv": "1803.11365",
+   "code": "https://github.com/naoto0804/cross-domain-detection"
+  },
+  {
+   "title": "A Faster R-CNN Based Method for Comic Characters Face Detection",
+   "authors": "Xiaoran Qin et al.",
+   "year": 2017,
+   "venue": "ICDAR",
+   "category": "analysis",
+   "paper": "https://doi.org/10.1109/icdar.2017.178"
+  },
+  {
+   "title": "cGAN-based Manga Colorization Using a Single Training Image",
+   "authors": "Paulina Hensman et al.",
+   "year": 2017,
+   "venue": "ICDAR",
+   "category": "creation",
+   "paper": "https://doi.org/10.1109/icdar.2017.295",
+   "arxiv": "1706.06918",
+   "code": "https://github.com/ryanliwag/cGan-Based-Manga-Colorization-using-1-training-image"
+  },
+  {
+   "title": "Comic Story Analysis Based on Genre Classification",
+   "authors": "Yuki Daiku et al.",
+   "year": 2017,
+   "venue": "ICDAR",
+   "category": "analysis",
+   "paper": "https://doi.org/10.1109/icdar.2017.293"
+  },
+  {
+   "title": "Comicolorization: Semi-Automatic Manga Colorization",
+   "authors": "Chie Furusawa et al.",
+   "year": 2017,
+   "venue": "SIGGRAPH Asia Technical Briefs",
+   "category": "creation",
+   "arxiv": "1706.06759",
+   "code": "https://github.com/DwangoMediaVillage/Comicolorization"
+  },
+  {
+   "title": "Deep Extraction of Manga Structural Lines",
+   "authors": "Chengze Li et al.",
+   "year": 2017,
+   "venue": "ACM TOG",
+   "category": "creation",
+   "paper": "https://doi.org/10.1145/3072959.3073675",
+   "code": "https://github.com/ljsabc/MangaLineExtraction_PyTorch"
+  },
+  {
+   "title": "Dynamic Manga: Animating Still Manga via Camera Movement",
+   "authors": "Ying Cao et al.",
+   "year": 2017,
+   "venue": "TMM",
+   "category": "animation",
+   "paper": "https://doi.org/10.1109/tmm.2016.2609415"
+  },
+  {
+   "title": "Histogram of Exclamation Marks and Its Application for Comics Analysis",
+   "authors": "Sotaro Hiroe et al.",
+   "year": 2017,
+   "venue": "ICDAR",
+   "category": "analysis",
+   "paper": "https://doi.org/10.1109/icdar.2017.294"
+  },
+  {
+   "title": "Manga Vectorization and Manipulation with Procedural Simple Screentone",
+   "authors": "Chih-Yuan Yao et al.",
+   "year": 2017,
+   "venue": "TVCG",
+   "category": "restoration",
+   "paper": "https://doi.org/10.1109/tvcg.2016.2525774"
+  },
+  {
+   "title": "Sketch-Based Manga Retrieval Using Deep Features",
+   "authors": "Rei Narita et al.",
+   "year": 2017,
+   "venue": "ICDAR",
+   "category": "retrieval",
+   "paper": "https://doi.org/10.1109/icdar.2017.291"
+  },
+  {
+   "title": "Story Pattern Analysis Based on Scene Order Information in Four-Scene Comics",
+   "authors": "Miki Ueno et al.",
+   "year": 2017,
+   "venue": "ICDAR",
+   "category": "studies",
+   "paper": "https://doi.org/10.1109/icdar.2017.296"
+  },
+  {
+   "title": "The Amazing Mysteries of the Gutter: Drawing Inferences Between Panels in Comic Book Narratives",
+   "authors": "Mohit Iyyer et al.",
+   "year": 2017,
+   "venue": "CVPR",
+   "category": "vlm",
+   "paper": "https://doi.org/10.1109/cvpr.2017.686",
+   "arxiv": "1611.05118",
+   "code": "https://github.com/miyyer/comics"
+  },
+  {
+   "title": "Using Posters to Recommend Anime and Mangas in a Cold-Start Scenario",
+   "authors": "Jill-Jenn Vie et al.",
+   "year": 2017,
+   "venue": "ICDAR",
+   "category": "retrieval",
+   "paper": "https://doi.org/10.1109/icdar.2017.287",
+   "arxiv": "1709.01584"
+  },
+  {
+   "title": "Designing a Question-Answering System for Comic Contents",
+   "authors": "Yukihiro Moriyama et al.",
+   "year": 2016,
+   "venue": "MANPU",
+   "category": "vlm",
+   "paper": "https://doi.org/10.1145/3011549.3011554"
+  },
+  {
+   "title": "Manga Content Analysis Using Physiological Signals",
+   "authors": "Charles Lima Sanches et al.",
+   "year": 2016,
+   "venue": "MANPU",
+   "category": "studies",
+   "paper": "https://doi.org/10.1145/3011549.3011555"
+  },
+  {
+   "title": "Pose Estimation of Anime/Manga Characters: A Case for Synthetic Data",
+   "authors": "Pramook Khungurn et al.",
+   "year": 2016,
+   "venue": "MANPU",
+   "category": "analysis",
+   "paper": "https://doi.org/10.1145/3011549.3011552"
+  },
+  {
+   "title": "Sketch-based Manga Retrieval using Manga109 Dataset",
+   "authors": "Yusuke Matsui et al.",
+   "year": 2016,
+   "venue": "MTAP",
+   "category": "retrieval",
+   "paper": "https://doi.org/10.1007/s11042-016-4020-z",
+   "arxiv": "1510.04389",
+   "dataset": true
+  },
+  {
+   "title": "Content-Aware Video2Comics With Manga-Style Layout",
+   "authors": "Guangmei Jing et al.",
+   "year": 2015,
+   "venue": "TMM",
+   "category": "generation",
+   "paper": "https://doi.org/10.1109/tmm.2015.2474263"
+  },
+  {
+   "title": "Speech Balloon and Speaker Association for Comics and Manga Understanding",
+   "authors": "Christophe Rigaud et al.",
+   "year": 2015,
+   "venue": "ICDAR",
+   "category": "text",
+   "paper": "https://doi.org/10.1109/icdar.2015.7333782"
+  },
+  {
+   "title": "Line-Based Drawing Style Description for Manga Classification",
+   "authors": "Wei-Ta Chu et al.",
+   "year": 2014,
+   "venue": "ACM MM",
+   "category": "analysis",
+   "paper": "https://doi.org/10.1145/2647868.2654962"
+  },
+  {
+   "title": "Reference-based Manga Colorization by Graph Correspondence Using Quadratic Programming",
+   "authors": "Kazuhiro Sato et al.",
+   "year": 2014,
+   "venue": "SIGGRAPH Asia",
+   "category": "creation",
+   "paper": "https://doi.org/10.1145/2669024.2669037"
+  },
+  {
+   "title": "Automatic Stylistic Manga Layout",
+   "authors": "Ying Cao et al.",
+   "year": 2012,
+   "venue": "ACM TOG",
+   "category": "generation",
+   "paper": "https://doi.org/10.1145/2366145.2366160"
+  },
+  {
+   "title": "Movie2Comics: Towards a Lively Video Content Presentation",
+   "authors": "Meng Wang et al.",
+   "year": 2012,
+   "venue": "TMM",
+   "category": "generation",
+   "paper": "https://doi.org/10.1109/tmm.2012.2187181"
+  },
+  {
+   "title": "Scalable Comic-like Video Summaries and Layout Disturbance",
+   "authors": "Luis Herranz et al.",
+   "year": 2012,
+   "venue": "TMM",
+   "category": "generation",
+   "paper": "https://doi.org/10.1109/tmm.2012.2192917"
+  },
+  {
+   "title": "Automatic Preview Generation of Comic Episodes for Digitized Comic Search",
+   "authors": "Keiichiro Hoashi et al.",
+   "year": 2011,
+   "venue": "ACM MM",
+   "category": "retrieval",
+   "paper": "https://doi.org/10.1145/2072298.2072047"
+  },
+  {
+   "title": "Recognizing Text Elements for SVG Comic Compression and Its Novel Applications",
+   "authors": "Chung-Yuan Su et al.",
+   "year": 2011,
+   "venue": "ICDAR",
+   "category": "restoration",
+   "paper": "https://doi.org/10.1109/icdar.2011.267"
+  },
+  {
+   "title": "Similar Manga Retrieval Using Visual Vocabulary Based on Regions of Interest",
+   "authors": "Weihan Sun et al.",
+   "year": 2011,
+   "venue": "ICDAR",
+   "category": "retrieval",
+   "paper": "https://doi.org/10.1109/icdar.2011.217"
+  },
+  {
+   "title": "Manga Colorization",
+   "authors": "Yingge Qu et al.",
+   "year": 2006,
+   "venue": "ACM TOG",
+   "category": "creation",
+   "paper": "https://doi.org/10.1145/1141911.1142017"
+  }
+ ],
+ "resources": {
+  "meta": {
+   "repo": "https://github.com/eternal-f1ame/awesome-comics-ai",
+   "site_url": "",
+   "updated": "2026-11-18"
+  },
+  "tools": [
+   {
+    "name": "Magi",
+    "what": "Detects panels, text and characters on manga pages, clusters characters and writes a chapter transcript with speaker names.",
+    "url": "https://github.com/ragavsachdeva/magi"
+   },
+   {
+    "name": "manga-ocr",
+    "what": "Optical character recognition for Japanese manga text, vertical or horizontal, with or without furigana.",
+    "url": "https://github.com/kha-white/manga-ocr"
+   },
+   {
+    "name": "mokuro",
+    "what": "Turns manga pages into a browser reader with selectable Japanese text, using manga-ocr.",
+    "url": "https://github.com/kha-white/mokuro"
+   },
+   {
+    "name": "comic-text-detector",
+    "what": "Text detection and segmentation for manga and comics.",
+    "url": "https://github.com/dmMaze/comic-text-detector"
+   },
+   {
+    "name": "BallonsTranslator",
+    "what": "Computer-aided comic and manga translation with machine translation and image and text editing.",
+    "url": "https://github.com/dmMaze/BallonsTranslator"
+   },
+   {
+    "name": "manga-image-translator",
+    "what": "Detects, translates and re-letters the text in manga and other images.",
+    "url": "https://github.com/zyddnys/manga-image-translator"
+   },
+   {
+    "name": "Kumiko",
+    "what": "Cuts comic pages into panels and orders them for reading.",
+    "url": "https://github.com/njean42/kumiko"
+   },
+   {
+    "name": "manga109api",
+    "what": "A Python API for reading the Manga109 annotations.",
+    "url": "https://github.com/manga109/manga109api"
+   },
+   {
+    "name": "Manga109 public annotations",
+    "what": "Additional annotations of Manga109 released by the community, such as onomatopoeia and dialogue.",
+    "url": "https://github.com/manga109/public-annotations"
+   },
+   {
+    "name": "CoMix",
+    "what": "A framework that unifies comics datasets and annotations for detection, captioning and other tasks.",
+    "url": "https://github.com/emanuelevivoli/CoMix"
+   },
+   {
+    "name": "Open Mantra dataset",
+    "what": "A manga translation evaluation set with Japanese, English and Chinese text.",
+    "url": "https://github.com/mantra-inc/open-mantra-dataset"
+   }
+  ],
+  "workshops": [
+   {
+    "name": "MANPU",
+    "what": "The IAPR International Workshop on coMics ANalysis, Processing and Understanding, first held with ICPR 2016; its seventh edition ran with ICPR 2026 in Lyon.",
+    "link_text": "proceedings on DBLP",
+    "url": "https://dblp.org/search?q=MANPU"
+   },
+   {
+    "name": "AI4VA at ECCV 2024",
+    "what": "The AI for Visual Arts workshop and challenges, with depth, segmentation and saliency tracks on Franco-Belgian comics.",
+    "link_text": "workshop page",
+    "url": "https://sites.google.com/view/ai4vaeccv2024"
+   },
+   {
+    "name": "ICDAR 2021 competition on multimodal emotion recognition on comics scenes",
+    "what": "A shared task on recognizing emotions in comic panels from the image and the text together.",
+    "link_text": "paper",
+    "url": "https://doi.org/10.1007/978-3-030-86337-1_51"
+   }
+  ],
+  "related": [
+   {
+    "name": "Awesome Comics Understanding",
+    "url": "https://github.com/emanuelevivoli/awesome-comics-understanding",
+    "what": "the companion list of the 2024 comics-understanding survey by Vivoli et al., organized by its layers of understanding."
+   },
+   {
+    "name": "AwesomeAnimeResearch",
+    "url": "https://github.com/SerialLain3170/AwesomeAnimeResearch",
+    "what": "a large, active list of anime and manga research, strongest on generation, colorization and illustration."
+   },
+   {
+    "name": "awesome-acg-machine-learning",
+    "url": "https://github.com/dimpurr/awesome-acg-machine-learning",
+    "what": "an earlier list of machine learning for anime, comics and games."
+   }
+  ]
+ }
+}

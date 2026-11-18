@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Awesome Comics &amp; Manga AI</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='13' height='28' rx='2' fill='none' stroke='%23b4302b' stroke-width='3'/%3E%3Crect x='17' y='2' width='13' height='13' rx='2' fill='none' stroke='%23b4302b' stroke-width='3'/%3E%3Crect x='17' y='17' width='13' height='13' rx='2' fill='none' stroke='%23b4302b' stroke-width='3'/%3E%3C/svg%3E">
+<meta name="description" content="A curated, maintained map of research on comics, manga and webtoons in computer vision, language and graphics.">
+<style>
+  :root {
+    --bg: #fbfaf7; --surface: #ffffff; --ink: #1d1b18; --muted: #6b665e; --rule: #e6e1d8;
+    --accent: #b4302b; --accent-soft: #f6e5e3; --chip: #f1ede6; --chip-on: #1d1b18; --chip-on-ink: #fbfaf7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #151413; --surface: #1d1c1a; --ink: #ece8e1; --muted: #a39d93; --rule: #2f2d2a;
+      --accent: #e5675f; --accent-soft: #3a2422; --chip: #262422; --chip-on: #ece8e1; --chip-on-ink: #151413;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #151413; --surface: #1d1c1a; --ink: #ece8e1; --muted: #a39d93; --rule: #2f2d2a;
+    --accent: #e5675f; --accent-soft: #3a2422; --chip: #262422; --chip-on: #ece8e1; --chip-on-ink: #151413;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 ui-serif, Georgia, "Times New Roman", serif; }
+  a { color: var(--accent); text-underline-offset: 2px; }
+  .sans { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  header { border-bottom: 1px solid var(--rule); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  .narrow { max-width: 720px; margin: 0 auto; padding: 0 16px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 18px 0; }
+  .brand { font-weight: 700; font-size: 18px; letter-spacing: .01em; color: var(--ink); text-decoration: none; }
+  .brand span { color: var(--accent); }
+  nav a { margin-left: 18px; font-size: 15px; color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--ink); }
+  .hero { padding-top: 56px; padding-bottom: 8px; }
+  .kicker { font-size: 13px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin: 0 0 10px; }
+  h1 { font-size: clamp(32px, 6vw, 48px); line-height: 1.1; margin: 0 0 14px; font-weight: 700; text-wrap: balance; }
+  .dek { font-size: 20px; color: var(--muted); margin: 0 0 22px; }
+  .byline { font-size: 14px; color: var(--muted); }
+  article p { margin: 0 0 1.1em; }
+  article h2 { font-size: 24px; margin: 1.8em 0 .5em; }
+  .panels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 28px 0; }
+  .panel { border: 2px solid var(--ink); border-radius: 3px; padding: 14px 12px; background: var(--surface); min-height: 112px; }
+  .panel b { display: block; font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 4px; }
+  .panel p { margin: 0; font-size: 15px; line-height: 1.45; }
+  .stats { display: flex; gap: 28px; flex-wrap: wrap; margin: 26px 0 0; padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .stat b { display: block; font-size: 28px; line-height: 1.1; }
+  .stat span { font-size: 13px; color: var(--muted); }
+  #explore { padding: 48px 0 32px; }
+  #explore h2 { font-size: 28px; margin: 0 0 6px; }
+  .controls { position: sticky; top: 0; z-index: 2; background: var(--bg); padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .search { width: 100%; font: inherit; font-size: 16px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .chip { border: 0; border-radius: 999px; padding: 5px 11px; font-size: 13px; background: var(--chip); color: var(--ink); cursor: pointer; }
+  .chip[aria-pressed="true"] { background: var(--chip-on); color: var(--chip-on-ink); }
+  .count { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .section-title { font-size: 20px; margin: 30px 0 4px; }
+  .section-blurb { font-size: 15px; color: var(--muted); margin: 0 0 10px; }
+  .row { display: grid; grid-template-columns: 52px 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid var(--rule); }
+  .row .year { font-size: 14px; color: var(--muted); padding-top: 2px; }
+  .row .title { font-size: 16px; line-height: 1.4; }
+  .row .meta { font-size: 13px; color: var(--muted); margin-top: 3px; }
+  .venue { display: inline-block; background: var(--accent-soft); color: var(--accent); border-radius: 4px; padding: 0 6px; margin-right: 6px; font-weight: 600; }
+  .meta a { margin-right: 10px; }
+  .resources { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 12px; }
+  .card { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; }
+  .card h3 { margin: 0 0 4px; font-size: 16px; }
+  .card p { margin: 0; font-size: 14px; color: var(--muted); }
+  footer { border-top: 1px solid var(--rule); padding: 24px 0 40px; font-size: 14px; color: var(--muted); }
+  .empty { color: var(--muted); padding: 20px 0; }
+  @media (max-width: 640px) {
+    nav a { margin-left: 12px; }
+    .panels { grid-template-columns: 1fr; }
+    .row { grid-template-columns: 40px 1fr; }
+  }
+</style>
+</head>
+<body>
+<header class="sans">
+  <div class="wrap masthead">
+    <a class="brand" href="#">Awesome Comics <span>&amp;</span> Manga AI</a>
+    <nav><a href="#post">Why</a><a href="#explore">The list</a><a href="#resources">Tools</a><a id="repo-link" href="#">GitHub</a></nav>
+  </div>
+</header>
+
+<main>
+  <section class="narrow hero" id="post">
+    <p class="kicker sans">A map of the field</p>
+    <h1>Comics are a modality of their own</h1>
+    <p class="dek">They sit between the single image and the video, and research on them is spread across a dozen communities. This is our attempt to put it on one map, and to keep that map current.</p>
+    <p class="byline sans" id="byline">The maintainers<span id="updated"></span></p>
+  </section>
+
+  <article class="narrow">
+    <p>A comic tells a story in a few still images and leaves everything in between to the reader. Between two panels, time passes, a character moves across a room, a decision is made; none of it is drawn. Readers fill that gap without effort. Models do not, and that is what makes comics such a revealing test of what a vision-language model can actually follow.</p>
+
+    <div class="panels sans" aria-label="What makes comics different">
+      <div class="panel"><b>Sparse</b><p>A page shows a few moments of a story, not a continuous stream, so a model must infer what happens between them.</p></div>
+      <div class="panel"><b>Lettered</b><p>The text lives inside the art, in balloons, captions and sound effects, and it belongs to a speaker the page may never name.</p></div>
+      <div class="panel"><b>Long</b><p>A character, a promise or a cause can be set up hundreds of pages before it matters, and the reader is expected to remember it.</p></div>
+    </div>
+
+    <p>Research on comics is older than deep learning, and it has never had one home. Panel and balloon detection grew up in document analysis. Colorization and screentones belong to graphics. Speaker attribution borrows from NLP. Accessible readers come from HCI, and the study of comics as a medium from the digital humanities. Each community built its own datasets and gave its own names to the same problems, so a newcomer has to rediscover the field one venue at a time.</p>
+
+    <p>Vision-language models have changed the questions. Models now answer questions about pages, translate with the art in view, transcribe whole chapters with speaker names, and draw comics from a script. Benchmarks ask whether a model is reading the page or recalling a story it already knows. <span id="recent-line"></span></p>
+
+    <h2>What this list is</h2>
+    <p>It is a curated map of that work, built to be broad. "Comics" here means manga, manhwa, manhua, webtoons, bandes dessinées, comic strips, graphic novels and single-panel cartoons. A paper belongs when comics are its subject or its main test bed, whether it reads them, searches them, translates them, describes them for blind readers, draws them, restores them, animates them or uses them to probe a model.</p>
+    <p>Earlier lists did valuable work, and we credit and link them below. Some have paused, and others centre on anime and illustration. We want a list that stays current, so we built it to be maintained. Every entry is a record in one data file, checked against arXiv, Crossref or the venue's own pages. The README and this page are generated from that file.</p>
+    <p>The list is selective. It includes work from conferences and journals ranked A* or A by CORE, from workshops and the peer-reviewed tracks of those conferences, the dataset and benchmark papers the field builds on wherever they appeared, and the newest arXiv preprints. A preprint has four months: if a qualifying venue has not published it by then, it leaves the list, and it comes back when it is published. Each month an automated refresh applies that rule, and a sweep of arXiv opens an issue with new candidates for a maintainer to review.</p>
+
+    <h2>How to help</h2>
+    <p>If your paper is missing, a link is broken, or a section should exist, open an issue or a pull request. The <a id="contrib-link" href="#">contributing guide</a> takes two minutes to read. We would rather be told than be wrong.</p>
+
+    <div class="stats sans" id="stats"></div>
+  </article>
+
+  <section id="explore" class="wrap">
+    <h2>The list</h2>
+    <div class="controls sans">
+      <input class="search" id="q" type="search" placeholder="Search titles, venues or years, for example: speaker, colorization, 2025" aria-label="Search the list">
+      <div class="chips" id="chips" role="group" aria-label="Filter by section"></div>
+      <div class="count" id="count" aria-live="polite"></div>
+    </div>
+    <div id="results" class="sans"></div>
+  </section>
+
+  <section id="resources" class="wrap sans">
+    <h2 class="section-title" style="font-size:28px">Tools, workshops and related lists</h2>
+    <div class="resources" id="res"></div>
+  </section>
+</main>
+
+<footer class="sans">
+  <div class="wrap">Curated by the maintainers and contributors. The list is released under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>. Titles and links belong to their authors.</div>
+</footer>
+
+<script>
+(async function () {
+  let data;
+  try { data = await (await fetch("papers.json", { cache: "no-cache" })).json(); }
+  catch (e) { document.getElementById("results").innerHTML = '<p class="empty">The list could not be loaded. Read it in the README on GitHub.</p>'; return; }
+  const { sections, papers, resources } = data;
+  const meta = resources.meta || {};
+  if (meta.repo) {
+    document.getElementById("repo-link").href = meta.repo;
+    document.getElementById("contrib-link").href = meta.repo + "/blob/main/CONTRIBUTING.md";
+  }
+  const years = papers.map(p => p.year), maxY = Math.max(...years), minY = Math.min(...years);
+  const recent = papers.filter(p => p.year >= maxY - 2).length;
+  document.getElementById("recent-line").textContent =
+    `Of the ${papers.length} papers on this map, ${recent} appeared in ${maxY - 2}–${maxY}.`;
+  document.getElementById("updated").textContent = meta.updated ? " · updated " + meta.updated : "";
+  const venues = new Set(papers.map(p => p.venue)).size;
+  document.getElementById("stats").innerHTML =
+    [[papers.length, "papers"], [sections.length, "sections"], [venues, "venues"], [`${minY}–${maxY}`, "years covered"]]
+      .map(([n, l]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join("");
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  let active = "all";
+  const chips = document.getElementById("chips");
+  const mk = (id, label) => { const b = document.createElement("button"); b.className = "chip"; b.textContent = label; b.dataset.id = id;
+    b.setAttribute("aria-pressed", id === active); b.onclick = () => { active = id; [...chips.children].forEach(c => c.setAttribute("aria-pressed", c.dataset.id === active)); render(); }; chips.appendChild(b); };
+  mk("all", "All");
+  sections.forEach(s => mk(s.id, s.title.startsWith("Adjacent: ") ? s.title.slice(10, 11).toUpperCase() + s.title.slice(11) + " (adjacent)" : s.title));
+
+  const link = (href, label) => href ? `<a href="${esc(href)}" target="_blank" rel="noopener">${label}</a>` : "";
+  function row(p) {
+    const ax = p.arxiv && !(p.paper || "").includes(p.arxiv) ? link("https://arxiv.org/abs/" + p.arxiv, "arXiv") : "";
+    const main = p.paper || (p.arxiv ? "https://arxiv.org/abs/" + p.arxiv : "");
+    return `<div class="row"><div class="year">${p.year}</div><div><div class="title">${link(main, esc(p.title)) || esc(p.title)}</div>
+      <div class="meta"><span class="venue">${esc(p.venue)}</span>${p.authors ? esc(p.authors) + " · " : ""}${ax}${link(p.code, "code")}${link(p.project, "project")}</div></div></div>`;
+  }
+  const q = document.getElementById("q");
+  function render() {
+    const terms = q.value.toLowerCase().split(/\s+/).filter(Boolean);
+    const hit = p => terms.every(t => (p.title + " " + p.venue + " " + p.year + " " + (p.authors || "")).toLowerCase().includes(t));
+    let html = "", n = 0;
+    for (const s of sections) {
+      if (active !== "all" && active !== s.id) continue;
+      const ps = papers.filter(p => p.category === s.id && hit(p));
+      if (!ps.length) continue;
+      n += ps.length;
+      html += `<h3 class="section-title">${esc(s.title)}</h3><p class="section-blurb">${esc(s.blurb)}</p>` + ps.map(row).join("");
+    }
+    document.getElementById("results").innerHTML = html || '<p class="empty">No paper matches. Try fewer words, or open an issue if a paper is missing.</p>';
+    document.getElementById("count").textContent = `${n} of ${papers.length} papers`;
+  }
+  q.addEventListener("input", render);
+  render();
+
+  const card = (h, p, href) => `<div class="card"><h3>${href ? link(href, esc(h)) : esc(h)}</h3><p>${esc(p)}</p></div>`;
+  document.getElementById("res").innerHTML =
+    resources.tools.map(t => card(t.name, t.what, t.url)).join("") +
+    resources.workshops.map(w => card(w.name, w.what, w.url)).join("") +
+    resources.related.map(r => card(r.name, r.what, r.url)).join("");
+})();
+</script>
+</body>
+</html>

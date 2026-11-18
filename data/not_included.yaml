@@ -1,0 +1,815 @@
+# Verified papers that do not meet the inclusion rule (scripts/policy.py), with the reason. The monthly refresh checks the
+# expired preprints here for a later publication at a qualifying venue and moves them back into papers.yaml.
+- title: 'AccessComics2: Understanding the User Experience of an Accessible Comic Book Reader for Blind People with Textual Sound Effects'
+  authors: Yun Jung Lee et al.
+  year: 2023
+  venue: ACM TACCESS
+  category: accessibility
+  paper: https://doi.org/10.1145/3555720
+  reason: ACM TACCESS is not ranked by CORE
+- title: 'Comics for Everyone: Generating Accessible Text Descriptions for Comic Strips'
+  authors: Reshma Ramaprasad
+  year: 2023
+  venue: arXiv
+  category: accessibility
+  arxiv: '2310.00698'
+  date: '2023-10-01'
+  reason: arXiv preprint from 2023-10-01, older than 4 months and not published at a qualifying venue
+- title: Learning Gaussian Data Augmentation in Feature Space for One-shot Object Detection in Manga
+  authors: Takara Taniguchi et al.
+  year: 2024
+  venue: ACM MM Asia
+  category: analysis
+  paper: https://doi.org/10.1145/3696409.3700174
+  arxiv: '2410.05935'
+  reason: ACM MM Asia is not ranked by CORE
+- title: 'CPD: Faster RCNN-based DragonBall Comic Panel Detection'
+  authors: Rishabh Sharma et al.
+  year: 2023
+  venue: CSNT
+  category: analysis
+  paper: https://doi.org/10.1109/csnt57126.2023.10134577
+  reason: CSNT is not ranked by CORE
+- title: Domain-Adaptive Self-Supervised Pre-Training for Face & Body Detection in Drawings
+  authors: Barış Batuhan Topal et al.
+  year: 2022
+  venue: arXiv
+  category: analysis
+  arxiv: '2211.10641'
+  code: https://github.com/barisbatuhan/DASS_Detector
+  date: '2022-11-19'
+  reason: arXiv preprint from 2022-11-19, older than 4 months and not published at a qualifying venue
+- title: Extraction of Frame Sequences in the Manga Context
+  authors: Christian Roggia et al.
+  year: 2020
+  venue: ISM
+  category: analysis
+  paper: https://doi.org/10.1109/ism.2020.00023
+  reason: ISM is C by CORE
+- title: 'Comic MTL: Optimized Multi-Task Learning for Comic Book Image Analysis'
+  authors: Nhu-Van Nguyen et al.
+  year: 2019
+  venue: IJDAR
+  category: analysis
+  paper: https://doi.org/10.1007/s10032-019-00330-3
+  reason: IJDAR is not ranked by CORE
+- title: A Study on Object Detection Method from Manga Images Using CNN
+  authors: Hideaki Yanagisawa et al.
+  year: 2018
+  venue: IWAIT
+  category: analysis
+  paper: https://doi.org/10.1109/iwait.2018.8369633
+  reason: IWAIT is not ranked by CORE
+- title: Facial Landmark Detection for Manga Images
+  authors: Marco Stricker et al.
+  year: 2018
+  venue: arXiv
+  category: analysis
+  arxiv: '1811.03214'
+  code: https://github.com/oaugereau/FacialLandmarkManga
+  date: '2018-11-08'
+  reason: arXiv preprint from 2018-11-08, older than 4 months and not published at a qualifying venue
+- title: Object Detection for Comics using Manga109 Annotations
+  authors: Toru Ogawa et al.
+  year: 2018
+  venue: arXiv
+  category: analysis
+  arxiv: '1803.08670'
+  date: '2018-03-23'
+  reason: arXiv preprint from 2018-03-23, older than 4 months and not published at a qualifying venue
+- title: Panel and Speech Balloon Extraction from Comic Books
+  authors: Anh Khoi Ngo Ho et al.
+  year: 2012
+  venue: DAS
+  category: analysis
+  paper: https://doi.org/10.1109/das.2012.66
+  reason: DAS is B by CORE
+- title: Method for Automatic E-Comic Scene Frame Extraction for Reading Comic on Mobile Devices
+  authors: Kohei Arai et al.
+  year: 2010
+  venue: ITNG
+  category: analysis
+  paper: https://doi.org/10.1109/itng.2010.22
+  reason: ITNG is not ranked by CORE
+- title: Emotion-Aware Speech Generation with Character-Specific Voices for Comics
+  authors: Zhiwen Qian et al.
+  year: 2025
+  venue: arXiv
+  category: animation
+  arxiv: '2509.15253'
+  date: '2025-09-18'
+  reason: arXiv preprint from 2025-09-18, older than 4 months and not published at a qualifying venue
+- title: 'M2M-Gen: A Multimodal Framework for Automated Background Music Generation in Japanese Manga Using Large Language Models'
+  authors: Megha Sharma et al.
+  year: 2024
+  venue: arXiv
+  category: animation
+  arxiv: '2410.09928'
+  date: '2024-10-13'
+  reason: arXiv preprint from 2024-10-13, older than 4 months and not published at a qualifying venue
+- title: 'EMNS /Imz/ Corpus: An emotive single-speaker dataset for narrative storytelling in games, television and graphic novels'
+  authors: Kari Ali Noriy et al.
+  year: 2023
+  venue: arXiv
+  category: animation
+  arxiv: '2305.13137'
+  date: '2023-05-22'
+  reason: arXiv preprint from 2023-05-22, older than 4 months and not published at a qualifying venue
+- title: Comic Character Animation Using Bayesian Estimation
+  authors: Yun-Feng Chou et al.
+  year: 2011
+  venue: CAVW
+  category: animation
+  paper: https://doi.org/10.1002/cav.330
+  reason: CAVW is B by CORE
+- title: 'GANime: Generating Anime and Manga Character Drawings from Sketches with Deep Learning'
+  authors: Tai Vu et al.
+  year: 2025
+  venue: arXiv
+  category: creation
+  arxiv: '2508.09207'
+  date: '2025-08-10'
+  reason: arXiv preprint from 2025-08-10, older than 4 months and not published at a qualifying venue
+- title: 'MangaDiT: Reference-Guided Line Art Colorization with Hierarchical Attention in Diffusion Transformers'
+  authors: Qianru Qiu et al.
+  year: 2025
+  venue: arXiv
+  category: creation
+  arxiv: '2508.09709'
+  code: https://github.com/CyberAgentAILab/MangaDiT
+  date: '2025-08-13'
+  reason: arXiv preprint from 2025-08-13, older than 4 months and not published at a qualifying venue
+- title: 'ColorFlow: Retrieval-Augmented Image Sequence Colorization'
+  authors: Junhao Zhuang et al.
+  year: 2024
+  venue: arXiv
+  category: creation
+  arxiv: '2412.11815'
+  code: https://github.com/TencentARC/ColorFlow
+  date: '2024-12-16'
+  reason: arXiv preprint from 2024-12-16, older than 4 months and not published at a qualifying venue
+- title: 'Sketch2Manga: Shaded Manga Screening from Sketch with Diffusion Models'
+  authors: Jian Lin et al.
+  year: 2024
+  venue: ICIP
+  category: creation
+  paper: https://doi.org/10.1109/icip51287.2024.10647842
+  arxiv: '2403.08266'
+  code: https://github.com/dmMaze/sketch2manga
+  reason: ICIP is B by CORE
+- title: 'inkn''hue: Enhancing Manga Colorization from Multiple Priors with Alignment Multi-Encoder VAE'
+  authors: Tawin Jiramahapokee
+  year: 2023
+  venue: arXiv
+  category: creation
+  arxiv: '2311.01804'
+  code: https://github.com/wootwootwootwoot/inknhue
+  date: '2023-11-03'
+  reason: arXiv preprint from 2023-11-03, older than 4 months and not published at a qualifying venue
+- title: Manga Rescreening with Interpretable Screentone Representation
+  authors: Minshan Xie et al.
+  year: 2023
+  venue: arXiv
+  category: creation
+  arxiv: '2306.04114'
+  date: '2023-06-07'
+  reason: arXiv preprint from 2023-06-07, older than 4 months and not published at a qualifying venue
+- title: Robust Manga Page Colorization via Coloring Latent Space
+  authors: Maksim Golyadkin et al.
+  year: 2023
+  venue: IEEE Access
+  category: creation
+  paper: https://doi.org/10.1109/access.2023.3323216
+  reason: IEEE Access is not ranked by CORE
+- title: Painting Style-Aware Manga Colorization Based on Generative Adversarial Networks
+  authors: Yugo Shimizu et al.
+  year: 2021
+  venue: ICIP
+  category: creation
+  paper: https://doi.org/10.1109/icip42928.2021.9506254
+  arxiv: '2107.07943'
+  reason: ICIP is B by CORE
+- title: Semi-automatic Manga Colorization Using Conditional Adversarial Networks
+  authors: Maksim Golyadkin et al.
+  year: 2021
+  venue: AIST
+  category: creation
+  paper: https://doi.org/10.1007/978-3-030-72610-2_17
+  code: https://github.com/qweasdd/manga-colorization
+  reason: AIST is not ranked by CORE
+- title: Hair Shading Style Transfer for Manga with cGAN
+  authors: Masashi Aizawa et al.
+  year: 2020
+  venue: ICAART
+  category: creation
+  paper: https://doi.org/10.5220/0008961405870594
+  reason: ICAART is B by CORE
+- title: 'MANGAN: ASSISTING COLORIZATION OF MANGA CHARACTERS CONCEPT ART USING CONDITIONAL GAN'
+  authors: Felipe Coelho Silva et al.
+  year: 2019
+  venue: ICIP
+  category: creation
+  paper: https://doi.org/10.1109/icip.2019.8803667
+  code: https://github.com/felipelodur/ManGAN
+  reason: ICIP is B by CORE
+- title: Synthesis of Screentone Patterns of Manga Characters
+  authors: Koki Tsubota et al.
+  year: 2019
+  venue: ISM
+  category: creation
+  paper: https://doi.org/10.1109/ism46123.2019.00046
+  code: https://github.com/kktsubota/manga-character-screentone
+  reason: ISM is C by CORE
+- title: Automatic manga colorization with color style by generative adversarial nets
+  authors: Yuusuke Kataoka et al.
+  year: 2017
+  venue: SNPD
+  category: creation
+  paper: https://doi.org/10.1109/snpd.2017.8022768
+  reason: SNPD is not ranked by CORE
+- title: Deep Manga Colorization with Color Style Extraction by Conditional Adversarially Learned Inference
+  authors: Yuusuke Kataoka et al.
+  year: 2017
+  venue: Information Engineering Express
+  category: creation
+  paper: https://doi.org/10.52731/iee.v3.i4.214
+  reason: Information Engineering Express is not ranked by CORE
+- title: 'DreamingComics: A Story Visualization Pipeline via Subject and Layout Customized Generation using Video Models'
+  authors: Patrick Kwon et al.
+  year: 2025
+  venue: arXiv
+  category: generation
+  arxiv: '2512.01686'
+  date: '2025-12-01'
+  reason: arXiv preprint from 2025-12-01, older than 4 months and not published at a qualifying venue
+- title: Retrieval Augmented Comic Image Generation
+  authors: Yunhao Shui et al.
+  year: 2025
+  venue: arXiv
+  category: generation
+  arxiv: '2506.12517'
+  date: '2025-06-14'
+  reason: arXiv preprint from 2025-06-14, older than 4 months and not published at a qualifying venue
+- title: Manga Generation via Layout-controllable Diffusion
+  authors: Siyu Chen et al.
+  year: 2024
+  venue: arXiv
+  category: generation
+  arxiv: '2412.19303'
+  date: '2024-12-26'
+  reason: arXiv preprint from 2024-12-26, older than 4 months and not published at a qualifying venue
+- title: 'Sportoonizer: Augmenting Sports Highlights'' Narration and Visual Impact via Automatic Manga B-Roll Generation'
+  authors: Siying Hu et al.
+  year: 2024
+  venue: arXiv
+  category: generation
+  arxiv: '2409.13443'
+  date: '2024-09-20'
+  reason: arXiv preprint from 2024-09-20, older than 4 months and not published at a qualifying venue
+- title: A Customizable Generator for Comic-Style Visual Narrative
+  authors: Yi-Chun Chen et al.
+  year: 2023
+  venue: arXiv
+  category: generation
+  arxiv: '2401.02863'
+  date: '2023-12-14'
+  reason: arXiv preprint from 2023-12-14, older than 4 months and not published at a qualifying venue
+- title: A Study on Generating Webtoons Using Multilingual Text-to-Image Models
+  authors: Kyungho Yu et al.
+  year: 2023
+  venue: Applied Sciences
+  category: generation
+  paper: https://doi.org/10.3390/app13127278
+  reason: Applied Sciences is not ranked by CORE
+- title: An Interactive Web-Based System for Creating Single Panel Cartoons with Visually Valid Compositions
+  authors: Ergun Akleman et al.
+  year: 2023
+  venue: arXiv
+  category: generation
+  arxiv: '2310.13003'
+  date: '2023-10-12'
+  reason: arXiv preprint from 2023-10-12, older than 4 months and not published at a qualifying venue
+- title: 'CPST: Comprehension-Preserving Style Transfer for Multi-Modal Narratives'
+  authors: Yi-Chun Chen et al.
+  year: 2023
+  venue: arXiv
+  category: generation
+  arxiv: '2312.08695'
+  date: '2023-12-14'
+  reason: arXiv preprint from 2023-12-14, older than 4 months and not published at a qualifying venue
+- title: Generating coherent comic with rich story using ChatGPT and Stable Diffusion
+  authors: Ze Jin et al.
+  year: 2023
+  venue: arXiv
+  category: generation
+  arxiv: '2305.11067'
+  date: '2023-05-16'
+  reason: arXiv preprint from 2023-05-16, older than 4 months and not published at a qualifying venue
+- title: Style Transfer to Calvin and Hobbes comics using Stable Diffusion
+  authors: Asvin Kumar Venkataramanan et al.
+  year: 2023
+  venue: arXiv
+  category: generation
+  arxiv: '2312.03993'
+  date: '2023-12-07'
+  reason: arXiv preprint from 2023-12-07, older than 4 months and not published at a qualifying venue
+- title: A Deep Learning Pipeline for the Synthesis of Graphic Novels
+  authors: Ilan Manouach et al.
+  year: 2021
+  venue: ICCC
+  category: generation
+  paper: https://doi.org/10.5281/zenodo.11120828
+  reason: ICCC is C by CORE
+- title: Automatic Comic Generation with Stylistic Multi-page Layouts and Emotion-driven Text Balloon Generation
+  authors: Xin Yang et al.
+  year: 2021
+  venue: ACM TOMM
+  category: generation
+  paper: https://doi.org/10.1145/3440053
+  arxiv: '2101.11111'
+  reason: ACM TOMM is B by CORE
+- title: 'ComicGAN: Text-to-Comic Generative Adversarial Network'
+  authors: Ben Proven-Bessel et al.
+  year: 2021
+  venue: arXiv
+  category: generation
+  arxiv: '2109.09120'
+  code: https://github.com/nijuyr/comixGAN
+  date: '2021-09-19'
+  reason: arXiv preprint from 2021-09-19, older than 4 months and not published at a qualifying venue
+- title: 'Comixify: Transform video into a comics'
+  authors: Maciej Pęśko et al.
+  year: 2018
+  venue: arXiv
+  category: generation
+  arxiv: '1812.03473'
+  code: https://github.com/maciej3031/comixify
+  date: '2018-12-09'
+  reason: arXiv preprint from 2018-12-09, older than 4 months and not published at a qualifying venue
+- title: 'Neural Comic Style Transfer: Case Study'
+  authors: Maciej Pęśko et al.
+  year: 2018
+  venue: arXiv
+  category: generation
+  arxiv: '1809.01726'
+  date: '2018-09-05'
+  reason: arXiv preprint from 2018-09-05, older than 4 months and not published at a qualifying venue
+- title: Automatic Comic Strip Generation Using Extracted Keyframes from Cartoon Animation
+  authors: Pakpoom Tanapichet et al.
+  year: 2011
+  venue: ISPACS
+  category: generation
+  paper: https://doi.org/10.1109/ispacs.2011.6146180
+  reason: ISPACS is not ranked by CORE
+- title: Research and Development of the Generation in Japanese Manga Based on Frontal Face Image
+  authors: Xuexiong Deng et al.
+  year: 2010
+  venue: CAIDCD
+  category: generation
+  paper: https://doi.org/10.1109/caidcd.2010.5681245
+  reason: CAIDCD is not ranked by CORE
+- title: 'Data Comics for Education: Evaluating Effectiveness, Benefits, and the Ethics of AI-Assisted Creation'
+  authors: Zirui Shan et al.
+  year: 2026
+  venue: arXiv
+  category: hci
+  arxiv: '2607.02361'
+  date: '2026-07-02'
+  reason: arXiv preprint from 2026-07-02, older than 4 months and not published at a qualifying venue
+- title: 'Decoding the Dashboard: Data Comics to Support Students'' Understanding of Learning Analytics Visualisations'
+  authors: Mikaela Elizabeth Milesi et al.
+  year: 2026
+  venue: EC-TEL
+  category: hci
+  paper: https://doi.org/10.1007/978-3-032-37979-5_31
+  arxiv: '2609.21141'
+  reason: EC-TEL is not ranked by CORE
+- title: 'Comparing Human and AI Performance in Visual Storytelling through Creation of Comic Strips: A Case Study'
+  authors: Uğur Önal et al.
+  year: 2025
+  venue: arXiv
+  category: hci
+  arxiv: '2507.18641'
+  date: '2025-05-27'
+  reason: arXiv preprint from 2025-05-27, older than 4 months and not published at a qualifying venue
+- title: 'Connecting through Comics: Design and Evaluation of Cube, an Arts-Based Digital Platform for Trauma-Impacted Youth'
+  authors: Ila K. Kumar et al.
+  year: 2025
+  venue: PACM HCI
+  category: hci
+  paper: https://doi.org/10.1145/3710949
+  arxiv: '2412.09834'
+  reason: PACM HCI is not ranked by CORE
+- title: 'Thief of Truth: VR comics about the relationship between AI and humans'
+  authors: Joonhyung Bae
+  year: 2024
+  venue: ISEA
+  category: hci
+  paper: https://doi.org/10.69564/isea2023-42-full-bae-thief-of-truth
+  arxiv: '2506.10012'
+  reason: ISEA is not ranked by CORE
+- title: Augmenting Conversations With Comic-Style Word Balloons
+  authors: Heng Zhang et al.
+  year: 2023
+  venue: THMS
+  category: hci
+  paper: https://doi.org/10.1109/thms.2022.3224767
+  reason: THMS is B by CORE
+- title: 'Cheat Sheet for Teaching Programming with Comics: Through the Lens of Concept-Language-Procedure Framework'
+  authors: Sangho Suh
+  year: 2023
+  venue: arXiv
+  category: hci
+  arxiv: '2306.00464'
+  date: '2023-06-01'
+  reason: arXiv preprint from 2023-06-01, older than 4 months and not published at a qualifying venue
+- title: Comics as a Pedagogical Tool for Teaching
+  authors: Antonio Alexandre Lima et al.
+  year: 2022
+  venue: LACLO
+  category: hci
+  paper: https://doi.org/10.1109/laclo56648.2022.10013316
+  reason: LACLO is not ranked by CORE
+- title: 'Visual representation of negation: Real world data analysis on comic image design'
+  authors: Yuri Sato et al.
+  year: 2021
+  venue: arXiv
+  category: hci
+  arxiv: '2105.10131'
+  date: '2021-05-21'
+  reason: arXiv preprint from 2021-05-21, older than 4 months and not published at a qualifying venue
+- title: Identity-Aware Semi-Supervised Learning for Comic Character Re-Identification
+  authors: Gürkan Soykan et al.
+  year: 2023
+  venue: arXiv
+  category: identity
+  arxiv: '2308.09096'
+  date: '2023-08-17'
+  reason: arXiv preprint from 2023-08-17, older than 4 months and not published at a qualifying venue
+- title: Occlusion-Aware Manga Character Re-Identification with Self-Paced Contrastive Learning
+  authors: Ci-Yin Zhang et al.
+  year: 2023
+  venue: ACM MM Asia
+  category: identity
+  paper: https://doi.org/10.1145/3595916.3626401
+  reason: ACM MM Asia is not ranked by CORE
+- title: Unsupervised Manga Character Re-identification via Face-body and Spatial-temporal Associated Clustering
+  authors: Zhimin Zhang et al.
+  year: 2022
+  venue: arXiv
+  category: identity
+  arxiv: '2204.04621'
+  date: '2022-04-10'
+  reason: arXiv preprint from 2022-04-10, older than 4 months and not published at a qualifying venue
+- title: Dual Loss for Manga Character Recognition with Imbalanced Training Data
+  authors: Yonggang Li et al.
+  year: 2020
+  venue: ICPR
+  category: identity
+  paper: https://doi.org/10.1109/icpr48806.2021.9412282
+  reason: ICPR is B by CORE
+- title: Progressive Deep Feature Learning for Manga Character Recognition via Unlabeled Training Data
+  authors: Xiaoran Qin et al.
+  year: 2019
+  venue: ACM TURC
+  category: identity
+  paper: https://doi.org/10.1145/3321408.3322624
+  reason: ACM TURC is not ranked by CORE
+- title: 'Gaze Heads: How VLMs Look at What They Describe'
+  authors: Rohit Gandikota et al.
+  year: 2026
+  venue: arXiv
+  category: probe
+  arxiv: '2606.14703'
+  date: '2026-06-12'
+  reason: arXiv preprint from 2026-06-12, older than 4 months and not published at a qualifying venue
+- title: Structured Visual Narratives Undermine Safety Alignment in Multimodal Large Language Models
+  authors: Rui Yang Tan et al.
+  year: 2026
+  venue: arXiv
+  category: probe
+  arxiv: '2603.21697'
+  date: '2026-03-23'
+  reason: arXiv preprint from 2026-03-23, older than 4 months and not published at a qualifying venue
+- title: 'Thinking with Comics: Enhancing Multimodal Reasoning through Structured Visual Storytelling'
+  authors: Andong Chen et al.
+  year: 2026
+  venue: arXiv
+  category: probe
+  arxiv: '2602.02453'
+  date: '2026-02-02'
+  reason: arXiv preprint from 2026-02-02, older than 4 months and not published at a qualifying venue
+- title: Inference-time Trajectory Optimization for Structure-Preserving Manga Image Editing
+  authors: Ryosuke Furuta
+  year: 2026
+  venue: arXiv
+  category: restoration
+  arxiv: '2603.27790'
+  date: '2026-03-29'
+  reason: arXiv preprint from 2026-03-29, older than 4 months and not published at a qualifying venue
+- title: Screentone-Preserved Manga Retargeting
+  authors: Minshan Xie et al.
+  year: 2025
+  venue: CGF
+  category: restoration
+  paper: https://doi.org/10.1111/cgf.70096
+  arxiv: '2203.03396'
+  reason: CGF is B by CORE
+- title: 'MARVEL: Raster Gray-level Manga Vectorization via Primitive-wise Deep Reinforcement Learning'
+  authors: Hao Su et al.
+  year: 2024
+  venue: TCSVT
+  category: restoration
+  paper: https://doi.org/10.1109/tcsvt.2023.3309786
+  code: https://github.com/SwordHolderSH/Mang2Vec
+  reason: TCSVT is not ranked by CORE
+- title: Screentone-Aware Manga Super-Resolution Using DeepLearning
+  authors: Chih-Yuan Yao et al.
+  year: 2023
+  venue: arXiv
+  category: restoration
+  arxiv: '2305.08325'
+  date: '2023-05-15'
+  reason: arXiv preprint from 2023-05-15, older than 4 months and not published at a qualifying venue
+- title: Automatic Dewarping of Camera-Captured Comic Document Images
+  authors: Arpan Garai et al.
+  year: 2022
+  venue: MTAP
+  category: restoration
+  paper: https://doi.org/10.1007/s11042-022-13234-y
+  reason: MTAP is B by CORE
+- title: 'MaRU: A Manga Retrieval and Understanding System Connecting Vision and Language'
+  authors: Conghao Tom Shen et al.
+  year: 2023
+  venue: arXiv
+  category: retrieval
+  arxiv: '2311.02083'
+  date: '2023-10-22'
+  reason: arXiv preprint from 2023-10-22, older than 4 months and not published at a qualifying venue
+- title: Similarity Learning Based on Pool-Based Active Learning for Manga Character Retrieval
+  authors: Motoi Iwata et al.
+  year: 2015
+  venue: ACPR
+  category: retrieval
+  paper: https://doi.org/10.1109/acpr.2015.7486541
+  reason: ACPR is not ranked by CORE
+- title: A Study to Achieve Manga Character Retrieval Method for Manga Images
+  authors: Motoi Iwata et al.
+  year: 2014
+  venue: DAS
+  category: retrieval
+  paper: https://doi.org/10.1109/das.2014.60
+  reason: DAS is B by CORE
+- title: 'Sketch2Manga: Sketch-based Manga Retrieval'
+  authors: Yusuke Matsui et al.
+  year: 2014
+  venue: ICIP
+  category: retrieval
+  paper: https://doi.org/10.1109/icip.2014.7025626
+  reason: ICIP is B by CORE
+- title: Searching Digital Political Cartoons
+  authors: Yejun Wu
+  year: 2010
+  venue: GrC
+  category: retrieval
+  paper: https://doi.org/10.1109/grc.2010.158
+  reason: GrC is not ranked by CORE
+- title: Generating Visual Stories with Grounded and Coreferent Characters
+  authors: Danyang Liu et al.
+  year: 2026
+  venue: TACL
+  category: storyviz
+  paper: https://doi.org/10.1162/tacl.a.641
+  arxiv: '2409.13555'
+  reason: TACL is not ranked by CORE
+- title: 'How Panel Layouts Define Manga: Insights from Visual Ablation Experiments'
+  authors: Siyuan Feng et al.
+  year: 2024
+  venue: arXiv
+  category: studies
+  arxiv: '2412.19141'
+  date: '2024-12-26'
+  reason: arXiv preprint from 2024-12-26, older than 4 months and not published at a qualifying venue
+- title: Panel Transitions for Genre Analysis in Visual Narratives
+  authors: Yi-Chun Chen et al.
+  year: 2023
+  venue: arXiv
+  category: studies
+  arxiv: '2312.08720'
+  date: '2023-12-14'
+  reason: arXiv preprint from 2023-12-14, older than 4 months and not published at a qualifying venue
+- title: 'One missing piece in Vision and Language: A Survey on Comics Understanding'
+  authors: Emanuele Vivoli et al.
+  year: 2024
+  venue: arXiv
+  category: surveys
+  arxiv: '2409.09502'
+  date: '2024-09-14'
+  reason: arXiv preprint from 2024-09-14, older than 4 months and not published at a qualifying venue
+- title: Computational Approaches to Comics Analysis
+  authors: Jochen Laubrock et al.
+  year: 2019
+  venue: Topics in Cognitive Science
+  category: surveys
+  paper: https://doi.org/10.1111/tops.12476
+  reason: Topics in Cognitive Science is not ranked by CORE
+- title: A survey of comics research in computer science
+  authors: Olivier Augereau et al.
+  year: 2018
+  venue: J. Imaging
+  category: surveys
+  paper: https://doi.org/10.3390/jimaging4070087
+  arxiv: '1804.05490'
+  reason: J. Imaging is not ranked by CORE
+- title: 'Tails Tell Tales: Chapter-Wide Manga Transcriptions with Character Names'
+  authors: Ragav Sachdeva et al.
+  year: 2024
+  venue: ACCV
+  category: text
+  paper: https://doi.org/10.1007/978-981-96-0908-6_4
+  arxiv: '2408.00298'
+  code: https://github.com/ragavsachdeva/magi
+  reason: ACCV is B by CORE
+- title: Manga Text Detection with Manga-Specific Data Augmentation and Its Applications on Emotion Analysis
+  authors: Yi-Ting Yang et al.
+  year: 2023
+  venue: MMM
+  category: text
+  paper: https://doi.org/10.1007/978-3-031-27818-1_3
+  reason: MMM is B by CORE
+- title: Algorithms for Estimation of Comic Speakers Considering Reading Order of Frames and Texts
+  authors: Yuga Omori et al.
+  year: 2022
+  venue: IIAI-AAI
+  category: text
+  paper: https://doi.org/10.1109/iiaiaai55812.2022.00080
+  reason: IIAI-AAI is not ranked by CORE
+- title: Detection of Furigana Text in Images
+  authors: Nikolaj Kjøller Bjerregaard et al.
+  year: 2022
+  venue: arXiv
+  category: text
+  arxiv: '2207.03960'
+  date: '2022-07-08'
+  reason: arXiv preprint from 2022-07-08, older than 4 months and not published at a qualifying venue
+- title: Automatic Photo to Ideophone Manga Matching
+  authors: David A. Shamma et al.
+  year: 2020
+  venue: arXiv
+  category: text
+  arxiv: '2006.06165'
+  date: '2020-06-11'
+  reason: arXiv preprint from 2020-06-11, older than 4 months and not published at a qualifying venue
+- title: Text Detection in Manga by Deep Region Proposal, Classification, and Regression
+  authors: Wei-Ta Chu et al.
+  year: 2018
+  venue: VCIP
+  category: text
+  paper: https://doi.org/10.1109/vcip.2018.8698677
+  reason: VCIP is C by CORE
+- title: 'Line-Wise Text Identification in Comic Books: A Support Vector Machine-Based Approach'
+  authors: Srikanta Pal et al.
+  year: 2016
+  venue: IJCNN
+  category: text
+  paper: https://doi.org/10.1109/ijcnn.2016.7727719
+  reason: IJCNN is B by CORE
+- title: Text Detection in Manga by Combining Connected-Component-Based and Region-Based Classifications
+  authors: Yuji Aramaki et al.
+  year: 2016
+  venue: ICIP
+  category: text
+  paper: https://doi.org/10.1109/icip.2016.7532890
+  reason: ICIP is B by CORE
+- title: Panel Tracking for the Extraction and the Classification of Speech Balloons
+  authors: Hadi S. Jomaa et al.
+  year: 2015
+  venue: ICIAP
+  category: text
+  paper: https://doi.org/10.1007/978-3-319-23234-8_37
+  reason: ICIAP is not ranked by CORE
+- title: Relation Analysis between Speech Balloon Shapes and Their Serif Descriptions in Comic
+  authors: Hideki Tanaka et al.
+  year: 2015
+  venue: IIAI-AAI
+  category: text
+  paper: https://doi.org/10.1109/iiai-aai.2015.235
+  reason: IIAI-AAI is not ranked by CORE
+- title: Text-Aware Balloon Extraction from Manga
+  authors: Xueting Liu et al.
+  year: 2015
+  venue: The Visual Computer
+  category: text
+  paper: https://doi.org/10.1007/s00371-015-1084-0
+  reason: The Visual Computer is B by CORE
+- title: 'OnomatoBridge: Onomatopoeia Translation and Rendering Pipeline in Manga'
+  authors: Takara Taniguchi
+  year: 2026
+  venue: SIGGRAPH Posters
+  category: translation
+  paper: https://doi.org/10.1145/3799825.3818750
+  arxiv: '2609.21199'
+  reason: SIGGRAPH Posters is not ranked by CORE
+- title: Text-Only vs. Image-Aware VLM Judges for Manga Translation Evaluation
+  authors: Subaru Kimura et al.
+  year: 2026
+  venue: WMT
+  category: translation
+  paper: https://doi.org/10.18653/2026.wmt-main.20
+  arxiv: '2610.17908'
+  reason: WMT is not ranked by CORE
+- title: 'Crossing Language Borders: A Pipeline for Indonesian Manhwa Translation'
+  authors: Nithyasri Narasimhan et al.
+  year: 2025
+  venue: arXiv
+  category: translation
+  arxiv: '2501.01629'
+  date: '2025-01-03'
+  reason: arXiv preprint from 2025-01-03, older than 4 months and not published at a qualifying venue
+- title: Context-Informed Machine Translation of Manga using Multimodal Large Language Models
+  authors: Philip Lippmann et al.
+  year: 2024
+  venue: arXiv
+  category: translation
+  arxiv: '2411.02589'
+  code: https://github.com/plippmann/multimodal-manga-translation
+  date: '2024-11-04'
+  reason: arXiv preprint from 2024-11-04, older than 4 months and not published at a qualifying venue
+- title: 'The Future of Graphic Novel Translation: Fully Automated Systems'
+  authors: G Harshavardhan et al.
+  year: 2024
+  venue: ICKECS
+  category: translation
+  paper: https://doi.org/10.1109/ickecs61492.2024.10617012
+  reason: ICKECS is not ranked by CORE
+- title: 'Semantic Similarity is a Spurious Measure of Comic Understanding: Lessons Learned from Hallucinations in a Benchmarking Experiment'
+  authors: Christopher Driggers-Ellis et al.
+  year: 2026
+  venue: arXiv
+  category: vlm
+  arxiv: '2603.01950'
+  date: '2026-03-02'
+  reason: arXiv preprint from 2026-03-02, older than 4 months and not published at a qualifying venue
+- title: Towards Faithful Reasoning in Comics for Small MLLMs
+  authors: Chengcheng Feng et al.
+  year: 2026
+  venue: arXiv
+  category: vlm
+  arxiv: '2601.02991'
+  date: '2026-01-06'
+  reason: arXiv preprint from 2026-01-06, older than 4 months and not published at a qualifying venue
+- title: 'Culture In a Frame: C$^3$B as a Comic-Based Benchmark for Multimodal Culturally Awareness'
+  authors: Yuchen Song et al.
+  year: 2025
+  venue: arXiv
+  category: vlm
+  arxiv: '2510.00041'
+  date: '2025-09-27'
+  reason: arXiv preprint from 2025-09-27, older than 4 months and not published at a qualifying venue
+- title: Hierarchical Knowledge Graphs for Story Understanding in Visual Narratives
+  authors: Yi-Chun Chen
+  year: 2025
+  venue: ICIDS
+  category: vlm
+  paper: https://doi.org/10.1007/978-3-032-12408-1_11
+  arxiv: '2506.10008'
+  reason: ICIDS is C by CORE
+- title: Robust Symbolic Reasoning for Visual Narratives via Hierarchical and Semantically Normalized Knowledge Graphs
+  authors: Yi-Chun Chen
+  year: 2025
+  venue: arXiv
+  category: vlm
+  arxiv: '2508.14941'
+  date: '2025-08-20'
+  reason: arXiv preprint from 2025-08-20, older than 4 months and not published at a qualifying venue
+- title: 'When ''YES'' Meets ''BUT'': Can Large Models Comprehend Contradictory Humor Through Comparative Reasoning?'
+  authors: Tuo Liang et al.
+  year: 2025
+  venue: arXiv
+  category: vlm
+  arxiv: '2503.23137'
+  date: '2025-03-29'
+  reason: arXiv preprint from 2025-03-29, older than 4 months and not published at a qualifying venue
+- title: 'Zooming into Comics: Region-Aware RL Improves Fine-Grained Comic Understanding in Vision-Language Models'
+  authors: Yule Chen et al.
+  year: 2025
+  venue: arXiv
+  category: vlm
+  arxiv: '2511.06490'
+  date: '2025-11-09'
+  reason: arXiv preprint from 2025-11-09, older than 4 months and not published at a qualifying venue
+- title: Predicting Winning Captions for Weekly New Yorker Comics
+  authors: Stanley Cao et al.
+  year: 2024
+  venue: arXiv
+  category: vlm
+  arxiv: '2407.18949'
+  date: '2024-07-12'
+  reason: arXiv preprint from 2024-07-12, older than 4 months and not published at a qualifying venue
+- title: 'ComicQA: Contextual Navigation Aid by Hyper-Comic Representation'
+  authors: Yasuyuki Sumi
+  year: 2017
+  venue: iiWAS
+  category: vlm
+  paper: https://doi.org/10.1145/3151759.3151790
+  reason: iiWAS is C by CORE
