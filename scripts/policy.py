@@ -6,6 +6,8 @@ A paper is in the list when one of these holds:
   3. it is a dataset or benchmark paper (section "datasets", or `dataset: true`), at any published venue;
   4. it is an arXiv preprint whose first version is at most PREPRINT_MONTHS old.
 A preprint older than that leaves the list, unless it has since been published at a venue that meets rule 1 or 2.
+Surveys (section "surveys") follow their own rule instead: a survey of comics is listed when it is peer-reviewed at any venue,
+or when it is a preprint with at least SURVEY_MIN_CITATIONS citations (the field `citations`, which refresh.py updates).
 """
 import datetime as dt
 import pathlib
@@ -14,6 +16,7 @@ import yaml
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PREPRINT_MONTHS = 4
+SURVEY_MIN_CITATIONS = 20
 
 
 def venues():
@@ -36,6 +39,13 @@ def reason_out(p, table, today=None):
     v = table.get(p.get("venue"))
     if v is None:
         return f"venue {p.get('venue')!r} is not in data/venues.yaml"
+    if p.get("category") == "surveys":
+        if v["kind"] in ("conference", "journal", "workshop", "track"):
+            return None
+        c = p.get("citations")
+        if v["kind"] == "preprint" and c is not None and int(c) >= SURVEY_MIN_CITATIONS:
+            return None
+        return f"survey preprint with {c if c is not None else 'an unknown number of'} citations, fewer than {SURVEY_MIN_CITATIONS}"
     if v["kind"] in ("conference", "journal") and v["rank"] in ("A*", "A"):
         return None
     if v["kind"] in ("workshop", "track"):

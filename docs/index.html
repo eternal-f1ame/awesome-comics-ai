@@ -4,189 +4,307 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Awesome Comics &amp; Manga AI</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='13' height='28' rx='2' fill='%23c8372d' stroke='%23141414' stroke-width='2.5'/%3E%3Crect x='17' y='2' width='13' height='13' rx='2' fill='%23faf8f3' stroke='%23141414' stroke-width='2.5'/%3E%3Crect x='17' y='17' width='13' height='13' rx='2' fill='%23faf8f3' stroke='%23141414' stroke-width='2.5'/%3E%3C/svg%3E">
-<meta name="description" content="A curated, maintained map of research on comics, manga and webtoons in computer vision, language and graphics.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='12' height='28' rx='3.5' fill='%233f5bd9'/%3E%3Crect x='17' y='2' width='13' height='12' rx='3.5' fill='%23ff8a70'/%3E%3Crect x='17' y='17' width='13' height='13' rx='3.5' fill='%23ffc94d'/%3E%3C/svg%3E">
+<meta name="description" content="An open, maintained map of research on comics, manga and webtoons in computer vision, language and graphics.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #faf8f3; --panel: #ffffff; --ink: #141414; --muted: #5d5850; --faint: #8f897f; --rule: #e6e1d7;
-    --red: #c8372d; --red-ink: #ffffff; --red-soft: #fbe3df; --red-text: #a8291f; --cyan: #1d6aa8;
-    --dot: rgba(20, 20, 20, .11); --chip: #f1ede5; --chip-hover: #e8e3d9; --shadow: #141414; --bar: #faf8f3;
+    --bg: #f6f7fa; --ink: #0d1117; --muted: #5a6274; --faint: #8b93a4; --line: rgba(13, 17, 23, .09);
+    --glass: rgba(255, 255, 255, .58); --glass-strong: rgba(255, 255, 255, .8); --edge: rgba(255, 255, 255, .85);
+    --lift: 0 1px 2px rgba(16, 24, 40, .04), 0 12px 36px -14px rgba(16, 24, 40, .2);
+    --accent: #3f5bd9; --accent-ink: #ffffff; --accent-soft: rgba(63, 91, 217, .1); --accent-text: #3049c4;
+    --c1: #7d9bff; --c2: #ff8a70; --c3: #ffc94d; --c4: #a28bff; --c5: #5fd0ae; --blob: .42;
+    --panel-dark: #0b0f1a; --panel-ink: #e9edf6; --panel-muted: #8e97ab; --panel-line: rgba(255, 255, 255, .1);
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --paper: #121212; --panel: #1b1b1c; --ink: #ece8e1; --muted: #b0aaa0; --faint: #7f7a72; --rule: #2c2b2a;
-      --red: #e0574b; --red-ink: #121212; --red-soft: #3a1e1b; --red-text: #f08a80; --cyan: #6fb2e6;
-      --dot: rgba(236, 232, 225, .09); --chip: #232323; --chip-hover: #2d2d2d; --shadow: #000000; --bar: #121212;
-      color-scheme: dark;
+      --bg: #07090f; --ink: #eef1f7; --muted: #a0a8ba; --faint: #697184; --line: rgba(255, 255, 255, .09);
+      --glass: rgba(24, 28, 40, .55); --glass-strong: rgba(28, 32, 46, .82); --edge: rgba(255, 255, 255, .1);
+      --lift: 0 1px 2px rgba(0, 0, 0, .3), 0 16px 44px -16px rgba(0, 0, 0, .75);
+      --accent: #8ea2ff; --accent-ink: #07090f; --accent-soft: rgba(142, 162, 255, .14); --accent-text: #a9b8ff; --blob: .22;
+      --panel-dark: #0f1422; color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --paper: #121212; --panel: #1b1b1c; --ink: #ece8e1; --muted: #b0aaa0; --faint: #7f7a72; --rule: #2c2b2a;
-    --red: #e0574b; --red-ink: #121212; --red-soft: #3a1e1b; --red-text: #f08a80; --cyan: #6fb2e6;
-    --dot: rgba(236, 232, 225, .09); --chip: #232323; --chip-hover: #2d2d2d; --shadow: #000000; --bar: #121212;
-    color-scheme: dark;
+    --bg: #07090f; --ink: #eef1f7; --muted: #a0a8ba; --faint: #697184; --line: rgba(255, 255, 255, .09);
+    --glass: rgba(24, 28, 40, .55); --glass-strong: rgba(28, 32, 46, .82); --edge: rgba(255, 255, 255, .1);
+    --lift: 0 1px 2px rgba(0, 0, 0, .3), 0 16px 44px -16px rgba(0, 0, 0, .75);
+    --accent: #8ea2ff; --accent-ink: #07090f; --accent-soft: rgba(142, 162, 255, .14); --accent-text: #a9b8ff; --blob: .22;
+    --panel-dark: #0f1422; color-scheme: dark;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
-  html, body { overflow-x: clip; }
-  body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.55 Figtree, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; scroll-padding-top: 96px; overflow-x: clip; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Geist, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: clip; }
   a { color: inherit; }
-  .display { font-family: Fraunces, Georgia, "Times New Roman", serif; font-optical-sizing: auto; }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
-  /* the comic panel: an ink outline and a hard offset shadow */
-  .panel { background: var(--panel); border: 2px solid var(--ink); border-radius: 14px; box-shadow: 4px 4px 0 var(--shadow); }
+  .mono { font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
 
-  /* top bar; on phones the links become a tab strip at the bottom */
-  .bar { position: sticky; top: 0; z-index: 10; background: var(--bar); border-bottom: 2px solid var(--ink); }
-  .bar .wrap { display: flex; align-items: center; gap: 6px; height: 64px; }
-  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 17px; margin-right: auto; white-space: nowrap; }
-  .brand svg { width: 26px; height: 26px; flex: none; }
-  .tabs { display: flex; gap: 2px; }
-  .tabs a { display: flex; align-items: center; gap: 7px; padding: 8px 12px; border-radius: 10px; font-weight: 600; font-size: 15px; text-decoration: none; color: var(--muted); }
-  .tabs a:hover, .tabs a.on { color: var(--ink); background: var(--chip); }
-  .tabs svg { width: 18px; height: 18px; flex: none; }
-  .theme { display: flex; padding: 3px; gap: 2px; border: 2px solid var(--ink); border-radius: 999px; margin-left: 8px; }
-  .theme button { border: 0; width: 30px; height: 30px; border-radius: 999px; background: transparent; color: var(--muted); display: grid; place-items: center; cursor: pointer; }
-  .theme button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
-  .theme svg { width: 16px; height: 16px; }
+  /* ambient colour behind the glass */
+  .ambient { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+  .ambient i { position: absolute; width: 46vmax; height: 46vmax; border-radius: 50%; filter: blur(80px); opacity: var(--blob); animation: drift 28s ease-in-out infinite alternate; }
+  .ambient i:nth-child(1) { background: var(--c1); top: -18vmax; left: -10vmax; }
+  .ambient i:nth-child(2) { background: var(--c2); top: -12vmax; right: -14vmax; animation-delay: -9s; }
+  .ambient i:nth-child(3) { background: var(--c4); top: 40vh; left: 30vw; width: 34vmax; height: 34vmax; animation-delay: -18s; opacity: calc(var(--blob) * .6); }
+  @keyframes drift { to { transform: translate3d(6vmax, 4vmax, 0) scale(1.08); } }
 
-  /* hero on halftone dots */
-  .hero { position: relative; padding: 76px 0 30px; }
-  .hero::before { content: ""; position: absolute; inset: 0 -50vw; z-index: -1; pointer-events: none;
-    background: radial-gradient(var(--dot) 1.3px, transparent 1.6px) 0 0 / 12px 12px;
-    -webkit-mask-image: radial-gradient(70% 90% at 78% 30%, #000 0, transparent 72%); mask-image: radial-gradient(70% 90% at 78% 30%, #000 0, transparent 72%); }
-  .kicker { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--red-ink); background: var(--red); padding: 4px 10px; border-radius: 6px; transform: rotate(-1.5deg); margin: 0 0 18px; }
-  h1 { font-size: clamp(44px, 7.5vw, 80px); line-height: 1; font-weight: 700; letter-spacing: -.02em; margin: 0; text-wrap: balance; }
-  h1 em { font-style: normal; color: var(--red); }
-  .dek { font-size: 19px; color: var(--muted); margin: 16px 0 0; max-width: 620px; }
-  .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
-  .stat { font-size: 14px; color: var(--muted); padding: 6px 12px; border: 1.5px solid var(--rule); border-radius: 8px; background: var(--panel); }
-  .stat b { color: var(--ink); font-weight: 700; margin-right: 4px; }
+  .glass { background: var(--glass); border: 1px solid var(--edge); box-shadow: var(--lift); -webkit-backdrop-filter: blur(22px) saturate(1.5); backdrop-filter: blur(22px) saturate(1.5); }
 
-  /* search as a speech balloon */
-  .search { position: relative; display: flex; align-items: center; gap: 12px; margin-top: 8px; padding: 0 18px; height: 60px; border-radius: 30px; }
-  .search::after { content: ""; position: absolute; left: 46px; bottom: -10px; width: 18px; height: 18px; background: var(--panel);
-    border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); border-bottom-right-radius: 3px; }
-  .search svg { width: 22px; height: 22px; color: var(--muted); flex: none; }
-  .search input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; font-size: 18px; color: var(--ink); outline: none; }
+  /* navigation */
+  .nav { position: fixed; z-index: 20; top: 16px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 2px; padding: 6px; border-radius: 999px; }
+  .brand { display: flex; align-items: center; gap: 9px; padding: 0 14px 0 8px; font-weight: 600; font-size: 15px; letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
+  .mark { width: 22px; height: 22px; flex: none; }
+  .nav a.tab { display: flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 999px; font-size: 14.5px; font-weight: 500; color: var(--muted); text-decoration: none; transition: background .2s, color .2s; }
+  .nav a.tab:hover { color: var(--ink); background: var(--accent-soft); }
+  .nav a.tab.on { color: var(--ink); background: var(--glass-strong); box-shadow: 0 1px 3px rgba(16, 24, 40, .1); }
+  .nav svg { width: 17px; height: 17px; flex: none; }
+  .theme { display: flex; padding: 3px; gap: 2px; border-radius: 999px; background: var(--accent-soft); margin-left: 6px; }
+  .theme button { width: 30px; height: 30px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); display: grid; place-items: center; cursor: pointer; transition: background .2s, color .2s; }
+  .theme button[aria-pressed="true"] { background: var(--glass-strong); color: var(--ink); box-shadow: 0 1px 3px rgba(16, 24, 40, .15); }
+  .theme svg { width: 15px; height: 15px; }
+  .topbrand { display: none; }
+
+  .eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); margin: 0 0 14px; }
+  h1, h2 { font-weight: 400; letter-spacing: -.03em; }
+
+  /* hero */
+  .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; padding: 150px 0 40px; }
+  .hero h1 { font-size: clamp(46px, 6.4vw, 80px); line-height: 1.02; margin: 0; text-wrap: balance; }
+  .hero h1 span { background: linear-gradient(100deg, var(--accent), var(--c4) 55%, var(--c2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { font-size: 19px; line-height: 1.55; color: var(--muted); margin: 22px 0 0; max-width: 540px; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 500; font-size: 15px; text-decoration: none; transition: transform .2s, box-shadow .2s, background .2s; }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); box-shadow: 0 8px 22px -10px var(--accent); }
+  .btn.primary:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -10px var(--accent); }
+  .btn.ghost:hover { transform: translateY(-1px); }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* the comic page, drawn in CSS, with a glass search over it */
+  .page { position: relative; aspect-ratio: 4 / 4.4; border-radius: 26px; padding: 14px; }
+  .grid { display: grid; height: 100%; gap: 10px; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1.1fr .9fr 1fr;
+    grid-template-areas: "a a b" "c d d" "e e e"; }
+  .grid div { border-radius: 14px; position: relative; overflow: hidden; animation: float 9s ease-in-out infinite alternate; }
+  .grid div:nth-child(1) { grid-area: a; background: linear-gradient(135deg, var(--c1), var(--c4)); }
+  .grid div:nth-child(2) { grid-area: b; background: linear-gradient(160deg, var(--c3), var(--c2)); animation-delay: -2s; }
+  .grid div:nth-child(3) { grid-area: c; background: linear-gradient(140deg, var(--c5), var(--c1)); animation-delay: -4s; }
+  .grid div:nth-child(4) { grid-area: d; background: linear-gradient(120deg, var(--c2), var(--c4)); animation-delay: -6s; }
+  .grid div:nth-child(5) { grid-area: e; background: linear-gradient(100deg, var(--c4), var(--c1) 60%, var(--c5)); animation-delay: -1s; }
+  .grid div::after { content: ""; position: absolute; inset: 0; background: radial-gradient(rgba(255, 255, 255, .28) 1px, transparent 1.4px) 0 0 / 9px 9px; mix-blend-mode: overlay; }
+  @keyframes float { to { filter: saturate(1.25) brightness(1.04); transform: scale(1.012); } }
+  .bubble { position: absolute; top: 18%; left: 9%; z-index: 1; background: #fff; color: #0d1117; font-weight: 600; font-size: 14px; padding: 9px 14px; border-radius: 18px; box-shadow: 0 6px 18px -8px rgba(0, 0, 0, .35); animation: pop 6s ease-in-out infinite; }
+  .bubble::after { content: ""; position: absolute; left: 22px; bottom: -7px; width: 14px; height: 14px; background: #fff; transform: rotate(45deg); border-radius: 2px; }
+  @keyframes pop { 0%, 12% { transform: scale(.6); opacity: 0; } 20%, 80% { transform: scale(1); opacity: 1; } 90%, 100% { transform: scale(.9); opacity: 0; } }
+  .demo { position: absolute; left: 7%; right: 7%; bottom: 9%; z-index: 2; border-radius: 20px; padding: 14px 16px 12px; background: var(--glass-strong); }
+  .demo .q { display: flex; align-items: center; gap: 10px; font-size: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+  .demo .q svg { width: 18px; height: 18px; color: var(--muted); flex: none; }
+  .demo .caret { display: inline-block; width: 1.5px; height: 18px; background: var(--accent); margin-left: 1px; vertical-align: -3px; animation: blink 1s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .demo ul { list-style: none; margin: 8px 0 0; padding: 0; min-height: 76px; }
+  .demo li { display: flex; gap: 10px; align-items: baseline; padding: 5px 0; font-size: 13.5px; line-height: 1.35; opacity: 0; transform: translateY(4px); transition: opacity .35s, transform .35s; }
+  .demo li.in { opacity: 1; transform: none; }
+  .demo li b { font-weight: 500; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
+
+  /* numbers */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); margin: 40px 0 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stats div { padding: 24px 0 22px 24px; border-left: 1px solid var(--line); }
+  .stats div:first-child { border-left: 0; padding-left: 0; }
+  .stats b { display: block; font-weight: 300; font-size: clamp(34px, 4.4vw, 52px); letter-spacing: -.03em; line-height: 1; }
+  .stats span { display: block; margin-top: 8px; font-size: 14px; color: var(--muted); }
+
+  /* sections */
+  section.block { padding: 110px 0 0; }
+  .head { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 40px; }
+  .head h2 { font-size: clamp(34px, 4.6vw, 54px); line-height: 1.05; margin: 0; text-wrap: balance; }
+  .head p { margin: 0; font-size: 18px; color: var(--muted); max-width: 520px; }
+  .head p.eyebrow { font-size: 12.5px; color: var(--accent-text); margin: 0 0 14px; max-width: none; }
+  .head p.byline { font-size: 14px; color: var(--faint); }
+
+  .topics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .topic { text-align: left; font: inherit; color: inherit; cursor: pointer; border-radius: 20px; padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 6px; min-height: 150px;
+    transition: transform .25s cubic-bezier(.2, .8, .2, 1), box-shadow .25s, border-color .25s; }
+  .topic:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .topic .n { font-size: 12.5px; color: var(--faint); display: flex; justify-content: space-between; }
+  .topic .n em { font-style: normal; color: var(--accent-text); }
+  .topic h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.25; margin: 4px 0 0; }
+  .topic p { margin: 0; font-size: 13.5px; line-height: 1.45; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+  .search { display: flex; align-items: center; gap: 12px; height: 60px; padding: 0 22px; border-radius: 999px; transition: box-shadow .2s; }
+  .search:focus-within { box-shadow: var(--lift), 0 0 0 3px var(--accent-soft); }
+  .search svg { width: 20px; height: 20px; color: var(--muted); flex: none; }
+  .search input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; font-size: 17px; color: var(--ink); outline: none; }
   .search input::placeholder { color: var(--faint); }
-  .search kbd { font: 600 12px/1 Figtree, sans-serif; color: var(--muted); border: 1.5px solid var(--rule); border-radius: 6px; padding: 5px 7px; }
-  .search:focus-within { box-shadow: 4px 4px 0 var(--red); }
-  .try { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 24px 0 0; }
-  .try span { font-size: 14px; font-weight: 600; color: var(--muted); }
-  .pill { border: 1.5px solid var(--rule); background: var(--panel); color: var(--ink); border-radius: 999px; padding: 6px 13px; font: 600 14px/1.2 Figtree, sans-serif; cursor: pointer; }
-  .pill:hover { border-color: var(--ink); }
-
-  .chips { display: flex; gap: 8px; overflow-x: auto; margin: 22px -20px 0; padding: 4px 20px 10px; scrollbar-width: none;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 36px), transparent); }
+  .search kbd { font: 500 12px/1 "Geist Mono", monospace; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 5px 7px; }
+  .try { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 14px; }
+  .try span { font-size: 14px; color: var(--muted); margin-right: 2px; }
+  .pill { border: 1px solid var(--line); background: var(--glass); color: var(--ink); border-radius: 999px; padding: 6px 13px; font: 500 13.5px/1.2 Geist, sans-serif; cursor: pointer; transition: background .2s, border-color .2s; }
+  .pill:hover { border-color: var(--accent); }
+  .chips { display: flex; gap: 8px; overflow-x: auto; margin: 20px -24px 0; padding: 4px 24px 8px; scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 22px, #000 calc(100% - 44px), transparent); mask-image: linear-gradient(90deg, transparent 0, #000 22px, #000 calc(100% - 44px), transparent); }
   .chips::-webkit-scrollbar { display: none; }
-  .chip { flex: none; border: 2px solid var(--ink); background: var(--panel); color: var(--ink); border-radius: 999px; padding: 7px 15px; font: 600 14px/1.2 Figtree, sans-serif; cursor: pointer; }
-  .chip:hover { background: var(--chip); }
-  .chip[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: var(--red-ink); }
-  .chip small { font-weight: 500; opacity: .7; margin-left: 5px; }
-  .count { font-size: 14px; color: var(--muted); margin: 6px 0 0; min-height: 1em; }
-  .pill:focus-visible, .chip:focus-visible, .tabs a:focus-visible, .theme button:focus-visible, .card:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
+  .chip { flex: none; border: 1px solid var(--line); background: var(--glass); color: var(--ink); border-radius: 999px; padding: 8px 15px; font: 500 14px/1.2 Geist, sans-serif; cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+  .chip:hover { border-color: var(--accent); }
+  .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .chip small { font-family: "Geist Mono", monospace; font-size: 11.5px; opacity: .6; margin-left: 6px; }
+  .count { margin: 8px 0 0; font-size: 13.5px; color: var(--muted); min-height: 1.2em; }
 
-  /* sections, numbered like panels on a page */
-  .group { margin-top: 40px; }
-  .group-head { display: flex; align-items: center; gap: 12px; }
-  .num { flex: none; width: 34px; height: 34px; display: grid; place-items: center; border: 2px solid var(--ink); border-radius: 8px; font-weight: 700; font-size: 14px; background: var(--panel); }
-  .group-head h2 { font-size: 26px; font-weight: 600; margin: 0; line-height: 1.15; }
-  .group-head .n { margin-left: auto; font-size: 14px; color: var(--muted); white-space: nowrap; }
-  .blurb { margin: 8px 0 14px 46px; color: var(--muted); font-size: 15px; max-width: 740px; }
-  .list { padding: 4px 22px; }
-  .paper { display: grid; grid-template-columns: 52px 1fr; gap: 14px; padding: 15px 0; border-top: 1.5px dashed var(--rule); }
-  .paper:first-child { border-top: 0; }
-  .year { font-weight: 700; font-size: 14px; color: var(--faint); padding-top: 3px; font-variant-numeric: tabular-nums; }
-  .title { font-family: Fraunces, Georgia, serif; font-optical-sizing: auto; font-weight: 600; font-size: 19px; line-height: 1.28; text-decoration: none; }
-  .title:hover { color: var(--red-text); }
-  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 7px; font-size: 14px; color: var(--muted); }
-  .venue { font-weight: 700; font-size: 12.5px; letter-spacing: .02em; padding: 2px 8px; border-radius: 6px; background: var(--red-soft); color: var(--red-text); }
-  .venue.pre { background: var(--chip); color: var(--muted); }
-  .meta a { font-weight: 600; font-size: 13.5px; color: var(--cyan); text-decoration: none; }
-  .meta a:hover { text-decoration: underline; }
-  .empty { padding: 26px 0; color: var(--muted); }
+  .group { margin-top: 44px; }
+  .ghead { display: flex; align-items: baseline; gap: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .ghead .gn { font-size: 13px; color: var(--accent-text); }
+  .ghead h3 { margin: 0; font-size: 24px; font-weight: 400; letter-spacing: -.02em; }
+  .ghead .gc { margin-left: auto; font-size: 13px; color: var(--faint); white-space: nowrap; }
+  .paper { display: grid; grid-template-columns: 64px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--line); transition: background .2s; }
+  .paper .yr { font-size: 13.5px; color: var(--faint); padding-top: 2px; }
+  .paper .t { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.35; text-decoration: none; }
+  .paper .t:hover { color: var(--accent-text); }
+  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 7px; font-size: 14px; color: var(--muted); }
+  .venue { font-family: "Geist Mono", monospace; font-size: 12px; padding: 2px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent-text); }
+  .venue.pre { background: transparent; border: 1px dashed var(--faint); color: var(--muted); }
+  .meta a { font-size: 13.5px; font-weight: 500; text-decoration: none; color: var(--ink); border-bottom: 1px solid var(--line); }
+  .meta a:hover { border-color: var(--accent); color: var(--accent-text); }
+  .empty { padding: 30px 0; color: var(--muted); }
 
-  /* the essay */
-  .essay { margin-top: 76px; padding: 44px clamp(22px, 6vw, 70px); }
-  .essay h2 { font-size: clamp(32px, 5vw, 48px); font-weight: 700; line-height: 1.05; letter-spacing: -.015em; margin: 0 0 18px; text-wrap: balance; }
-  .essay h3 { font-size: 26px; font-weight: 600; margin: 32px 0 10px; }
-  .essay p { font-size: 17.5px; line-height: 1.68; margin: 0 0 1em; max-width: 680px; }
-  .essay a { color: var(--cyan); }
-  .byline { font-size: 14px !important; color: var(--muted); margin-bottom: 22px !important; }
-  .strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 26px 0 30px; max-width: 780px; border: 2px solid var(--ink); border-radius: 12px; overflow: hidden; }
-  .strip div { padding: 18px; border-left: 2px solid var(--ink); }
-  .strip div:first-child { border-left: 0; }
-  .strip b { display: block; font-family: Fraunces, Georgia, serif; font-size: 22px; margin-bottom: 4px; color: var(--red); }
-  .strip p { font-size: 15px !important; line-height: 1.5 !important; margin: 0 !important; color: var(--muted); }
+  /* essay */
+  .traits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin: 0 0 48px; }
+  .traits div { border-top: 1px solid var(--ink); padding-top: 18px; }
+  .traits b { display: block; font-weight: 400; font-size: 26px; letter-spacing: -.02em; margin-bottom: 8px; }
+  .traits p { margin: 0; font-size: 15.5px; color: var(--muted); }
+  .essay { max-width: 720px; }
+  .essay h3 { font-size: 26px; font-weight: 400; letter-spacing: -.02em; margin: 40px 0 12px; }
+  .essay p { font-size: 18px; line-height: 1.72; margin: 0 0 1.05em; }
+  .essay a { color: var(--accent-text); }
+  .byline { font-size: 14px; color: var(--faint); margin-top: 18px !important; }
 
-  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 64px 0 16px; }
-  .section-head h2 { font-size: 26px; font-weight: 600; margin: 0; }
-  .section-head span { font-size: 14px; color: var(--muted); }
-  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
-  .card { display: block; padding: 16px 18px; text-decoration: none; transition: transform .12s, box-shadow .12s; }
-  .card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--shadow); }
-  .card .tag { font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red-text); }
-  .card h3 { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 21px; line-height: 1.15; margin: 4px 0 6px; }
-  .card p { margin: 0; font-size: 14.5px; color: var(--muted); }
-  footer { margin-top: 72px; padding: 26px 0 60px; border-top: 2px solid var(--ink); font-size: 14px; color: var(--muted); }
+  /* the data panel */
+  .panel { margin-top: 72px; border-radius: 28px; background: var(--panel-dark); color: var(--panel-ink); padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .panel h3 { margin: 0 0 6px; font-weight: 500; font-size: 18px; letter-spacing: -.01em; }
+  .panel .sub { margin: 0 0 22px; font-size: 14px; color: var(--panel-muted); }
+  .bars { display: flex; align-items: flex-end; gap: 6px; height: 180px; border-bottom: 1px solid var(--panel-line); }
+  .bars div { flex: 1; background: rgba(255, 255, 255, .22); border-radius: 4px 4px 0 0; height: 0; transition: height .9s cubic-bezier(.2, .8, .2, 1); position: relative; }
+  .bars div.hot { background: var(--accent); }
+  .bars div span { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11px; color: var(--panel-muted); }
+  .axis { display: flex; gap: 6px; margin-top: 8px; font-size: 11px; color: var(--panel-muted); }
+  .axis span { flex: 1; text-align: center; }
+  .rules { list-style: none; margin: 0; padding: 0; counter-reset: r; }
+  .rules li { counter-increment: r; display: grid; grid-template-columns: 34px 1fr; padding: 12px 0; border-top: 1px solid var(--panel-line); font-size: 15px; color: var(--panel-ink); }
+  .rules li:first-child { border-top: 0; padding-top: 0; }
+  .rules li::before { content: "0" counter(r); font-family: "Geist Mono", monospace; font-size: 12.5px; color: var(--accent); padding-top: 3px; }
+  .rules small { display: block; color: var(--panel-muted); font-size: 13.5px; margin-top: 2px; }
+
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .card { display: flex; flex-direction: column; gap: 6px; padding: 20px; border-radius: 20px; text-decoration: none; transition: transform .25s cubic-bezier(.2, .8, .2, 1), border-color .25s; }
+  .card:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .card .k { font-size: 12px; color: var(--faint); display: flex; justify-content: space-between; }
+  .card h4 { margin: 2px 0 0; font-size: 17px; font-weight: 500; letter-spacing: -.01em; }
+  .card p { margin: 0; font-size: 14px; color: var(--muted); }
+  .subhead { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin: 44px 0 14px; }
+  footer { margin-top: 110px; padding: 28px 0 60px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px 28px; justify-content: space-between; font-size: 14px; color: var(--muted); }
   footer a { color: var(--ink); }
 
-  @media (max-width: 720px) {
-    .bar .wrap { height: 56px; }
-    .stat { font-size: 13px; padding: 5px 10px; }
-    .tabs { position: fixed; left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); justify-content: space-around; background: var(--panel);
-      border: 2px solid var(--ink); border-radius: 16px; box-shadow: 3px 3px 0 var(--shadow); padding: 5px; }
-    .tabs a { flex-direction: column; gap: 2px; font-size: 12px; padding: 6px 10px; }
-    .tabs svg { width: 21px; height: 21px; }
-    .hero { padding: 40px 0 24px; }
-    .dek { font-size: 17px; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .8, .2, 1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .pill:focus-visible, .chip:focus-visible, .topic:focus-visible, .btn:focus-visible, .nav a:focus-visible, .theme button:focus-visible, .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding-top: 120px; gap: 36px; }
+    .page { max-width: 520px; width: 100%; margin: 0 auto; }
+    .topics { grid-template-columns: repeat(2, 1fr); }
+    .cards { grid-template-columns: repeat(2, 1fr); }
+    .panel { grid-template-columns: 1fr; padding: 30px; }
+    .head { grid-template-columns: 1fr; gap: 14px; }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 18px; }
+    .nav { top: auto; bottom: max(12px, env(safe-area-inset-bottom)); width: calc(100% - 24px); justify-content: space-between; }
+    .nav .brand { display: none; }
+    .nav a.tab { flex-direction: column; gap: 2px; padding: 6px 8px; font-size: 11.5px; }
+    .nav svg { width: 20px; height: 20px; }
+    .theme { margin-left: 0; }
+    .topbrand { display: flex; align-items: center; gap: 9px; padding-top: 22px; font-weight: 600; font-size: 15px; }
+    .hero { padding-top: 34px; }
+    .lead { font-size: 17px; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stats div:nth-child(3) { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); }
+    .stats div:nth-child(4) { border-top: 1px solid var(--line); }
+    section.block { padding-top: 80px; }
+    .topics { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .topic { min-height: 0; padding: 14px; }
+    .topic p { display: none; }
     .search { height: 54px; }
     .search input { font-size: 16px; }
     .search kbd { display: none; }
-    .list { padding: 2px 16px; }
+    .chips { margin: 16px -18px 0; padding: 4px 18px 8px; }
     .paper { grid-template-columns: 1fr; gap: 2px; }
-    .blurb { margin-left: 0; }
-    .strip { grid-template-columns: 1fr; }
-    .strip div { border-left: 0; border-top: 2px solid var(--ink); }
-    .strip div:first-child { border-top: 0; }
-    .essay { padding: 28px 20px; margin-top: 56px; }
+    .traits { grid-template-columns: 1fr; gap: 22px; }
+    .essay p { font-size: 17px; }
+    .panel { padding: 24px; border-radius: 22px; }
+    .cards { grid-template-columns: 1fr; }
     footer { padding-bottom: 120px; }
   }
 </style>
 </head>
 <body>
-<div class="bar">
-  <div class="wrap">
-    <a class="brand" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="13" height="28" rx="2" fill="#c8372d" stroke="currentColor" stroke-width="2.5"/><rect x="17" y="2" width="13" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/><rect x="17" y="17" width="13" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>Comics &amp; Manga AI</a>
-    <nav class="tabs" aria-label="Sections of this page">
-      <a href="#list" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01" stroke-width="2.6"/></svg>List</a>
-      <a href="#why"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/></svg>Why</a>
-      <a href="#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg>Tools</a>
-      <a id="repo-link" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a>
-    </nav>
-    <div class="theme" role="group" aria-label="Colour theme">
-      <button type="button" data-t="light" aria-label="Light theme" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
-      <button type="button" data-t="dark" aria-label="Dark theme" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
-    </div>
+<div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<nav class="nav glass" aria-label="Main">
+  <a class="brand" href="#top"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="12" height="28" rx="3.5" fill="#3f5bd9"/><rect x="17" y="2" width="13" height="12" rx="3.5" fill="#ff8a70"/><rect x="17" y="17" width="13" height="13" rx="3.5" fill="#ffc94d"/></svg>Comics &amp; Manga AI</a>
+  <a class="tab" href="#topics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="18" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>Topics</a>
+  <a class="tab" href="#papers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Papers</a>
+  <a class="tab" href="#essay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/></svg>Essay</a>
+  <a class="tab" href="#resources"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg>Tools</a>
+  <a class="tab" id="repo-link" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a>
+  <div class="theme" role="group" aria-label="Colour theme">
+    <button type="button" data-t="light" aria-label="Light theme" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+    <button type="button" data-t="dark" aria-label="Dark theme" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
   </div>
-</div>
+</nav>
 
 <main class="wrap" id="top">
+  <div class="topbrand"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="12" height="28" rx="3.5" fill="#3f5bd9"/><rect x="17" y="2" width="13" height="12" rx="3.5" fill="#ff8a70"/><rect x="17" y="17" width="13" height="13" rx="3.5" fill="#ffc94d"/></svg>Comics &amp; Manga AI</div>
+
   <header class="hero">
-    <p class="kicker">Awesome list</p>
-    <h1 class="display">Comics <em>&amp;</em> Manga AI</h1>
-    <p class="dek">A maintained map of research on how models read, search, translate, describe and draw comics, manga and webtoons.</p>
-    <div class="stats" id="stats"></div>
+    <div>
+      <p class="eyebrow">An open, maintained research map</p>
+      <h1>Every way models read, search and draw <span>comics</span></h1>
+      <p class="lead">A curated list of research on manga, webtoons, bandes dessinées and comic strips across computer vision, language and graphics, with the datasets, benchmarks and tools behind it. Every entry is verified, and the list refreshes itself each month.</p>
+      <div class="cta">
+        <a class="btn primary" href="#papers">Browse the papers</a>
+        <a class="btn ghost glass" id="contrib-cta" href="#">Contribute on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+    </div>
+    <div class="page glass" aria-hidden="true">
+      <div class="grid"><div></div><div></div><div></div><div></div><div></div></div>
+      <div class="bubble">Who said that?</div>
+      <div class="demo glass">
+        <div class="q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span id="typed"></span><i class="caret"></i></div>
+        <ul id="demo-results"></ul>
+      </div>
+    </div>
   </header>
 
-  <section id="list" aria-label="The list">
-    <label class="search panel" for="q">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+  <div class="stats reveal" id="stats"></div>
+
+  <section class="block" id="topics">
+    <div class="head reveal">
+      <div><p class="eyebrow">Topics</p><h2>From reading the page to drawing it</h2></div>
+      <p>Comics research is spread across vision, language, graphics, document analysis and HCI. Pick a topic to see its papers.</p>
+    </div>
+    <div class="topics" id="topic-grid"></div>
+  </section>
+
+  <section class="block" id="papers">
+    <div class="head reveal">
+      <div><p class="eyebrow">Papers</p><h2>The list</h2></div>
+      <p id="papers-note">Each paper is checked against arXiv, Crossref or its venue's page. Search by title, venue, author or year.</p>
+    </div>
+    <label class="search glass" for="q">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input id="q" type="search" placeholder="Search titles, venues, authors or years" autocomplete="off">
       <kbd>/</kbd>
     </label>
@@ -196,38 +314,65 @@
     <div id="results"></div>
   </section>
 
-  <article class="essay panel" id="why">
-    <h2 class="display">Comics are a modality of their own</h2>
-    <p class="byline">The maintainers<span id="updated"></span></p>
-    <p>A comic tells a story in a few still images and leaves everything in between to the reader. Between two panels, time passes, a character moves across a room, a decision is made; none of it is drawn. Readers fill that gap without effort. Models do not, and that is what makes comics such a revealing test of what a vision-language model can actually follow.</p>
-    <div class="strip" aria-label="What makes comics different">
-      <div><b>Sparse</b><p>A page shows a few moments of a story, not a continuous stream, so a model must infer what happens between them.</p></div>
+  <section class="block" id="essay">
+    <div class="head reveal">
+      <div><p class="eyebrow">Essay</p><h2>Comics are a modality of their own</h2></div>
+      <div><p>A comic tells a story in a few still images and leaves everything in between to the reader. Readers fill that gap without effort. Models do not, and that makes comics a revealing test of what a vision-language model can follow.</p>
+      <p class="byline">The maintainers<span id="updated"></span></p></div>
+    </div>
+    <div class="traits reveal">
+      <div><b>Sparse</b><p>A page shows a few moments of a story, not a continuous stream, so a model must infer what happens between panels.</p></div>
       <div><b>Lettered</b><p>The text lives inside the art, in balloons, captions and sound effects, and it belongs to a speaker the page may never name.</p></div>
       <div><b>Long</b><p>A character, a promise or a cause can be set up hundreds of pages before it matters, and the reader is expected to remember it.</p></div>
     </div>
-    <p>Research on comics is older than deep learning, and it has never had one home. Panel and balloon detection grew up in document analysis. Colorization and screentones belong to graphics. Speaker attribution borrows from NLP. Accessible readers come from HCI, and the study of comics as a medium from the digital humanities. Each community built its own datasets and gave its own names to the same problems, so a newcomer has to rediscover the field one venue at a time.</p>
-    <p>Vision-language models have changed the questions. Models now answer questions about pages, translate with the art in view, transcribe whole chapters with speaker names, and draw comics from a script. Benchmarks ask whether a model is reading the page or recalling a story it already knows. <span id="recent-line"></span></p>
-    <h3 class="display">What this list is</h3>
-    <p>It is a curated map of that work, built to be broad. "Comics" here means manga, manhwa, manhua, webtoons, bandes dessinées, comic strips, graphic novels and single-panel cartoons. A paper belongs when comics are its subject or its main test bed, whether it reads them, searches them, translates them, describes them for blind readers, draws them, restores them, animates them or uses them to probe a model.</p>
-    <p>Earlier lists did valuable work, and we credit and link them below. Some have paused, and others centre on anime and illustration. We want a list that stays current, so we built it to be maintained. Every entry is a record in one data file, checked against arXiv, Crossref or the venue's own pages. The README and this page are generated from that file.</p>
-    <p>The list is selective. It includes work from conferences and journals ranked A* or A by CORE, from workshops and the peer-reviewed tracks of those conferences, the dataset and benchmark papers the field builds on wherever they appeared, and the newest arXiv preprints. A preprint has four months: if a qualifying venue has not published it by then, it leaves the list, and it comes back when it is published. Each month an automated refresh applies that rule, and a sweep of arXiv opens an issue with new candidates for a maintainer to review.</p>
-    <h3 class="display">How to help</h3>
-    <p>If your paper is missing, a link is broken, or a section should exist, open an issue or a pull request. The <a id="contrib-link" href="#">contributing guide</a> takes two minutes to read. We would rather be told than be wrong.</p>
-  </article>
+    <div class="essay reveal">
+      <p>Between two panels, time passes, a character moves across a room, a decision is made; none of it is drawn. Research on comics is older than deep learning, and it has never had one home. Panel and balloon detection grew up in document analysis. Colorization and screentones belong to graphics. Speaker attribution borrows from NLP. Accessible readers come from HCI, and the study of comics as a medium from the digital humanities. Each community built its own datasets and gave its own names to the same problems, so a newcomer has to rediscover the field one venue at a time.</p>
+      <p>Vision-language models have changed the questions. Models now answer questions about pages, translate with the art in view, transcribe whole chapters with speaker names, and draw comics from a script. Benchmarks ask whether a model is reading the page or recalling a story it already knows. <span id="recent-line"></span></p>
+      <h3>What this list is</h3>
+      <p>It is a curated map of that work, built to be broad. "Comics" here means manga, manhwa, manhua, webtoons, bandes dessinées, comic strips, graphic novels and single-panel cartoons. A paper belongs when comics are its subject or its main test bed, whether it reads them, searches them, translates them, describes them for blind readers, draws them, restores them, animates them or uses them to probe a model.</p>
+      <p>Earlier lists did valuable work, and we credit and link them below. Some have paused, and others centre on anime and illustration. We want a list that stays current, so we built it to be maintained. Every entry is a record in one data file, checked against arXiv, Crossref or the venue's own pages, and the README and this page are generated from that file.</p>
+      <h3>How to help</h3>
+      <p>If your paper is missing, a link is broken, or a topic should exist, open an issue or a pull request. The <a id="contrib-link" href="#">contributing guide</a> takes two minutes to read. We would rather be told than be wrong.</p>
+    </div>
+    <div class="panel reveal" id="panel">
+      <div>
+        <h3>Papers per year</h3>
+        <p class="sub" id="bars-sub">Every paper on the map, by year of publication.</p>
+        <div class="bars" id="bars"></div>
+        <div class="axis mono" id="axis"></div>
+      </div>
+      <div>
+        <h3>How a paper gets in</h3>
+        <p class="sub">The rule is code, and a monthly refresh applies it.</p>
+        <ol class="rules" id="rules">
+          <li><span>A conference or journal ranked A* or A by CORE<small>CORE2023 for conferences, CORE2020 for journals</small></span></li>
+          <li><span>A workshop, or a peer-reviewed track of such a conference<small>Findings, technical briefs, extended abstracts</small></span></li>
+          <li><span>A dataset or benchmark paper, at any published venue<small>The resources the field builds on</small></span></li>
+          <li><span>An arXiv preprint, for four months<small>It stays if a qualifying venue publishes it</small></span></li>
+          <li><span>A survey, peer-reviewed or cited at least 20 times<small>Surveys take longer to publish</small></span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
 
-  <section id="tools">
-    <div class="section-head"><h2>Tools and models</h2><span>Open source, checked on GitHub</span></div>
+  <section class="block" id="resources">
+    <div class="head reveal">
+      <div><p class="eyebrow">Resources</p><h2>Tools, workshops and other lists</h2></div>
+      <p>Open-source tools the community uses, the venues where it meets, and the lists this one builds on.</p>
+    </div>
     <div class="cards" id="tool-cards"></div>
-    <div class="section-head"><h2>Workshops and related lists</h2><span>Where the community meets</span></div>
+    <p class="subhead">Workshops and related lists</p>
     <div class="cards" id="more-cards"></div>
   </section>
 
-  <footer>Curated by the maintainers and contributors. The list is released under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>; titles and links belong to their authors.</footer>
+  <footer>
+    <span>Curated by the maintainers and contributors. Released under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>; titles and links belong to their authors.</span>
+    <span>Generated from <span class="mono">data/papers.yaml</span></span>
+  </footer>
 </main>
 
 <script>
 (function () {
-  // theme: the system setting by default, the reader's choice once made (kept only on this device)
   const root = document.documentElement;
   const store = { get() { try { return localStorage.getItem("theme"); } catch (e) { return null; } }, set(v) { try { localStorage.setItem("theme", v); } catch (e) {} } };
   const btns = document.querySelectorAll(".theme button");
@@ -242,78 +387,125 @@
 })();
 
 (async function () {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const $ = id => document.getElementById(id);
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+  const watch = el => reduce ? el.classList.add("in") : io.observe(el);
+  document.querySelectorAll(".reveal").forEach(watch);
+
   let data;
   try { data = await (await fetch("papers.json", { cache: "no-cache" })).json(); }
-  catch (e) { document.getElementById("results").innerHTML = '<p class="empty">The list could not be loaded. Read it in the README on GitHub.</p>'; return; }
+  catch (e) { $("results").innerHTML = '<p class="empty">The list could not be loaded. Read it in the README on GitHub.</p>'; return; }
   const { sections, papers, resources } = data;
   const meta = resources.meta || {};
-  if (meta.repo) {
-    document.getElementById("repo-link").href = meta.repo;
-    document.getElementById("contrib-link").href = meta.repo + "/blob/main/CONTRIBUTING.md";
-  }
-  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  if (meta.repo) { $("repo-link").href = meta.repo; $("contrib-cta").href = meta.repo; $("contrib-link").href = meta.repo + "/blob/main/CONTRIBUTING.md"; }
   const years = papers.map(p => p.year), maxY = Math.max(...years), minY = Math.min(...years);
   const recent = papers.filter(p => p.year >= maxY - 2).length;
-  document.getElementById("recent-line").textContent = `Of the ${papers.length} papers on this map, ${recent} appeared in ${maxY - 2}–${maxY}.`;
-  document.getElementById("updated").textContent = meta.updated ? " · updated " + meta.updated : "";
-  const venues = new Set(papers.map(p => p.venue)).size;
-  document.getElementById("stats").innerHTML = [[papers.length, "papers"], [sections.length, "topics"], [venues, "venues"], [`${minY}–${maxY}`, ""]]
-    .map(([n, l]) => `<span class="stat"><b>${n}</b>${l}</span>`).join("");
-
+  $("recent-line").textContent = `Of the ${papers.length} papers on this map, ${recent} appeared in ${maxY - 2}–${maxY}.`;
+  $("updated").textContent = meta.updated ? " · updated " + meta.updated : "";
   const short = t => t.startsWith("Adjacent: ") ? t.slice(10, 11).toUpperCase() + t.slice(11) + " (adjacent)" : t;
+  const byCat = id => papers.filter(p => p.category === id);
+
+  // numbers, counted up when they come into view
+  const venues = new Set(papers.map(p => p.venue)).size;
+  const stats = [[papers.length, "papers, each verified"], [sections.length, "topics"], [venues, "venues"], [maxY - minY + 1, `years, ${minY}–${maxY}`]];
+  $("stats").innerHTML = stats.map(([n, l]) => `<div><b class="mono" data-n="${n}">${reduce ? n : 0}</b><span>${esc(l)}</span></div>`).join("");
+  const counter = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; counter.disconnect();
+    e.target.querySelectorAll("b[data-n]").forEach(b => { const n = +b.dataset.n, t0 = performance.now();
+      const step = t => { const k = Math.min(1, (t - t0) / 1100); b.textContent = Math.round(n * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step); }); }), { threshold: .4 });
+  if (!reduce) counter.observe($("stats"));
+
+  // topic cards
+  $("topic-grid").innerHTML = sections.map((s, i) => `<button type="button" class="topic glass reveal" data-id="${s.id}">
+    <span class="n mono"><span>${String(i + 1).padStart(2, "0")}</span><em>${byCat(s.id).length}</em></span>
+    <h3>${esc(short(s.title))}</h3><p>${esc(s.blurb)}</p></button>`).join("");
+  $("topic-grid").querySelectorAll(".topic").forEach((b, i) => { b.style.transitionDelay = (i % 4) * 60 + "ms"; watch(b);
+    b.addEventListener("click", () => { setActive(b.dataset.id); $("papers").scrollIntoView(); }); });
+
+  // filter chips and search
   let active = "all";
-  const chips = document.getElementById("chips");
+  const chips = $("chips");
   const mk = (id, label, n) => { const b = document.createElement("button"); b.className = "chip"; b.type = "button"; b.dataset.id = id;
-    b.innerHTML = esc(label) + `<small>${n}</small>`; b.setAttribute("aria-pressed", String(id === active));
-    b.onclick = () => { active = id; [...chips.children].forEach(c => c.setAttribute("aria-pressed", String(c.dataset.id === active))); render(); };
-    chips.appendChild(b); };
+    b.innerHTML = esc(label) + `<small>${n}</small>`; b.onclick = () => setActive(id); chips.appendChild(b); };
   mk("all", "All", papers.length);
-  sections.forEach(s => mk(s.id, short(s.title), papers.filter(p => p.category === s.id).length));
-
-  const q = document.getElementById("q");
-  ["speaker", "colorization", "Manga109", "translation", "2026"].forEach(t => {
+  sections.forEach(s => mk(s.id, short(s.title), byCat(s.id).length));
+  function setActive(id) {
+    active = id;
+    [...chips.children].forEach(c => { const on = c.dataset.id === active; c.setAttribute("aria-pressed", String(on));
+      if (on) chips.scrollTo({ left: c.offsetLeft - (chips.clientWidth - c.offsetWidth) / 2, behavior: reduce ? "auto" : "smooth" }); });   // scrolls the chip row only, never the page
+    render();
+  }
+  const q = $("q");
+  ["speaker", "colorization", "Manga109", "translation", "benchmark"].forEach(t => {
     const b = document.createElement("button"); b.className = "pill"; b.type = "button"; b.textContent = t;
-    b.onclick = () => { q.value = t; render(); q.focus(); }; document.getElementById("try").appendChild(b);
-  });
+    b.onclick = () => { q.value = t; render(); }; $("try").appendChild(b); });
   addEventListener("keydown", e => { if (e.key === "/" && document.activeElement !== q) { e.preventDefault(); q.focus(); } });
-
-  const link = (href, label) => href ? `<a href="${esc(href)}" target="_blank" rel="noopener">${label}</a>` : "";
+  const link = (href, label) => href ? `<a href="${esc(href)}" target="_blank" rel="noopener">${label}&nbsp;↗</a>` : "";
   function row(p) {
     const main = p.paper || (p.arxiv ? "https://arxiv.org/abs/" + p.arxiv : "");
     const ax = p.arxiv && !(p.paper || "").includes(p.arxiv) ? link("https://arxiv.org/abs/" + p.arxiv, "arXiv") : "";
-    const venue = p.venue === "arXiv" ? `<span class="venue pre">Preprint${p.date ? " · " + esc(String(p.date).slice(0, 7)) : ""}</span>` : `<span class="venue">${esc(p.venue)}</span>`;
-    return `<div class="paper"><div class="year">${p.year}</div><div>
-      <a class="title" href="${esc(main)}" target="_blank" rel="noopener">${esc(p.title)}</a>
+    const venue = p.venue === "arXiv" ? `<span class="venue pre">preprint${p.date ? " " + esc(String(p.date).slice(0, 7)) : ""}</span>` : `<span class="venue">${esc(p.venue)}</span>`;
+    return `<div class="paper"><div class="yr mono">${p.year}</div><div><a class="t" href="${esc(main)}" target="_blank" rel="noopener">${esc(p.title)}</a>
       <div class="meta">${venue}<span>${esc(p.authors || "")}</span>${ax}${link(p.code, "Code")}${link(p.project, "Project")}</div></div></div>`;
   }
+  const matches = (p, terms) => terms.every(t => (p.title + " " + p.venue + " " + p.year + " " + (p.authors || "")).toLowerCase().includes(t));
   function render() {
     const terms = q.value.toLowerCase().split(/\s+/).filter(Boolean);
-    const hit = p => terms.every(t => (p.title + " " + p.venue + " " + p.year + " " + (p.authors || "")).toLowerCase().includes(t));
     let html = "", n = 0;
     sections.forEach((s, i) => {
       if (active !== "all" && active !== s.id) return;
-      const ps = papers.filter(p => p.category === s.id && hit(p));
+      const ps = byCat(s.id).filter(p => matches(p, terms));
       if (!ps.length) return;
       n += ps.length;
-      html += `<section class="group"><div class="group-head"><span class="num">${String(i + 1).padStart(2, "0")}</span><h2 class="display">${esc(short(s.title))}</h2><span class="n">${ps.length} paper${ps.length > 1 ? "s" : ""}</span></div>
-        <p class="blurb">${esc(s.blurb)}</p><div class="list panel">${ps.map(row).join("")}</div></section>`;
+      html += `<div class="group"><div class="ghead"><span class="gn mono">${String(i + 1).padStart(2, "0")}</span><h3>${esc(short(s.title))}</h3><span class="gc mono">${ps.length}</span></div>${ps.map(row).join("")}</div>`;
     });
-    document.getElementById("results").innerHTML = html || '<p class="empty">No paper matches. Try fewer words, or open an issue if a paper is missing.</p>';
-    document.getElementById("count").textContent = terms.length || active !== "all" ? `${n} of ${papers.length} papers` : "";
+    $("results").innerHTML = html || '<p class="empty">No paper matches. Try fewer words, or open an issue if a paper is missing.</p>';
+    $("count").textContent = terms.length || active !== "all" ? `${n} of ${papers.length} papers` : "";
   }
   q.addEventListener("input", render);
-  render();
+  setActive("all");
 
-  const card = (tag, h, p, href) => `<a class="card panel" href="${esc(href)}" target="_blank" rel="noopener"><div class="tag">${esc(tag)}</div><h3>${esc(h)}</h3><p>${esc(p)}</p></a>`;
-  document.getElementById("tool-cards").innerHTML = resources.tools.map(t => card("Tool", t.name, t.what, t.url)).join("");
-  document.getElementById("more-cards").innerHTML =
-    resources.workshops.map(w => card("Workshop", w.name, w.what, w.url)).join("") +
-    resources.related.map(r => card("Related list", r.name, r.what, r.url)).join("");
+  // papers per year
+  const span = []; for (let y = minY; y <= maxY; y++) span.push(y);
+  const per = span.map(y => papers.filter(p => p.year === y).length), top = Math.max(...per);
+  $("bars").innerHTML = per.map((n, i) => `<div class="${span[i] >= maxY - 2 ? "hot" : ""}" data-h="${n ? Math.max(3, 100 * n / top) : 0}" title="${span[i]}: ${n}">${n ? `<span class="mono">${n}</span>` : ""}</div>`).join("");
+  $("axis").innerHTML = span.map((y, i) => `<span>${i % 4 === 0 || y === maxY ? "’" + String(y).slice(2) : ""}</span>`).join("");
+  $("bars-sub").textContent = `Every paper on the map by year; the last three years in colour (${recent} of ${papers.length}).`;
+  const grow = () => $("bars").querySelectorAll("div").forEach(d => d.style.height = d.dataset.h + "%");
+  if (reduce) grow(); else new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { grow(); o.disconnect(); } }), { threshold: .3 }).observe($("panel"));
 
-  // mark the tab for the part of the page in view
-  const tabs = [...document.querySelectorAll(".tabs a")].filter(a => a.getAttribute("href").startsWith("#"));
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) tabs.forEach(t => t.classList.toggle("on", t.getAttribute("href") === "#" + e.target.id)); }), { rootMargin: "-45% 0px -50% 0px" });
-  ["list", "why", "tools"].forEach(id => io.observe(document.getElementById(id)));
+  // resources
+  const card = (k, h, p, href) => `<a class="card glass reveal" href="${esc(href)}" target="_blank" rel="noopener"><span class="k mono"><span>${esc(k)}</span><span>↗</span></span><h4>${esc(h)}</h4><p>${esc(p)}</p></a>`;
+  $("tool-cards").innerHTML = resources.tools.map(t => card("tool", t.name, t.what, t.url)).join("");
+  $("more-cards").innerHTML = resources.workshops.map(w => card("workshop", w.name, w.what, w.url)).join("") + resources.related.map(r => card("list", r.name, r.what, r.url)).join("");
+  document.querySelectorAll("#tool-cards .card, #more-cards .card").forEach(watch);
+
+  // the hero demo: real queries over the real list
+  const demoQ = ["speaker", "colorization", "Manga109", "translation", "question answering"];
+  const typed = $("typed"), out = $("demo-results");
+  const show = query => { const ts = query.toLowerCase().split(/\s+/);
+    const hits = papers.filter(p => matches(p, ts)).slice(0, 2);
+    out.innerHTML = hits.map(p => `<li><span class="venue">${esc(p.venue === "arXiv" ? "preprint" : p.venue)}</span><b>${esc(p.title)}</b></li>`).join("");
+    requestAnimationFrame(() => out.querySelectorAll("li").forEach((li, i) => setTimeout(() => li.classList.add("in"), 120 * i))); };
+  if (reduce) { typed.textContent = demoQ[0]; show(demoQ[0]); }
+  else (async function loop() {
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    for (let k = 0; ; k = (k + 1) % demoQ.length) {
+      const w = demoQ[k];
+      for (let i = 1; i <= w.length; i++) { typed.textContent = w.slice(0, i); await wait(70); }
+      show(w); await wait(2600);
+      out.querySelectorAll("li").forEach(li => li.classList.remove("in")); await wait(250);
+      for (let i = w.length; i >= 0; i--) { typed.textContent = w.slice(0, i); await wait(28); }
+      out.innerHTML = ""; await wait(300);
+    }
+  })();
+
+  // the tab for the part of the page in view
+  const tabs = [...document.querySelectorAll(".nav a.tab")].filter(a => a.getAttribute("href").startsWith("#"));
+  const spy = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) tabs.forEach(t => t.classList.toggle("on", t.getAttribute("href") === "#" + e.target.id)); }), { rootMargin: "-40% 0px -55% 0px" });
+  ["topics", "papers", "essay", "resources"].forEach(id => spy.observe($(id)));
 })();
 </script>
 </body>

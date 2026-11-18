@@ -1,6 +1,11 @@
 {
  "sections": [
   {
+   "id": "surveys",
+   "title": "Surveys and overviews",
+   "blurb": "Reviews of the field and of comics research in computer science."
+  },
+  {
    "id": "datasets",
    "title": "Datasets",
    "blurb": "Annotated collections of pages, panels, text and characters. Benchmarks built for vision-language models are in the next section."
@@ -843,6 +848,14 @@
    "project": "https://bitwangyujia.github.io/research/project/comic2speech.html"
   },
   {
+   "title": "Computational Approaches to Comics Analysis",
+   "authors": "Jochen Laubrock et al.",
+   "year": 2019,
+   "venue": "Topics in Cognitive Science",
+   "category": "surveys",
+   "paper": "https://doi.org/10.1111/tops.12476"
+  },
+  {
    "title": "Deep CNN-based Speech Balloon Detection and Segmentation for Comic Books",
    "authors": "David Dubray et al.",
    "year": 2019,
@@ -868,6 +881,15 @@
    "venue": "ICDAR Workshops",
    "category": "analysis",
    "paper": "https://doi.org/10.1109/icdarw.2019.00013"
+  },
+  {
+   "title": "A survey of comics research in computer science",
+   "authors": "Olivier Augereau et al.",
+   "year": 2018,
+   "venue": "J. Imaging",
+   "category": "surveys",
+   "paper": "https://doi.org/10.3390/jimaging4070087",
+   "arxiv": "1804.05490"
   },
   {
    "title": "Cross-Domain Weakly-Supervised Object Detection through Progressive Domain Adaptation",

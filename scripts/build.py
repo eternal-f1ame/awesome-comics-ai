@@ -97,6 +97,8 @@ def readme(papers, sections, resources):
           "3. It is a **dataset or benchmark paper**, at any published venue.",
           f"4. It is an **arXiv preprint** whose first version is at most {POLICY.PREPRINT_MONTHS} months old. After that, it stays "
           "only if a venue that meets conditions 1–3 has published it.", "",
+          f"Surveys follow their own rule: a survey of comics is listed when it is peer-reviewed at any venue, or when it is a "
+          f"preprint with at least {POLICY.SURVEY_MIN_CITATIONS} citations. The four-month window does not apply to surveys.", "",
           "Verified papers that do not meet the rule are kept, with the reason, in `data/not_included.yaml`, so a later "
           "publication brings them back.", "",
           "## How the list stays current", "",

@@ -600,6 +600,19 @@
   venue: MANPU
   category: studies
   paper: https://doi.org/10.1145/3011549.3011555
+- title: Computational Approaches to Comics Analysis
+  authors: Jochen Laubrock et al.
+  year: 2019
+  venue: Topics in Cognitive Science
+  category: surveys
+  paper: https://doi.org/10.1111/tops.12476
+- title: A survey of comics research in computer science
+  authors: Olivier Augereau et al.
+  year: 2018
+  venue: J. Imaging
+  category: surveys
+  paper: https://doi.org/10.3390/jimaging4070087
+  arxiv: '1804.05490'
 - title: A Comprehensive Gold Standard and Benchmark for Comics Text Detection and Recognition
   authors: Gürkan Soykan et al.
   year: 2024

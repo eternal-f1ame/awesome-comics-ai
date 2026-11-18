@@ -605,22 +605,9 @@
   category: surveys
   arxiv: '2409.09502'
   date: '2024-09-14'
-  reason: arXiv preprint from 2024-09-14, older than 4 months and not published at a qualifying venue
-- title: Computational Approaches to Comics Analysis
-  authors: Jochen Laubrock et al.
-  year: 2019
-  venue: Topics in Cognitive Science
-  category: surveys
-  paper: https://doi.org/10.1111/tops.12476
-  reason: Topics in Cognitive Science is not ranked by CORE
-- title: A survey of comics research in computer science
-  authors: Olivier Augereau et al.
-  year: 2018
-  venue: J. Imaging
-  category: surveys
-  paper: https://doi.org/10.3390/jimaging4070087
-  arxiv: '1804.05490'
-  reason: J. Imaging is not ranked by CORE
+  reason: survey preprint with 19 citations, fewer than 20
+  citations: 19
+  citations_source: OpenAlex W4403667441, 2026-11-18
 - title: 'Tails Tell Tales: Chapter-Wide Manga Transcriptions with Character Names'
   authors: Ragav Sachdeva et al.
   year: 2024

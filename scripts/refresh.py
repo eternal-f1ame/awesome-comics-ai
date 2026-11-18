@@ -45,6 +45,20 @@ def published(title):
     return None
 
 
+def citations(arxiv_id):
+    """The larger citation count that Semantic Scholar and OpenAlex give for an arXiv paper, or None if neither answers."""
+    counts = []
+    for url, key in ((f"https://api.semanticscholar.org/graph/v1/paper/arXiv:{arxiv_id}?fields=citationCount", "citationCount"),
+                     (f"https://api.openalex.org/works/doi:10.48550/arXiv.{arxiv_id}?select=cited_by_count", "cited_by_count")):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=30) as r:
+                counts.append(int(json.load(r)[key]))
+        except Exception:
+            pass
+        time.sleep(2)
+    return max(counts) if counts else None
+
+
 def load(name):
     return yaml.safe_load((ROOT / "data" / name).read_text(encoding="utf-8")) or []
 
@@ -79,8 +93,27 @@ def main():
             return True
         return False
 
+    # surveys: refresh the citation count of every survey preprint, in the list or out of it
+    for e in papers + out:
+        if e.get("category") == "surveys" and e.get("venue") == "arXiv" and e.get("arxiv"):
+            c = citations(e["arxiv"])
+            if c is not None and c != e.get("citations"):
+                log.append(f"CITATIONS: {e['title'][:70]}: {e.get('citations')} -> {c}")
+                e["citations"], e["citations_source"] = c, f"Semantic Scholar or OpenAlex, {today}"
+    for e in list(out):
+        if e.get("category") == "surveys" and policy.reason_out(e, table, today) is None:
+            out.remove(e); e.pop("reason", None); papers.append(e)
+            log.append(f"SURVEY back in the list: {e['title'][:70]} ({e.get('citations')} citations)")
+
     keep, retired_now = [], set()
     for e in papers:
+        if e.get("category") == "surveys":
+            why = policy.reason_out(e, table, today)
+            if why:
+                e["reason"] = why; out.append(e); retired_now.add(e["title"]); log.append(f"SURVEY out: {e['title'][:70]} ({why})")
+            else:
+                keep.append(e)
+            continue
         if e.get("venue") == "arXiv" and e.get("date") and dt.date.fromisoformat(str(e["date"])) < cutoff:
             if try_publish(e):
                 log.append(f"PUBLISHED, kept: {e['title'][:70]} -> {e['venue']} {e['year']}")
