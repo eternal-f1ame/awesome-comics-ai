@@ -322,3 +322,25 @@
     .prose { font-size: 1.125rem; line-height: 1.65; }
     .prose h2 { font-size: 1.5rem; }
   }
+
+  /* research posts: the paper they summarise, tables, a displayed equation and a citation */
+  .paperref { margin: 1.75rem 0 0; padding: 1rem 1.25rem; border: 1px solid var(--edge); border-radius: 0.5rem; background: var(--grain), var(--sheet); font-size: 0.9375rem; }
+  .paperref > span { font-size: 0.75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-text); }
+  .paperref p { margin: 0.375rem 0 0; color: var(--ink); line-height: 1.5; }
+  .paperref i { font-family: var(--serif); font-size: 1.0625rem; font-style: italic; }
+  .paperref .links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.125rem; margin-top: 0.625rem; }
+  .paperref .links a { font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--accent-line); }
+  .paperref .links a:hover { color: var(--accent-text); }
+  .tablewrap { overflow-x: auto; margin: 1.5em 0 1.75em; }
+  .prose table { width: 100%; border-collapse: collapse; font-family: Geist, system-ui, sans-serif; font-size: 0.9375rem; line-height: 1.45; }
+  .prose th { text-align: left; font-weight: 600; font-size: 0.8125rem; letter-spacing: .04em; color: var(--muted); padding: 0 0.875rem 0.5rem 0; border-bottom: 1px solid var(--ink); }
+  .prose td { vertical-align: top; padding: 0.625rem 0.875rem 0.625rem 0; border-bottom: 1px solid var(--line); }
+  .prose td:first-child { white-space: nowrap; }
+  .eq { margin: 1.25em 0 1.4em; padding: 0.875rem 0; text-align: center; font-family: var(--serif); font-size: 1.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .prose sub, .prose sup { font-size: 0.68em; line-height: 0; }
+  .prose pre.bib { margin: 0.75em 0 0; padding: 1rem 1.125rem; overflow-x: auto; border: 1px solid var(--edge); border-radius: 0.5rem; background: var(--grain), var(--sheet); font: 0.8125rem/1.55 "Geist Mono", ui-monospace, monospace; }
+  @media (max-width: 40em) {
+    .prose table { font-size: 0.875rem; }
+    .prose td:first-child { white-space: normal; }
+    .eq { font-size: 1.3125rem; }
+  }
