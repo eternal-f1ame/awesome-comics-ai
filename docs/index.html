@@ -2,141 +2,245 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Awesome Comics &amp; Manga AI</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='13' height='28' rx='2' fill='none' stroke='%23b4302b' stroke-width='3'/%3E%3Crect x='17' y='2' width='13' height='13' rx='2' fill='none' stroke='%23b4302b' stroke-width='3'/%3E%3Crect x='17' y='17' width='13' height='13' rx='2' fill='none' stroke='%23b4302b' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='13' height='28' rx='2' fill='%23c8372d' stroke='%23141414' stroke-width='2.5'/%3E%3Crect x='17' y='2' width='13' height='13' rx='2' fill='%23faf8f3' stroke='%23141414' stroke-width='2.5'/%3E%3Crect x='17' y='17' width='13' height='13' rx='2' fill='%23faf8f3' stroke='%23141414' stroke-width='2.5'/%3E%3C/svg%3E">
 <meta name="description" content="A curated, maintained map of research on comics, manga and webtoons in computer vision, language and graphics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #fbfaf7; --surface: #ffffff; --ink: #1d1b18; --muted: #6b665e; --rule: #e6e1d8;
-    --accent: #b4302b; --accent-soft: #f6e5e3; --chip: #f1ede6; --chip-on: #1d1b18; --chip-on-ink: #fbfaf7;
+    --paper: #faf8f3; --panel: #ffffff; --ink: #141414; --muted: #5d5850; --faint: #8f897f; --rule: #e6e1d7;
+    --red: #c8372d; --red-ink: #ffffff; --red-soft: #fbe3df; --red-text: #a8291f; --cyan: #1d6aa8;
+    --dot: rgba(20, 20, 20, .11); --chip: #f1ede5; --chip-hover: #e8e3d9; --shadow: #141414; --bar: #faf8f3;
+    color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #151413; --surface: #1d1c1a; --ink: #ece8e1; --muted: #a39d93; --rule: #2f2d2a;
-      --accent: #e5675f; --accent-soft: #3a2422; --chip: #262422; --chip-on: #ece8e1; --chip-on-ink: #151413;
+      --paper: #121212; --panel: #1b1b1c; --ink: #ece8e1; --muted: #b0aaa0; --faint: #7f7a72; --rule: #2c2b2a;
+      --red: #e0574b; --red-ink: #121212; --red-soft: #3a1e1b; --red-text: #f08a80; --cyan: #6fb2e6;
+      --dot: rgba(236, 232, 225, .09); --chip: #232323; --chip-hover: #2d2d2d; --shadow: #000000; --bar: #121212;
+      color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #151413; --surface: #1d1c1a; --ink: #ece8e1; --muted: #a39d93; --rule: #2f2d2a;
-    --accent: #e5675f; --accent-soft: #3a2422; --chip: #262422; --chip-on: #ece8e1; --chip-on-ink: #151413;
+    --paper: #121212; --panel: #1b1b1c; --ink: #ece8e1; --muted: #b0aaa0; --faint: #7f7a72; --rule: #2c2b2a;
+    --red: #e0574b; --red-ink: #121212; --red-soft: #3a1e1b; --red-text: #f08a80; --cyan: #6fb2e6;
+    --dot: rgba(236, 232, 225, .09); --chip: #232323; --chip-hover: #2d2d2d; --shadow: #000000; --bar: #121212;
+    color-scheme: dark;
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 ui-serif, Georgia, "Times New Roman", serif; }
-  a { color: var(--accent); text-underline-offset: 2px; }
-  .sans { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  header { border-bottom: 1px solid var(--rule); }
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
-  .narrow { max-width: 720px; margin: 0 auto; padding: 0 16px; }
-  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 18px 0; }
-  .brand { font-weight: 700; font-size: 18px; letter-spacing: .01em; color: var(--ink); text-decoration: none; }
-  .brand span { color: var(--accent); }
-  nav a { margin-left: 18px; font-size: 15px; color: var(--muted); text-decoration: none; }
-  nav a:hover { color: var(--ink); }
-  .hero { padding-top: 56px; padding-bottom: 8px; }
-  .kicker { font-size: 13px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin: 0 0 10px; }
-  h1 { font-size: clamp(32px, 6vw, 48px); line-height: 1.1; margin: 0 0 14px; font-weight: 700; text-wrap: balance; }
-  .dek { font-size: 20px; color: var(--muted); margin: 0 0 22px; }
-  .byline { font-size: 14px; color: var(--muted); }
-  article p { margin: 0 0 1.1em; }
-  article h2 { font-size: 24px; margin: 1.8em 0 .5em; }
-  .panels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 28px 0; }
-  .panel { border: 2px solid var(--ink); border-radius: 3px; padding: 14px 12px; background: var(--surface); min-height: 112px; }
-  .panel b { display: block; font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 4px; }
-  .panel p { margin: 0; font-size: 15px; line-height: 1.45; }
-  .stats { display: flex; gap: 28px; flex-wrap: wrap; margin: 26px 0 0; padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-  .stat b { display: block; font-size: 28px; line-height: 1.1; }
-  .stat span { font-size: 13px; color: var(--muted); }
-  #explore { padding: 48px 0 32px; }
-  #explore h2 { font-size: 28px; margin: 0 0 6px; }
-  .controls { position: sticky; top: 0; z-index: 2; background: var(--bg); padding: 12px 0; border-bottom: 1px solid var(--rule); }
-  .search { width: 100%; font: inherit; font-size: 16px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); }
-  .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
-  .chip { border: 0; border-radius: 999px; padding: 5px 11px; font-size: 13px; background: var(--chip); color: var(--ink); cursor: pointer; }
-  .chip[aria-pressed="true"] { background: var(--chip-on); color: var(--chip-on-ink); }
-  .count { font-size: 13px; color: var(--muted); margin-top: 8px; }
-  .section-title { font-size: 20px; margin: 30px 0 4px; }
-  .section-blurb { font-size: 15px; color: var(--muted); margin: 0 0 10px; }
-  .row { display: grid; grid-template-columns: 52px 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid var(--rule); }
-  .row .year { font-size: 14px; color: var(--muted); padding-top: 2px; }
-  .row .title { font-size: 16px; line-height: 1.4; }
-  .row .meta { font-size: 13px; color: var(--muted); margin-top: 3px; }
-  .venue { display: inline-block; background: var(--accent-soft); color: var(--accent); border-radius: 4px; padding: 0 6px; margin-right: 6px; font-weight: 600; }
-  .meta a { margin-right: 10px; }
-  .resources { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 12px; }
-  .card { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; }
-  .card h3 { margin: 0 0 4px; font-size: 16px; }
-  .card p { margin: 0; font-size: 14px; color: var(--muted); }
-  footer { border-top: 1px solid var(--rule); padding: 24px 0 40px; font-size: 14px; color: var(--muted); }
-  .empty { color: var(--muted); padding: 20px 0; }
-  @media (max-width: 640px) {
-    nav a { margin-left: 12px; }
-    .panels { grid-template-columns: 1fr; }
-    .row { grid-template-columns: 40px 1fr; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  html, body { overflow-x: clip; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.55 Figtree, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  .display { font-family: Fraunces, Georgia, "Times New Roman", serif; font-optical-sizing: auto; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  /* the comic panel: an ink outline and a hard offset shadow */
+  .panel { background: var(--panel); border: 2px solid var(--ink); border-radius: 14px; box-shadow: 4px 4px 0 var(--shadow); }
+
+  /* top bar; on phones the links become a tab strip at the bottom */
+  .bar { position: sticky; top: 0; z-index: 10; background: var(--bar); border-bottom: 2px solid var(--ink); }
+  .bar .wrap { display: flex; align-items: center; gap: 6px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 17px; margin-right: auto; white-space: nowrap; }
+  .brand svg { width: 26px; height: 26px; flex: none; }
+  .tabs { display: flex; gap: 2px; }
+  .tabs a { display: flex; align-items: center; gap: 7px; padding: 8px 12px; border-radius: 10px; font-weight: 600; font-size: 15px; text-decoration: none; color: var(--muted); }
+  .tabs a:hover, .tabs a.on { color: var(--ink); background: var(--chip); }
+  .tabs svg { width: 18px; height: 18px; flex: none; }
+  .theme { display: flex; padding: 3px; gap: 2px; border: 2px solid var(--ink); border-radius: 999px; margin-left: 8px; }
+  .theme button { border: 0; width: 30px; height: 30px; border-radius: 999px; background: transparent; color: var(--muted); display: grid; place-items: center; cursor: pointer; }
+  .theme button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .theme svg { width: 16px; height: 16px; }
+
+  /* hero on halftone dots */
+  .hero { position: relative; padding: 76px 0 30px; }
+  .hero::before { content: ""; position: absolute; inset: 0 -50vw; z-index: -1; pointer-events: none;
+    background: radial-gradient(var(--dot) 1.3px, transparent 1.6px) 0 0 / 12px 12px;
+    -webkit-mask-image: radial-gradient(70% 90% at 78% 30%, #000 0, transparent 72%); mask-image: radial-gradient(70% 90% at 78% 30%, #000 0, transparent 72%); }
+  .kicker { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--red-ink); background: var(--red); padding: 4px 10px; border-radius: 6px; transform: rotate(-1.5deg); margin: 0 0 18px; }
+  h1 { font-size: clamp(44px, 7.5vw, 80px); line-height: 1; font-weight: 700; letter-spacing: -.02em; margin: 0; text-wrap: balance; }
+  h1 em { font-style: normal; color: var(--red); }
+  .dek { font-size: 19px; color: var(--muted); margin: 16px 0 0; max-width: 620px; }
+  .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .stat { font-size: 14px; color: var(--muted); padding: 6px 12px; border: 1.5px solid var(--rule); border-radius: 8px; background: var(--panel); }
+  .stat b { color: var(--ink); font-weight: 700; margin-right: 4px; }
+
+  /* search as a speech balloon */
+  .search { position: relative; display: flex; align-items: center; gap: 12px; margin-top: 8px; padding: 0 18px; height: 60px; border-radius: 30px; }
+  .search::after { content: ""; position: absolute; left: 46px; bottom: -10px; width: 18px; height: 18px; background: var(--panel);
+    border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); border-bottom-right-radius: 3px; }
+  .search svg { width: 22px; height: 22px; color: var(--muted); flex: none; }
+  .search input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; font-size: 18px; color: var(--ink); outline: none; }
+  .search input::placeholder { color: var(--faint); }
+  .search kbd { font: 600 12px/1 Figtree, sans-serif; color: var(--muted); border: 1.5px solid var(--rule); border-radius: 6px; padding: 5px 7px; }
+  .search:focus-within { box-shadow: 4px 4px 0 var(--red); }
+  .try { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 24px 0 0; }
+  .try span { font-size: 14px; font-weight: 600; color: var(--muted); }
+  .pill { border: 1.5px solid var(--rule); background: var(--panel); color: var(--ink); border-radius: 999px; padding: 6px 13px; font: 600 14px/1.2 Figtree, sans-serif; cursor: pointer; }
+  .pill:hover { border-color: var(--ink); }
+
+  .chips { display: flex; gap: 8px; overflow-x: auto; margin: 22px -20px 0; padding: 4px 20px 10px; scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 36px), transparent); }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip { flex: none; border: 2px solid var(--ink); background: var(--panel); color: var(--ink); border-radius: 999px; padding: 7px 15px; font: 600 14px/1.2 Figtree, sans-serif; cursor: pointer; }
+  .chip:hover { background: var(--chip); }
+  .chip[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: var(--red-ink); }
+  .chip small { font-weight: 500; opacity: .7; margin-left: 5px; }
+  .count { font-size: 14px; color: var(--muted); margin: 6px 0 0; min-height: 1em; }
+  .pill:focus-visible, .chip:focus-visible, .tabs a:focus-visible, .theme button:focus-visible, .card:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
+
+  /* sections, numbered like panels on a page */
+  .group { margin-top: 40px; }
+  .group-head { display: flex; align-items: center; gap: 12px; }
+  .num { flex: none; width: 34px; height: 34px; display: grid; place-items: center; border: 2px solid var(--ink); border-radius: 8px; font-weight: 700; font-size: 14px; background: var(--panel); }
+  .group-head h2 { font-size: 26px; font-weight: 600; margin: 0; line-height: 1.15; }
+  .group-head .n { margin-left: auto; font-size: 14px; color: var(--muted); white-space: nowrap; }
+  .blurb { margin: 8px 0 14px 46px; color: var(--muted); font-size: 15px; max-width: 740px; }
+  .list { padding: 4px 22px; }
+  .paper { display: grid; grid-template-columns: 52px 1fr; gap: 14px; padding: 15px 0; border-top: 1.5px dashed var(--rule); }
+  .paper:first-child { border-top: 0; }
+  .year { font-weight: 700; font-size: 14px; color: var(--faint); padding-top: 3px; font-variant-numeric: tabular-nums; }
+  .title { font-family: Fraunces, Georgia, serif; font-optical-sizing: auto; font-weight: 600; font-size: 19px; line-height: 1.28; text-decoration: none; }
+  .title:hover { color: var(--red-text); }
+  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 7px; font-size: 14px; color: var(--muted); }
+  .venue { font-weight: 700; font-size: 12.5px; letter-spacing: .02em; padding: 2px 8px; border-radius: 6px; background: var(--red-soft); color: var(--red-text); }
+  .venue.pre { background: var(--chip); color: var(--muted); }
+  .meta a { font-weight: 600; font-size: 13.5px; color: var(--cyan); text-decoration: none; }
+  .meta a:hover { text-decoration: underline; }
+  .empty { padding: 26px 0; color: var(--muted); }
+
+  /* the essay */
+  .essay { margin-top: 76px; padding: 44px clamp(22px, 6vw, 70px); }
+  .essay h2 { font-size: clamp(32px, 5vw, 48px); font-weight: 700; line-height: 1.05; letter-spacing: -.015em; margin: 0 0 18px; text-wrap: balance; }
+  .essay h3 { font-size: 26px; font-weight: 600; margin: 32px 0 10px; }
+  .essay p { font-size: 17.5px; line-height: 1.68; margin: 0 0 1em; max-width: 680px; }
+  .essay a { color: var(--cyan); }
+  .byline { font-size: 14px !important; color: var(--muted); margin-bottom: 22px !important; }
+  .strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 26px 0 30px; max-width: 780px; border: 2px solid var(--ink); border-radius: 12px; overflow: hidden; }
+  .strip div { padding: 18px; border-left: 2px solid var(--ink); }
+  .strip div:first-child { border-left: 0; }
+  .strip b { display: block; font-family: Fraunces, Georgia, serif; font-size: 22px; margin-bottom: 4px; color: var(--red); }
+  .strip p { font-size: 15px !important; line-height: 1.5 !important; margin: 0 !important; color: var(--muted); }
+
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 64px 0 16px; }
+  .section-head h2 { font-size: 26px; font-weight: 600; margin: 0; }
+  .section-head span { font-size: 14px; color: var(--muted); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+  .card { display: block; padding: 16px 18px; text-decoration: none; transition: transform .12s, box-shadow .12s; }
+  .card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--shadow); }
+  .card .tag { font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red-text); }
+  .card h3 { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 21px; line-height: 1.15; margin: 4px 0 6px; }
+  .card p { margin: 0; font-size: 14.5px; color: var(--muted); }
+  footer { margin-top: 72px; padding: 26px 0 60px; border-top: 2px solid var(--ink); font-size: 14px; color: var(--muted); }
+  footer a { color: var(--ink); }
+
+  @media (max-width: 720px) {
+    .bar .wrap { height: 56px; }
+    .stat { font-size: 13px; padding: 5px 10px; }
+    .tabs { position: fixed; left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); justify-content: space-around; background: var(--panel);
+      border: 2px solid var(--ink); border-radius: 16px; box-shadow: 3px 3px 0 var(--shadow); padding: 5px; }
+    .tabs a { flex-direction: column; gap: 2px; font-size: 12px; padding: 6px 10px; }
+    .tabs svg { width: 21px; height: 21px; }
+    .hero { padding: 40px 0 24px; }
+    .dek { font-size: 17px; }
+    .search { height: 54px; }
+    .search input { font-size: 16px; }
+    .search kbd { display: none; }
+    .list { padding: 2px 16px; }
+    .paper { grid-template-columns: 1fr; gap: 2px; }
+    .blurb { margin-left: 0; }
+    .strip { grid-template-columns: 1fr; }
+    .strip div { border-left: 0; border-top: 2px solid var(--ink); }
+    .strip div:first-child { border-top: 0; }
+    .essay { padding: 28px 20px; margin-top: 56px; }
+    footer { padding-bottom: 120px; }
   }
 </style>
 </head>
 <body>
-<header class="sans">
-  <div class="wrap masthead">
-    <a class="brand" href="#">Awesome Comics <span>&amp;</span> Manga AI</a>
-    <nav><a href="#post">Why</a><a href="#explore">The list</a><a href="#resources">Tools</a><a id="repo-link" href="#">GitHub</a></nav>
+<div class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="13" height="28" rx="2" fill="#c8372d" stroke="currentColor" stroke-width="2.5"/><rect x="17" y="2" width="13" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/><rect x="17" y="17" width="13" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>Comics &amp; Manga AI</a>
+    <nav class="tabs" aria-label="Sections of this page">
+      <a href="#list" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01" stroke-width="2.6"/></svg>List</a>
+      <a href="#why"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/></svg>Why</a>
+      <a href="#tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg>Tools</a>
+      <a id="repo-link" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a>
+    </nav>
+    <div class="theme" role="group" aria-label="Colour theme">
+      <button type="button" data-t="light" aria-label="Light theme" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+      <button type="button" data-t="dark" aria-label="Dark theme" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    </div>
   </div>
-</header>
+</div>
 
-<main>
-  <section class="narrow hero" id="post">
-    <p class="kicker sans">A map of the field</p>
-    <h1>Comics are a modality of their own</h1>
-    <p class="dek">They sit between the single image and the video, and research on them is spread across a dozen communities. This is our attempt to put it on one map, and to keep that map current.</p>
-    <p class="byline sans" id="byline">The maintainers<span id="updated"></span></p>
+<main class="wrap" id="top">
+  <header class="hero">
+    <p class="kicker">Awesome list</p>
+    <h1 class="display">Comics <em>&amp;</em> Manga AI</h1>
+    <p class="dek">A maintained map of research on how models read, search, translate, describe and draw comics, manga and webtoons.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <section id="list" aria-label="The list">
+    <label class="search panel" for="q">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Search titles, venues, authors or years" autocomplete="off">
+      <kbd>/</kbd>
+    </label>
+    <div class="try" id="try"><span>Try</span></div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by topic"></div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div id="results"></div>
   </section>
 
-  <article class="narrow">
+  <article class="essay panel" id="why">
+    <h2 class="display">Comics are a modality of their own</h2>
+    <p class="byline">The maintainers<span id="updated"></span></p>
     <p>A comic tells a story in a few still images and leaves everything in between to the reader. Between two panels, time passes, a character moves across a room, a decision is made; none of it is drawn. Readers fill that gap without effort. Models do not, and that is what makes comics such a revealing test of what a vision-language model can actually follow.</p>
-
-    <div class="panels sans" aria-label="What makes comics different">
-      <div class="panel"><b>Sparse</b><p>A page shows a few moments of a story, not a continuous stream, so a model must infer what happens between them.</p></div>
-      <div class="panel"><b>Lettered</b><p>The text lives inside the art, in balloons, captions and sound effects, and it belongs to a speaker the page may never name.</p></div>
-      <div class="panel"><b>Long</b><p>A character, a promise or a cause can be set up hundreds of pages before it matters, and the reader is expected to remember it.</p></div>
+    <div class="strip" aria-label="What makes comics different">
+      <div><b>Sparse</b><p>A page shows a few moments of a story, not a continuous stream, so a model must infer what happens between them.</p></div>
+      <div><b>Lettered</b><p>The text lives inside the art, in balloons, captions and sound effects, and it belongs to a speaker the page may never name.</p></div>
+      <div><b>Long</b><p>A character, a promise or a cause can be set up hundreds of pages before it matters, and the reader is expected to remember it.</p></div>
     </div>
-
     <p>Research on comics is older than deep learning, and it has never had one home. Panel and balloon detection grew up in document analysis. Colorization and screentones belong to graphics. Speaker attribution borrows from NLP. Accessible readers come from HCI, and the study of comics as a medium from the digital humanities. Each community built its own datasets and gave its own names to the same problems, so a newcomer has to rediscover the field one venue at a time.</p>
-
     <p>Vision-language models have changed the questions. Models now answer questions about pages, translate with the art in view, transcribe whole chapters with speaker names, and draw comics from a script. Benchmarks ask whether a model is reading the page or recalling a story it already knows. <span id="recent-line"></span></p>
-
-    <h2>What this list is</h2>
+    <h3 class="display">What this list is</h3>
     <p>It is a curated map of that work, built to be broad. "Comics" here means manga, manhwa, manhua, webtoons, bandes dessinées, comic strips, graphic novels and single-panel cartoons. A paper belongs when comics are its subject or its main test bed, whether it reads them, searches them, translates them, describes them for blind readers, draws them, restores them, animates them or uses them to probe a model.</p>
     <p>Earlier lists did valuable work, and we credit and link them below. Some have paused, and others centre on anime and illustration. We want a list that stays current, so we built it to be maintained. Every entry is a record in one data file, checked against arXiv, Crossref or the venue's own pages. The README and this page are generated from that file.</p>
     <p>The list is selective. It includes work from conferences and journals ranked A* or A by CORE, from workshops and the peer-reviewed tracks of those conferences, the dataset and benchmark papers the field builds on wherever they appeared, and the newest arXiv preprints. A preprint has four months: if a qualifying venue has not published it by then, it leaves the list, and it comes back when it is published. Each month an automated refresh applies that rule, and a sweep of arXiv opens an issue with new candidates for a maintainer to review.</p>
-
-    <h2>How to help</h2>
+    <h3 class="display">How to help</h3>
     <p>If your paper is missing, a link is broken, or a section should exist, open an issue or a pull request. The <a id="contrib-link" href="#">contributing guide</a> takes two minutes to read. We would rather be told than be wrong.</p>
-
-    <div class="stats sans" id="stats"></div>
   </article>
 
-  <section id="explore" class="wrap">
-    <h2>The list</h2>
-    <div class="controls sans">
-      <input class="search" id="q" type="search" placeholder="Search titles, venues or years, for example: speaker, colorization, 2025" aria-label="Search the list">
-      <div class="chips" id="chips" role="group" aria-label="Filter by section"></div>
-      <div class="count" id="count" aria-live="polite"></div>
-    </div>
-    <div id="results" class="sans"></div>
+  <section id="tools">
+    <div class="section-head"><h2>Tools and models</h2><span>Open source, checked on GitHub</span></div>
+    <div class="cards" id="tool-cards"></div>
+    <div class="section-head"><h2>Workshops and related lists</h2><span>Where the community meets</span></div>
+    <div class="cards" id="more-cards"></div>
   </section>
 
-  <section id="resources" class="wrap sans">
-    <h2 class="section-title" style="font-size:28px">Tools, workshops and related lists</h2>
-    <div class="resources" id="res"></div>
-  </section>
+  <footer>Curated by the maintainers and contributors. The list is released under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>; titles and links belong to their authors.</footer>
 </main>
 
-<footer class="sans">
-  <div class="wrap">Curated by the maintainers and contributors. The list is released under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>. Titles and links belong to their authors.</div>
-</footer>
-
 <script>
+(function () {
+  // theme: the system setting by default, the reader's choice once made (kept only on this device)
+  const root = document.documentElement;
+  const store = { get() { try { return localStorage.getItem("theme"); } catch (e) { return null; } }, set(v) { try { localStorage.setItem("theme", v); } catch (e) {} } };
+  const btns = document.querySelectorAll(".theme button");
+  function apply(t) {
+    if (t) root.setAttribute("data-theme", t); else root.removeAttribute("data-theme");
+    const eff = t || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    btns.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.t === eff)));
+  }
+  apply(store.get());
+  btns.forEach(b => b.addEventListener("click", () => { store.set(b.dataset.t); apply(b.dataset.t); }));
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => apply(store.get()));
+})();
+
 (async function () {
   let data;
   try { data = await (await fetch("papers.json", { cache: "no-cache" })).json(); }
@@ -147,54 +251,69 @@
     document.getElementById("repo-link").href = meta.repo;
     document.getElementById("contrib-link").href = meta.repo + "/blob/main/CONTRIBUTING.md";
   }
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const years = papers.map(p => p.year), maxY = Math.max(...years), minY = Math.min(...years);
   const recent = papers.filter(p => p.year >= maxY - 2).length;
-  document.getElementById("recent-line").textContent =
-    `Of the ${papers.length} papers on this map, ${recent} appeared in ${maxY - 2}–${maxY}.`;
+  document.getElementById("recent-line").textContent = `Of the ${papers.length} papers on this map, ${recent} appeared in ${maxY - 2}–${maxY}.`;
   document.getElementById("updated").textContent = meta.updated ? " · updated " + meta.updated : "";
   const venues = new Set(papers.map(p => p.venue)).size;
-  document.getElementById("stats").innerHTML =
-    [[papers.length, "papers"], [sections.length, "sections"], [venues, "venues"], [`${minY}–${maxY}`, "years covered"]]
-      .map(([n, l]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join("");
+  document.getElementById("stats").innerHTML = [[papers.length, "papers"], [sections.length, "topics"], [venues, "venues"], [`${minY}–${maxY}`, ""]]
+    .map(([n, l]) => `<span class="stat"><b>${n}</b>${l}</span>`).join("");
 
-  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const short = t => t.startsWith("Adjacent: ") ? t.slice(10, 11).toUpperCase() + t.slice(11) + " (adjacent)" : t;
   let active = "all";
   const chips = document.getElementById("chips");
-  const mk = (id, label) => { const b = document.createElement("button"); b.className = "chip"; b.textContent = label; b.dataset.id = id;
-    b.setAttribute("aria-pressed", id === active); b.onclick = () => { active = id; [...chips.children].forEach(c => c.setAttribute("aria-pressed", c.dataset.id === active)); render(); }; chips.appendChild(b); };
-  mk("all", "All");
-  sections.forEach(s => mk(s.id, s.title.startsWith("Adjacent: ") ? s.title.slice(10, 11).toUpperCase() + s.title.slice(11) + " (adjacent)" : s.title));
+  const mk = (id, label, n) => { const b = document.createElement("button"); b.className = "chip"; b.type = "button"; b.dataset.id = id;
+    b.innerHTML = esc(label) + `<small>${n}</small>`; b.setAttribute("aria-pressed", String(id === active));
+    b.onclick = () => { active = id; [...chips.children].forEach(c => c.setAttribute("aria-pressed", String(c.dataset.id === active))); render(); };
+    chips.appendChild(b); };
+  mk("all", "All", papers.length);
+  sections.forEach(s => mk(s.id, short(s.title), papers.filter(p => p.category === s.id).length));
+
+  const q = document.getElementById("q");
+  ["speaker", "colorization", "Manga109", "translation", "2026"].forEach(t => {
+    const b = document.createElement("button"); b.className = "pill"; b.type = "button"; b.textContent = t;
+    b.onclick = () => { q.value = t; render(); q.focus(); }; document.getElementById("try").appendChild(b);
+  });
+  addEventListener("keydown", e => { if (e.key === "/" && document.activeElement !== q) { e.preventDefault(); q.focus(); } });
 
   const link = (href, label) => href ? `<a href="${esc(href)}" target="_blank" rel="noopener">${label}</a>` : "";
   function row(p) {
-    const ax = p.arxiv && !(p.paper || "").includes(p.arxiv) ? link("https://arxiv.org/abs/" + p.arxiv, "arXiv") : "";
     const main = p.paper || (p.arxiv ? "https://arxiv.org/abs/" + p.arxiv : "");
-    return `<div class="row"><div class="year">${p.year}</div><div><div class="title">${link(main, esc(p.title)) || esc(p.title)}</div>
-      <div class="meta"><span class="venue">${esc(p.venue)}</span>${p.authors ? esc(p.authors) + " · " : ""}${ax}${link(p.code, "code")}${link(p.project, "project")}</div></div></div>`;
+    const ax = p.arxiv && !(p.paper || "").includes(p.arxiv) ? link("https://arxiv.org/abs/" + p.arxiv, "arXiv") : "";
+    const venue = p.venue === "arXiv" ? `<span class="venue pre">Preprint${p.date ? " · " + esc(String(p.date).slice(0, 7)) : ""}</span>` : `<span class="venue">${esc(p.venue)}</span>`;
+    return `<div class="paper"><div class="year">${p.year}</div><div>
+      <a class="title" href="${esc(main)}" target="_blank" rel="noopener">${esc(p.title)}</a>
+      <div class="meta">${venue}<span>${esc(p.authors || "")}</span>${ax}${link(p.code, "Code")}${link(p.project, "Project")}</div></div></div>`;
   }
-  const q = document.getElementById("q");
   function render() {
     const terms = q.value.toLowerCase().split(/\s+/).filter(Boolean);
     const hit = p => terms.every(t => (p.title + " " + p.venue + " " + p.year + " " + (p.authors || "")).toLowerCase().includes(t));
     let html = "", n = 0;
-    for (const s of sections) {
-      if (active !== "all" && active !== s.id) continue;
+    sections.forEach((s, i) => {
+      if (active !== "all" && active !== s.id) return;
       const ps = papers.filter(p => p.category === s.id && hit(p));
-      if (!ps.length) continue;
+      if (!ps.length) return;
       n += ps.length;
-      html += `<h3 class="section-title">${esc(s.title)}</h3><p class="section-blurb">${esc(s.blurb)}</p>` + ps.map(row).join("");
-    }
+      html += `<section class="group"><div class="group-head"><span class="num">${String(i + 1).padStart(2, "0")}</span><h2 class="display">${esc(short(s.title))}</h2><span class="n">${ps.length} paper${ps.length > 1 ? "s" : ""}</span></div>
+        <p class="blurb">${esc(s.blurb)}</p><div class="list panel">${ps.map(row).join("")}</div></section>`;
+    });
     document.getElementById("results").innerHTML = html || '<p class="empty">No paper matches. Try fewer words, or open an issue if a paper is missing.</p>';
-    document.getElementById("count").textContent = `${n} of ${papers.length} papers`;
+    document.getElementById("count").textContent = terms.length || active !== "all" ? `${n} of ${papers.length} papers` : "";
   }
   q.addEventListener("input", render);
   render();
 
-  const card = (h, p, href) => `<div class="card"><h3>${href ? link(href, esc(h)) : esc(h)}</h3><p>${esc(p)}</p></div>`;
-  document.getElementById("res").innerHTML =
-    resources.tools.map(t => card(t.name, t.what, t.url)).join("") +
-    resources.workshops.map(w => card(w.name, w.what, w.url)).join("") +
-    resources.related.map(r => card(r.name, r.what, r.url)).join("");
+  const card = (tag, h, p, href) => `<a class="card panel" href="${esc(href)}" target="_blank" rel="noopener"><div class="tag">${esc(tag)}</div><h3>${esc(h)}</h3><p>${esc(p)}</p></a>`;
+  document.getElementById("tool-cards").innerHTML = resources.tools.map(t => card("Tool", t.name, t.what, t.url)).join("");
+  document.getElementById("more-cards").innerHTML =
+    resources.workshops.map(w => card("Workshop", w.name, w.what, w.url)).join("") +
+    resources.related.map(r => card("Related list", r.name, r.what, r.url)).join("");
+
+  // mark the tab for the part of the page in view
+  const tabs = [...document.querySelectorAll(".tabs a")].filter(a => a.getAttribute("href").startsWith("#"));
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) tabs.forEach(t => t.classList.toggle("on", t.getAttribute("href") === "#" + e.target.id)); }), { rootMargin: "-45% 0px -50% 0px" });
+  ["list", "why", "tools"].forEach(id => io.observe(document.getElementById(id)));
 })();
 </script>
 </body>
