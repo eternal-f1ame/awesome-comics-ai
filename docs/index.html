@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Awesome Comics &amp; Manga AI</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='12' height='28' rx='3.5' fill='%233f5bd9'/%3E%3Crect x='17' y='2' width='13' height='12' rx='3.5' fill='%23ff8a70'/%3E%3Crect x='17' y='17' width='13' height='13' rx='3.5' fill='%23ffc94d'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='12' height='28' rx='3.5' fill='%233f5bd9'/%3E%3Crect x='17' y='2' width='13' height='12' rx='3.5' fill='%230d1117'/%3E%3Crect x='17' y='17' width='13' height='13' rx='3.5' fill='%239aa1ae'/%3E%3C/svg%3E">
 <meta name="description" content="An open, maintained map of research on comics, manga and webtoons in computer vision, language and graphics.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
     --glass: rgba(255, 255, 255, .58); --glass-strong: rgba(255, 255, 255, .8); --edge: rgba(255, 255, 255, .85);
     --lift: 0 1px 2px rgba(16, 24, 40, .04), 0 12px 36px -14px rgba(16, 24, 40, .2);
     --accent: #3f5bd9; --accent-ink: #ffffff; --accent-soft: rgba(63, 91, 217, .1); --accent-text: #3049c4;
-    --c1: #7d9bff; --c2: #ff8a70; --c3: #ffc94d; --c4: #a28bff; --c5: #5fd0ae; --blob: .42;
+    --g1: #e4e7ee; --g2: #d6dae3; --g3: #c9ced9; --tone: rgba(13, 17, 23, .16); --blob: .22;
     --panel-dark: #0b0f1a; --panel-ink: #e9edf6; --panel-muted: #8e97ab; --panel-line: rgba(255, 255, 255, .1);
     color-scheme: light;
   }
@@ -24,7 +24,8 @@
       --bg: #07090f; --ink: #eef1f7; --muted: #a0a8ba; --faint: #697184; --line: rgba(255, 255, 255, .09);
       --glass: rgba(24, 28, 40, .55); --glass-strong: rgba(28, 32, 46, .82); --edge: rgba(255, 255, 255, .1);
       --lift: 0 1px 2px rgba(0, 0, 0, .3), 0 16px 44px -16px rgba(0, 0, 0, .75);
-      --accent: #8ea2ff; --accent-ink: #07090f; --accent-soft: rgba(142, 162, 255, .14); --accent-text: #a9b8ff; --blob: .22;
+      --accent: #8ea2ff; --accent-ink: #07090f; --accent-soft: rgba(142, 162, 255, .14); --accent-text: #a9b8ff; --blob: .14;
+      --g1: #1b1f2a; --g2: #232835; --g3: #2c3241; --tone: rgba(255, 255, 255, .12);
       --panel-dark: #0f1422; color-scheme: dark;
     }
   }
@@ -32,7 +33,8 @@
     --bg: #07090f; --ink: #eef1f7; --muted: #a0a8ba; --faint: #697184; --line: rgba(255, 255, 255, .09);
     --glass: rgba(24, 28, 40, .55); --glass-strong: rgba(28, 32, 46, .82); --edge: rgba(255, 255, 255, .1);
     --lift: 0 1px 2px rgba(0, 0, 0, .3), 0 16px 44px -16px rgba(0, 0, 0, .75);
-    --accent: #8ea2ff; --accent-ink: #07090f; --accent-soft: rgba(142, 162, 255, .14); --accent-text: #a9b8ff; --blob: .22;
+    --accent: #8ea2ff; --accent-ink: #07090f; --accent-soft: rgba(142, 162, 255, .14); --accent-text: #a9b8ff; --blob: .14;
+    --g1: #1b1f2a; --g2: #232835; --g3: #2c3241; --tone: rgba(255, 255, 255, .12);
     --panel-dark: #0f1422; color-scheme: dark;
   }
   * { box-sizing: border-box; }
@@ -45,9 +47,9 @@
   /* ambient colour behind the glass */
   .ambient { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
   .ambient i { position: absolute; width: 46vmax; height: 46vmax; border-radius: 50%; filter: blur(80px); opacity: var(--blob); animation: drift 28s ease-in-out infinite alternate; }
-  .ambient i:nth-child(1) { background: var(--c1); top: -18vmax; left: -10vmax; }
-  .ambient i:nth-child(2) { background: var(--c2); top: -12vmax; right: -14vmax; animation-delay: -9s; }
-  .ambient i:nth-child(3) { background: var(--c4); top: 40vh; left: 30vw; width: 34vmax; height: 34vmax; animation-delay: -18s; opacity: calc(var(--blob) * .6); }
+  .ambient i:nth-child(1) { background: var(--accent); top: -22vmax; right: -12vmax; }
+  .ambient i:nth-child(2) { background: var(--g3); top: 30vh; left: -16vmax; animation-delay: -12s; opacity: .5; }
+  .ambient i:nth-child(3) { display: none; }
   @keyframes drift { to { transform: translate3d(6vmax, 4vmax, 0) scale(1.08); } }
 
   .glass { background: var(--glass); border: 1px solid var(--edge); box-shadow: var(--lift); -webkit-backdrop-filter: blur(22px) saturate(1.5); backdrop-filter: blur(22px) saturate(1.5); }
@@ -72,7 +74,7 @@
   /* hero */
   .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; padding: 150px 0 40px; }
   .hero h1 { font-size: clamp(46px, 6.4vw, 80px); line-height: 1.02; margin: 0; text-wrap: balance; }
-  .hero h1 span { background: linear-gradient(100deg, var(--accent), var(--c4) 55%, var(--c2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero h1 span { color: var(--accent); }
   .lead { font-size: 19px; line-height: 1.55; color: var(--muted); margin: 22px 0 0; max-width: 540px; }
   .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
   .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 500; font-size: 15px; text-decoration: none; transition: transform .2s, box-shadow .2s, background .2s; }
@@ -86,13 +88,15 @@
   .grid { display: grid; height: 100%; gap: 10px; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1.1fr .9fr 1fr;
     grid-template-areas: "a a b" "c d d" "e e e"; }
   .grid div { border-radius: 14px; position: relative; overflow: hidden; animation: float 9s ease-in-out infinite alternate; }
-  .grid div:nth-child(1) { grid-area: a; background: linear-gradient(135deg, var(--c1), var(--c4)); }
-  .grid div:nth-child(2) { grid-area: b; background: linear-gradient(160deg, var(--c3), var(--c2)); animation-delay: -2s; }
-  .grid div:nth-child(3) { grid-area: c; background: linear-gradient(140deg, var(--c5), var(--c1)); animation-delay: -4s; }
-  .grid div:nth-child(4) { grid-area: d; background: linear-gradient(120deg, var(--c2), var(--c4)); animation-delay: -6s; }
-  .grid div:nth-child(5) { grid-area: e; background: linear-gradient(100deg, var(--c4), var(--c1) 60%, var(--c5)); animation-delay: -1s; }
-  .grid div::after { content: ""; position: absolute; inset: 0; background: radial-gradient(rgba(255, 255, 255, .28) 1px, transparent 1.4px) 0 0 / 9px 9px; mix-blend-mode: overlay; }
-  @keyframes float { to { filter: saturate(1.25) brightness(1.04); transform: scale(1.012); } }
+  .grid div:nth-child(1) { grid-area: a; background: var(--accent); }
+  .grid div:nth-child(2) { grid-area: b; background: var(--g2); animation-delay: -2s; }
+  .grid div:nth-child(3) { grid-area: c; background: var(--g3); animation-delay: -4s; }
+  .grid div:nth-child(4) { grid-area: d; background: var(--g1); animation-delay: -6s; }
+  .grid div:nth-child(5) { grid-area: e; background: var(--g2); animation-delay: -1s; }
+  .grid div::after { content: ""; position: absolute; inset: 0; background: radial-gradient(var(--tone) 1.1px, transparent 1.5px) 0 0 / 8px 8px;
+    -webkit-mask-image: linear-gradient(135deg, #000, transparent 75%); mask-image: linear-gradient(135deg, #000, transparent 75%); }
+  .grid div:nth-child(1)::after { background: radial-gradient(rgba(255, 255, 255, .22) 1.1px, transparent 1.5px) 0 0 / 8px 8px; }
+  @keyframes float { to { transform: scale(1.012); } }
   .bubble { position: absolute; top: 18%; left: 9%; z-index: 1; background: #fff; color: #0d1117; font-weight: 600; font-size: 14px; padding: 9px 14px; border-radius: 18px; box-shadow: 0 6px 18px -8px rgba(0, 0, 0, .35); animation: pop 6s ease-in-out infinite; }
   .bubble::after { content: ""; position: absolute; left: 22px; bottom: -7px; width: 14px; height: 14px; background: #fff; transform: rotate(45deg); border-radius: 2px; }
   @keyframes pop { 0%, 12% { transform: scale(.6); opacity: 0; } 20%, 80% { transform: scale(1); opacity: 1; } 90%, 100% { transform: scale(.9); opacity: 0; } }
@@ -159,7 +163,7 @@
   .paper .t { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.35; text-decoration: none; }
   .paper .t:hover { color: var(--accent-text); }
   .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 7px; font-size: 14px; color: var(--muted); }
-  .venue { font-family: "Geist Mono", monospace; font-size: 12px; padding: 2px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent-text); }
+  .venue { font-family: "Geist Mono", monospace; font-size: 12px; padding: 2px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent-text); white-space: nowrap; flex: none; }
   .venue.pre { background: transparent; border: 1px dashed var(--faint); color: var(--muted); }
   .meta a { font-size: 13.5px; font-weight: 500; text-decoration: none; color: var(--ink); border-bottom: 1px solid var(--line); }
   .meta a:hover { border-color: var(--accent); color: var(--accent-text); }
@@ -253,7 +257,7 @@
 <div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
 
 <nav class="nav glass" aria-label="Main">
-  <a class="brand" href="#top"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="12" height="28" rx="3.5" fill="#3f5bd9"/><rect x="17" y="2" width="13" height="12" rx="3.5" fill="#ff8a70"/><rect x="17" y="17" width="13" height="13" rx="3.5" fill="#ffc94d"/></svg>Comics &amp; Manga AI</a>
+  <a class="brand" href="#top"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="12" height="28" rx="3.5" fill="#3f5bd9"/><rect x="17" y="2" width="13" height="12" rx="3.5" fill="currentColor" opacity=".85"/><rect x="17" y="17" width="13" height="13" rx="3.5" fill="currentColor" opacity=".35"/></svg>Comics &amp; Manga AI</a>
   <a class="tab" href="#topics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="18" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>Topics</a>
   <a class="tab" href="#papers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Papers</a>
   <a class="tab" href="#essay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/></svg>Essay</a>
@@ -266,7 +270,7 @@
 </nav>
 
 <main class="wrap" id="top">
-  <div class="topbrand"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="12" height="28" rx="3.5" fill="#3f5bd9"/><rect x="17" y="2" width="13" height="12" rx="3.5" fill="#ff8a70"/><rect x="17" y="17" width="13" height="13" rx="3.5" fill="#ffc94d"/></svg>Comics &amp; Manga AI</div>
+  <div class="topbrand"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="12" height="28" rx="3.5" fill="#3f5bd9"/><rect x="17" y="2" width="13" height="12" rx="3.5" fill="currentColor" opacity=".85"/><rect x="17" y="17" width="13" height="13" rx="3.5" fill="currentColor" opacity=".35"/></svg>Comics &amp; Manga AI</div>
 
   <header class="hero">
     <div>
@@ -349,7 +353,7 @@
           <li><span>A workshop, or a peer-reviewed track of such a conference<small>Findings, technical briefs, extended abstracts</small></span></li>
           <li><span>A dataset or benchmark paper, at any published venue<small>The resources the field builds on</small></span></li>
           <li><span>An arXiv preprint, for four months<small>It stays if a qualifying venue publishes it</small></span></li>
-          <li><span>A survey, peer-reviewed or cited at least 20 times<small>Surveys take longer to publish</small></span></li>
+          <li><span>A survey, peer-reviewed or cited at least 10 times<small>Surveys take longer to publish</small></span></li>
         </ol>
       </div>
     </div>

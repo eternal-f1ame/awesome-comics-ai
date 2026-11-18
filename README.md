@@ -2,11 +2,11 @@
 
 A curated, maintained map of research on comics in computer vision, language and graphics: manga, manhwa, manhua, webtoons, bandes dessinées, comic strips, graphic novels and single-panel cartoons. It covers how models read, search, translate, describe, create and reason about them, and the datasets, benchmarks and tools behind that work. It lists work from top venues and their workshops, the datasets the field builds on, and the newest preprints ([inclusion rule](#inclusion-rule)).
 
-**118 papers** in 17 sections, 30 of them from 2025–2026. Every entry is checked against arXiv, Crossref or the venue's own pages, and a monthly arXiv sweep finds new work ([how the list stays current](#how-the-list-stays-current)). Browse and search it on the [site](https://sochastic.me/awesome-comics-ai/).
+**119 papers** in 17 sections, 30 of them from 2025–2026. Every entry is checked against arXiv, Crossref or the venue's own pages, and a monthly arXiv sweep finds new work ([how the list stays current](#how-the-list-stays-current)). Browse and search it on the [site](https://sochastic.me/awesome-comics-ai/).
 
 ## Contents
 
-- [Surveys and overviews](#surveys-and-overviews) (2)
+- [Surveys and overviews](#surveys-and-overviews) (3)
 - [Datasets](#datasets) (10)
 - [Understanding and reasoning](#understanding-and-reasoning) (17)
 - [Page and panel analysis](#page-and-panel-analysis) (14)
@@ -36,6 +36,7 @@ Reviews of the field and of comics research in computer science.
 
 | Year | Venue | Title | Links |
 |:---:|:---|:---|:---|
+| 2024 | arXiv | One missing piece in Vision and Language: A Survey on Comics Understanding | [arXiv](https://arxiv.org/abs/2409.09502) |
 | 2019 | Topics in Cognitive Science | Computational Approaches to Comics Analysis | [paper](https://doi.org/10.1111/tops.12476) |
 | 2018 | J. Imaging | A survey of comics research in computer science | [paper](https://doi.org/10.3390/jimaging4070087) · [arXiv](https://arxiv.org/abs/1804.05490) |
 
@@ -304,7 +305,7 @@ A paper is in the list when it meets one of these conditions:
 3. It is a **dataset or benchmark paper**, at any published venue.
 4. It is an **arXiv preprint** whose first version is at most 4 months old. After that, it stays only if a venue that meets conditions 1–3 has published it.
 
-Surveys follow their own rule: a survey of comics is listed when it is peer-reviewed at any venue, or when it is a preprint with at least 20 citations. The four-month window does not apply to surveys.
+Surveys follow their own rule: a survey of comics is listed when it is peer-reviewed at any venue, or when it is a preprint with at least 10 citations. The four-month window does not apply to surveys.
 
 Verified papers that do not meet the rule are kept, with the reason, in `data/not_included.yaml`, so a later publication brings them back.
 

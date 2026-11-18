@@ -600,6 +600,15 @@
   venue: MANPU
   category: studies
   paper: https://doi.org/10.1145/3011549.3011555
+- title: 'One missing piece in Vision and Language: A Survey on Comics Understanding'
+  authors: Emanuele Vivoli et al.
+  year: 2024
+  venue: arXiv
+  category: surveys
+  arxiv: '2409.09502'
+  date: '2024-09-14'
+  citations: 19
+  citations_source: OpenAlex W4403667441, 2026-11-18
 - title: Computational Approaches to Comics Analysis
   authors: Jochen Laubrock et al.
   year: 2019

@@ -598,16 +598,6 @@
   arxiv: '2312.08720'
   date: '2023-12-14'
   reason: arXiv preprint from 2023-12-14, older than 4 months and not published at a qualifying venue
-- title: 'One missing piece in Vision and Language: A Survey on Comics Understanding'
-  authors: Emanuele Vivoli et al.
-  year: 2024
-  venue: arXiv
-  category: surveys
-  arxiv: '2409.09502'
-  date: '2024-09-14'
-  reason: survey preprint with 19 citations, fewer than 20
-  citations: 19
-  citations_source: OpenAlex W4403667441, 2026-11-18
 - title: 'Tails Tell Tales: Chapter-Wide Manga Transcriptions with Character Names'
   authors: Ragav Sachdeva et al.
   year: 2024

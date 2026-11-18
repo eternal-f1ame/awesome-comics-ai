@@ -16,7 +16,7 @@ import yaml
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PREPRINT_MONTHS = 4
-SURVEY_MIN_CITATIONS = 20
+SURVEY_MIN_CITATIONS = 10
 
 
 def venues():
