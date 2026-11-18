@@ -261,3 +261,11 @@
     .topics.full { grid-template-columns: 1fr; }
     .topics.full .topic { min-height: 0; }
   }
+
+  /* one glass pill under the current tab, which slides when the page changes */
+  .nav-pill { position: absolute; left: 0; top: 0; z-index: 0; pointer-events: none; opacity: 0; border-radius: 999px;
+    background: var(--glass-strong); box-shadow: 0 1px 3px rgba(16, 24, 40, .12), inset 0 0 0 1px var(--edge);
+    transition: transform .5s cubic-bezier(.3, 1.2, .4, 1), width .5s cubic-bezier(.3, 1.2, .4, 1), height .5s cubic-bezier(.3, 1.2, .4, 1), opacity .25s ease; }
+  .nav > a, .nav > .theme { position: relative; z-index: 1; }
+  .nav a.tab.on, .nav a.tab.on:hover { background: transparent; box-shadow: none; }
+  .nav a.tab { transition: color .3s ease, background .2s; }

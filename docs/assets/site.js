@@ -1,4 +1,6 @@
 // Shared by every page. Each page names itself in <body data-page="...">; the list itself comes from papers.json.
+// The first visit loads the data and all five pages once. After that, a link between the pages swaps only the
+// content of <main>: no reload, the navigation stays, and its pill slides to the new tab.
 
 // theme: the system setting by default, the reader's choice once made (kept only on this device)
 (function () {
@@ -15,33 +17,66 @@
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => apply(store.get()));
 })();
 
-(async function () {
-  const page = document.body.dataset.page;
+(function () {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = id => document.getElementById(id);
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const PAGE_OF = { "index.html": "home", "papers.html": "papers", "topics.html": "topics", "essay.html": "essay", "tools.html": "tools" };
+  const dir = location.pathname.replace(/[^/]*$/, "");
+  function fileOf(href) {
+    let u; try { u = new URL(href, location.href); } catch (e) { return null; }
+    if (u.origin !== location.origin || !u.pathname.startsWith(dir)) return null;
+    const f = u.pathname.slice(dir.length) || "index.html";
+    return PAGE_OF[f] ? f : null;
+  }
 
-  // links to the old one-page sections now open their pages
+  // links to the old one-page sections open their pages
   const moved = { "#list": "papers.html", "#papers": "papers.html", "#topics": "topics.html", "#why": "essay.html", "#essay": "essay.html", "#tools": "tools.html", "#resources": "tools.html" };
-  if (page === "home" && moved[location.hash]) { location.replace(moved[location.hash]); return; }
+  if (document.body.dataset.page === "home" && moved[location.hash]) { location.replace(moved[location.hash]); return; }
 
-  // soft reveal as parts come into view
+  // ---- the pages, each fetched once and kept ----
+  const cache = new Map();
+  const snapshot = d => ({ title: d.title, page: d.body.dataset.page, main: d.querySelector("main").innerHTML });
+  cache.set(fileOf(location.href), Promise.resolve(snapshot(document)));   // taken before this page renders anything
+  function load(file) {
+    if (!cache.has(file)) cache.set(file, fetch(file).then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(t => snapshot(new DOMParser().parseFromString(t, "text/html")))
+      .catch(e => { cache.delete(file); throw e; }));
+    return cache.get(file);
+  }
+
+  // ---- the navigation pill ----
+  const nav = document.querySelector(".nav");
+  const pill = document.createElement("span");
+  pill.className = "nav-pill"; pill.setAttribute("aria-hidden", "true");
+  nav.prepend(pill);
+  let current = document.body.dataset.page;
+  function setNav(page, instant) {
+    let on = null;
+    nav.querySelectorAll("a.tab").forEach(t => {
+      const yes = PAGE_OF[fileOf(t.href)] === page;
+      t.classList.toggle("on", yes);
+      if (yes) { t.setAttribute("aria-current", "page"); on = t; } else t.removeAttribute("aria-current");
+    });
+    if (!on) { pill.style.opacity = "0"; return; }
+    const hidden = pill.style.opacity !== "1";
+    if (instant || hidden || reduce) pill.style.transition = "none";
+    pill.style.width = on.offsetWidth + "px"; pill.style.height = on.offsetHeight + "px";
+    pill.style.transform = `translate(${on.offsetLeft}px, ${on.offsetTop}px)`;
+    if (instant || hidden || reduce) { void pill.offsetWidth; pill.style.transition = ""; }
+    pill.style.opacity = "1";
+  }
+  setNav(current, true);
+  addEventListener("resize", () => setNav(current, true));
+  if (document.fonts) document.fonts.ready.then(() => setNav(current, true));
+
+  // ---- soft reveal as parts come into view ----
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
   const watch = el => reduce ? el.classList.add("in") : io.observe(el);
-  document.querySelectorAll(".reveal").forEach(watch);
 
-  let data;
-  try { data = await (await fetch("papers.json", { cache: "no-cache" })).json(); }
-  catch (e) {
-    const p = document.createElement("p"); p.className = "empty"; p.textContent = "The list could not be loaded. Read it in the README on GitHub.";
-    document.querySelector("main").insertBefore(p, document.querySelector("footer")); return;
-  }
-  const { sections, papers, resources } = data;
-  const meta = resources.meta || {};
-  if (meta.repo) document.querySelectorAll("[data-repo]").forEach(a => { a.href = meta.repo + a.dataset.repo; });
-
-  const years = papers.map(p => p.year), maxY = Math.max(...years), minY = Math.min(...years);
-  const recent = papers.filter(p => p.year >= maxY - 2).length;
+  // ---- the data, loaded once ----
+  const dataP = fetch("papers.json", { cache: "no-cache" }).then(r => r.json());
+  let sections, papers, resources, meta, maxY, minY, recent;
   const short = t => t.startsWith("Adjacent: ") ? t.slice(10, 11).toUpperCase() + t.slice(11) + " (adjacent)" : t;
   const byCat = id => papers.filter(p => p.category === id);
   const matches = (p, terms) => terms.every(t => (p.title + " " + p.venue + " " + p.year + " " + (p.authors || "")).toLowerCase().includes(t));
@@ -53,12 +88,72 @@
     return `<div class="paper"><div class="yr mono">${p.year}</div><div><a class="t" href="${esc(main)}" target="_blank" rel="noopener">${esc(p.title)}</a>
       <div class="meta">${venue}<span>${esc(p.authors || "")}</span>${ax}${link(p.code, "Code")}${link(p.project, "Project")}</div></div></div>`;
   }
-  const counts = { papers: `${papers.length} papers`, "papers-n": String(papers.length), topics: `${sections.length} topics`, tools: `${resources.tools.length} tools` };
-  document.querySelectorAll("[data-count]").forEach(el => { if (counts[el.dataset.count]) el.textContent = counts[el.dataset.count]; });
 
-  ({ home, papers: papersPage, topics, essay, tools }[page] || (() => {}))();
+  // ---- render the page that is in <main> now ----
+  let gen = 0;   // each render gets a number; work left over from a page that was left (the hero demo) stops itself
+  async function mount(page) {
+    const my = ++gen;
+    document.querySelectorAll("main .reveal").forEach(watch);
+    if (!papers) {
+      try { ({ sections, papers, resources } = await dataP); }
+      catch (e) {
+        const p = document.createElement("p"); p.className = "empty"; p.textContent = "The list could not be loaded. Read it in the README on GitHub.";
+        document.querySelector("main").insertBefore(p, document.querySelector("footer")); return;
+      }
+      meta = resources.meta || {};
+      const years = papers.map(p => p.year); maxY = Math.max(...years); minY = Math.min(...years);
+      recent = papers.filter(p => p.year >= maxY - 2).length;
+      setTimeout(() => Object.keys(PAGE_OF).forEach(f => load(f).catch(() => {})), 300);   // preload the other pages
+    }
+    if (my !== gen) return;
+    if (meta.repo) document.querySelectorAll("[data-repo]").forEach(a => { a.href = meta.repo + a.dataset.repo; });
+    const counts = { papers: `${papers.length} papers`, "papers-n": String(papers.length), topics: `${sections.length} topics`, tools: `${resources.tools.length} tools` };
+    document.querySelectorAll("main [data-count]").forEach(el => { if (counts[el.dataset.count]) el.textContent = counts[el.dataset.count]; });
+    ({ home, papers: papersPage, topics, essay, tools }[page] || (() => {}))(my);
+  }
 
-  function home() {
+  // ---- move between pages without a reload ----
+  let navTo = 0;
+  async function go(url, push) {
+    const my = ++navTo, file = fileOf(url.href);
+    let next;
+    try { next = await load(file); } catch (e) { location.href = url.href; return; }
+    if (my !== navTo) return;
+    if (push) { history.replaceState({ ...(history.state || {}), y: scrollY }, ""); history.pushState({ y: 0 }, "", url.href); }
+    const y = push ? 0 : ((history.state && history.state.y) || 0);
+    current = next.page;
+    setNav(current, false);   // the pill starts to slide while the old content fades
+    const main = document.querySelector("main");
+    let out = null;
+    if (!reduce) { out = main.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "translateY(6px)" }], { duration: 130, easing: "ease-in", fill: "forwards" }); await out.finished; }
+    if (my !== navTo) { if (out) out.cancel(); return; }
+    main.innerHTML = next.main;
+    document.title = next.title;
+    document.body.dataset.page = next.page;
+    mount(next.page);   // draws the page first, so that the old scroll position exists again
+    scrollTo({ top: y, behavior: "instant" });
+    if (!reduce) main.animate([{ opacity: 0, transform: "translateY(10px)" }, { opacity: 1, transform: "none" }], { duration: 300, easing: "cubic-bezier(.2,.8,.2,1)" });
+    if (out) out.cancel();
+  }
+  document.addEventListener("click", e => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest("a[href]");
+    if (!a || a.target === "_blank" || a.hasAttribute("download") || !fileOf(a.href)) return;
+    e.preventDefault();
+    const url = new URL(a.href, location.href);
+    if (url.href === location.href) { scrollTo({ top: 0, behavior: reduce ? "instant" : "smooth" }); return; }
+    go(url, true);
+  });
+  addEventListener("popstate", () => { if (fileOf(location.href)) go(new URL(location.href), false); });
+  history.scrollRestoration = "manual";
+  let saveT;   // remember where the reader was on this page, for Back and Forward
+  addEventListener("scroll", () => { clearTimeout(saveT); saveT = setTimeout(() => history.replaceState({ ...(history.state || {}), y: scrollY }, ""), 250); }, { passive: true });
+  addEventListener("keydown", e => { const q = $("q"); if (e.key === "/" && q && document.activeElement !== q) { e.preventDefault(); q.focus(); } });
+
+  mount(current).then(() => { if (history.state && history.state.y) scrollTo({ top: history.state.y, behavior: "instant" }); });
+
+  // ---- the pages ----
+  function home(my) {
     // numbers, counted up when they come into view
     const venues = new Set(papers.map(p => p.venue)).size;
     const stats = [[papers.length, "papers, each verified"], [sections.length, "topics"], [venues, "venues"], [maxY - minY + 1, `years, ${minY}–${maxY}`]];
@@ -90,10 +185,12 @@
       const wait = ms => new Promise(r => setTimeout(r, ms));
       for (let k = 0; ; k = (k + 1) % demoQ.length) {
         const w = demoQ[k];
-        for (let i = 1; i <= w.length; i++) { typed.textContent = w.slice(0, i); await wait(70); }
+        for (let i = 1; i <= w.length; i++) { if (my !== gen) return; typed.textContent = w.slice(0, i); await wait(70); }
+        if (my !== gen) return;
         show(w); await wait(2600);
+        if (my !== gen) return;
         out.querySelectorAll("li").forEach(li => li.classList.remove("in")); await wait(250);
-        for (let i = w.length; i >= 0; i--) { typed.textContent = w.slice(0, i); await wait(28); }
+        for (let i = w.length; i >= 0; i--) { if (my !== gen) return; typed.textContent = w.slice(0, i); await wait(28); }
         out.innerHTML = ""; await wait(300);
       }
     })();
@@ -116,13 +213,13 @@
       u.searchParams.delete("topic"); u.searchParams.delete("q");
       if (active !== "all") u.searchParams.set("topic", active);
       if (q.value.trim()) u.searchParams.set("q", q.value.trim());
-      history.replaceState(null, "", u);
+      if (u.href !== location.href) history.replaceState(history.state, "", u);
     }
     function setActive(id, smooth) {
       active = id;
       [...chips.children].forEach(c => {
         const on = c.dataset.id === active; c.setAttribute("aria-pressed", String(on));
-        if (on) chips.scrollTo({ left: c.offsetLeft - (chips.clientWidth - c.offsetWidth) / 2, behavior: smooth && !reduce ? "smooth" : "auto" });   // scrolls the chip row only
+        if (on) chips.scrollTo({ left: c.offsetLeft - (chips.clientWidth - c.offsetWidth) / 2, behavior: smooth && !reduce ? "smooth" : "instant" });   // the chip row only
       });
       render(); sync();
     }
@@ -131,7 +228,6 @@
       b.onclick = () => { q.value = t; render(); sync(); }; $("try").appendChild(b);
     });
     q.addEventListener("input", () => { render(); sync(); });
-    addEventListener("keydown", e => { if (e.key === "/" && document.activeElement !== q) { e.preventDefault(); q.focus(); } });
     function render() {
       const terms = q.value.toLowerCase().split(/\s+/).filter(Boolean);
       let html = "", n = 0;
@@ -172,6 +268,6 @@
     $("tool-cards").innerHTML = resources.tools.map(t => card("tool", t.name, t.what, t.url)).join("");
     $("workshop-cards").innerHTML = resources.workshops.map(w => card("workshop", w.name, w.what, w.url)).join("");
     $("list-cards").innerHTML = resources.related.map(r => card("list", r.name, r.what, r.url)).join("");
-    document.querySelectorAll(".cards .card").forEach(watch);
+    document.querySelectorAll("main .cards .card").forEach(watch);
   }
 })();
