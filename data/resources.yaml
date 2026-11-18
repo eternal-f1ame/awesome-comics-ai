@@ -1,7 +1,7 @@
 # Settings, tools, workshops and related lists. Each tool's repository was checked on GitHub (2026-11-18).
 meta:
   repo: "https://github.com/eternal-f1ame/awesome-comics-ai"
-  site_url: ""    # set when GitHub Pages is on
+  site_url: "https://sochastic.me/awesome-comics-ai/"
   updated: "2026-11-18"   # the day the list was last reviewed; the refresh pull request updates it
 
 tools:

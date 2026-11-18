@@ -2,7 +2,7 @@
 
 A curated, maintained map of research on comics in computer vision, language and graphics: manga, manhwa, manhua, webtoons, bandes dessinées, comic strips, graphic novels and single-panel cartoons. It covers how models read, search, translate, describe, create and reason about them, and the datasets, benchmarks and tools behind that work. It lists work from top venues and their workshops, the datasets the field builds on, and the newest preprints ([inclusion rule](#inclusion-rule)).
 
-**116 papers** in 17 sections, 30 of them from 2025–2026. Every entry is checked against arXiv, Crossref or the venue's own pages, and a monthly arXiv sweep finds new work ([how the list stays current](#how-the-list-stays-current)).
+**116 papers** in 17 sections, 30 of them from 2025–2026. Every entry is checked against arXiv, Crossref or the venue's own pages, and a monthly arXiv sweep finds new work ([how the list stays current](#how-the-list-stays-current)). Browse and search it on the [site](https://sochastic.me/awesome-comics-ai/).
 
 ## Contents
 
