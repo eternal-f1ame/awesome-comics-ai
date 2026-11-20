@@ -116,3 +116,12 @@ def test_a_failing_source_is_named_and_skipped(monkeypatch):
     items, failed, last = nw.collect("2026-11-10", 262)
     assert failed == ["ICv2 (RuntimeError)"]
     assert any(i["source"] == "The Beat" for i in items) and last == 261
+
+
+def test_the_note_survives_cdata_quotes_and_abbreviations():
+    pw = "<![CDATA[The webcomic platform has been rolling out AI-assisted features. Creators talked with <i>PW</i> about it. ]]>"
+    assert nw.first_sentence(pw) == "The webcomic platform has been rolling out AI-assisted features."
+    quote = "Yukimura: “AI steals art, and I'm in trouble if AI develops too much. It's just a fact. It is not an affirmation.”"
+    assert nw.first_sentence(quote) == quote
+    assert nw.first_sentence("Seiko Printing Co. adopts the tool from Mantra Inc. for its manga work. More follows.") == \
+        "Seiko Printing Co. adopts the tool from Mantra Inc. for its manga work."

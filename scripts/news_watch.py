@@ -69,15 +69,30 @@ def relevant(title, excerpt):
     return bool(COMIC.search(title) or COMIC.search(excerpt or ""))
 
 
+ABBREV = re.compile(r"(?:\b(?:Inc|Ltd|Co|Corp|Mr|Ms|Mrs|Dr|St|Vol|No|vs|etc|Jr|Sr)|\b[A-Z]|\b(?:[A-Z]\.){1,3}[A-Z])$")
+
+
 def first_sentence(raw, limit=220):
-    text = html.unescape(re.sub(r"<[^>]+>", " ", raw or ""))
+    """The first sentence of a summary, as plain text: not cut inside a quotation or after an abbreviation such as Inc."""
+    text = re.sub(r"<!\[CDATA\[|\]\]>", "", raw or "")      # CDATA first, or the tag pattern swallows the text inside it
+    text = html.unescape(re.sub(r"<[^>]+>", " ", text))
     text = re.sub(r"The post .*? appeared first on .*", "", text, flags=re.S)
     text = re.sub(r"\s*(\[(…|\.\.\.)\]|…|Continue reading.*|Read more.*)\s*$", "", " ".join(text.split()))
-    m = re.match(r"(.+?[.!?])(\s|$)", text)
-    out = (m.group(1) if m else text).strip()
+    out = text
+    for m in re.finditer(r"[.!?](?=\s|$)", text):
+        head = text[:m.end()]
+        if ABBREV.search(head[:-1]) and m.group(0) == ".":
+            continue
+        if head.count("“") > head.count("”") or head.count('"') % 2:      # inside a quotation: go on to its end
+            continue
+        out = head
+        break
+    out = out.strip()
     if len(out) > limit:
         out = out[:limit].rsplit(" ", 1)[0].rstrip(",;:") + "…"
-    return out if not out or out[-1] in ".!?…" else out + "."
+        if out.count("“") > out.count("”"):
+            out += "”"
+    return out if not out or out[-1] in ".!?…”\"" else out + "."
 
 
 def _names(title):
