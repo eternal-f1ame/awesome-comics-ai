@@ -206,27 +206,24 @@
   const askUrl = () => ((meta && meta.repo) || "https://github.com/eternal-f1ame/awesome-comics-ai") + "/issues/new?template=advertise.yml";
   const reveal = box => box.querySelectorAll(".cell").forEach((el, i) => { el.style.transitionDelay = (i % 3) * 60 + "ms"; watch(el); });
 
-  // the home page's "Around the field": sponsored items first (at most two), then the newest news, then the box that invites more
+  // the box that invites more, always the sixth tile: after the newest five, as on the home page
+  const askTile = () => `<div class="cell reveal"><a class="tile sun" href="${esc(askUrl())}" target="_blank" rel="noopener">
+      <span class="k"><span>Your work here</span></span><h3>Relevant work? Advertise here!</h3>
+      <p>Put a paper, dataset, tool, platform or event in front of the people who read this map. Sponsored items are always marked.</p><span class="go">Get in touch ↗</span></a></div>`;
+  const newsOrder = () => [...news.filter(n => n.kind === "sponsored"), ...news.filter(n => n.kind !== "sponsored")];
+  const withAsk = items => items.slice(0, 5).map(newsTile).join("") + askTile() + items.slice(5).map(newsTile).join("");
+
+  // the home page's "Around the field": at most two sponsored items, then the newest news, five in all, then the box
   function newsTiles() {
     if (!$("news")) return;
     const items = [...news.filter(n => n.kind === "sponsored").slice(0, 2), ...news.filter(n => n.kind !== "sponsored")].slice(0, 5);
-    $("news").innerHTML = items.map(newsTile).join("") + `<div class="cell reveal"><a class="tile sun" href="${esc(askUrl())}" target="_blank" rel="noopener">
-      <span class="k"><span>Your work here</span></span><h3>Relevant work? Advertise here!</h3>
-      <p>Put a paper, dataset, tool, platform or event in front of the people who read this map. Sponsored items are always marked.</p><span class="go">Get in touch ↗</span></a></div>`;
+    $("news").innerHTML = withAsk(items);
     reveal($("news"));
   }
 
-  // the News page: sponsored placements first, then every item, newest first, by month
+  // the News page: the same grid, with every item
   function newsPage() {
-    if ($("news-updated") && meta.updated) $("news-updated").textContent = "Updated " + meta.updated;
-    const two = n => String(n).padStart(2, "0");
-    const month = d => new Date(String(d) + "T12:00:00Z").toLocaleDateString("en-GB", { month: "long", year: "numeric" });
-    const ads = news.filter(n => n.kind === "sponsored"), rest = news.filter(n => n.kind !== "sponsored");
-    let html = ads.length ? `<p class="subhead"><span>Sponsored</span><span>${two(ads.length)}</span></p><div class="tiles three">${ads.map(newsTile).join("")}</div>` : "";
-    const groups = [];
-    rest.forEach(n => { const m = month(n.date); if (!groups.length || groups[groups.length - 1][0] !== m) groups.push([m, []]); groups[groups.length - 1][1].push(n); });
-    html += groups.map(([m, ns]) => `<p class="subhead"><span>${esc(m)}</span><span>${two(ns.length)}</span></p><div class="tiles three">${ns.map(newsTile).join("")}</div>`).join("");
-    $("news-list").innerHTML = html || '<p class="empty">No news yet.</p>';
+    $("news-list").innerHTML = withAsk(newsOrder());
     reveal($("news-list"));
   }
 
