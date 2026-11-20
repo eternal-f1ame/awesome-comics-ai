@@ -1,3 +1,3 @@
 # Written by scripts/watch.py: the day of the last run whose arXiv search finished. The next run searches from
 # 10 days before it, because arXiv announces some papers days after their submission date.
-last_complete: '2026-11-18'
+last_complete: '2026-11-20'
