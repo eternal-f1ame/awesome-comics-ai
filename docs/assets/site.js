@@ -22,7 +22,7 @@
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = id => document.getElementById(id);
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  const PAGE_OF = { "index.html": "home", "papers.html": "papers", "topics.html": "topics", "blog.html": "blog", "tools.html": "tools" };
+  const PAGE_OF = { "index.html": "home", "papers.html": "papers", "topics.html": "topics", "blog.html": "blog", "news.html": "news", "tools.html": "tools" };
   const TAB_OF = { post: "blog" };                                             // the tab that a page lights up
   const MOVED = { "essay.html": "blog-comics-are-a-modality.html" };           // old files, now elsewhere
   const isPost = f => /^blog-[a-z0-9-]+\.html$/.test(f);
@@ -127,7 +127,7 @@
     if ($("updated-foot") && meta.updated) $("updated-foot").textContent = "Updated " + meta.updated;
     const counts = { papers: `${papers.length} papers`, "papers-n": String(papers.length), topics: `${sections.length} topics`, tools: `${resources.tools.length} tools` };
     document.querySelectorAll("main [data-count]").forEach(el => { if (counts[el.dataset.count]) el.textContent = counts[el.dataset.count]; });
-    ({ home, papers: papersPage, topics, blog, post, tools }[page] || (() => {}))(my);
+    ({ home, papers: papersPage, topics, blog, post, tools, news: newsPage }[page] || (() => {}))(my);
   }
 
   // ---- move between pages without a reload ----
@@ -194,20 +194,40 @@
     newsTiles();
   }
 
-  // "Around the field": sponsored items first (at most two, always marked), then the newest news, then the box that invites more
+  // a news item as a tile; a sponsored one is marked and carries rel="sponsored"
+  const newsKind = { industry: "Industry", research: "Research", sponsored: "Sponsored" };
+  function newsTile(n) {
+    const ad = n.kind === "sponsored";
+    const when = new Date(String(n.date) + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+    return `<div class="cell reveal"><a class="tile ${ad ? "ad" : "plain"}" href="${esc(n.url)}" target="_blank" rel="${ad ? "sponsored noopener" : "noopener"}">
+      <span class="k"><span>${newsKind[n.kind] || "News"}</span><em>${esc(ad ? n.sponsor : when)}</em></span>
+      <h3>${esc(n.title)}</h3><p>${esc(n.note)}</p><span class="go">${esc(n.source)} ↗</span></a></div>`;
+  }
+  const askUrl = () => ((meta && meta.repo) || "https://github.com/eternal-f1ame/awesome-comics-ai") + "/issues/new?template=advertise.yml";
+  const reveal = box => box.querySelectorAll(".cell").forEach((el, i) => { el.style.transitionDelay = (i % 3) * 60 + "ms"; watch(el); });
+
+  // the home page's "Around the field": sponsored items first (at most two), then the newest news, then the box that invites more
   function newsTiles() {
     if (!$("news")) return;
-    const fmt = d => new Date(d + "T12:00:00Z").toLocaleDateString("en-GB", { month: "short", year: "numeric" });
-    const label = { industry: "Industry", research: "Research", sponsored: "Sponsored" };
     const items = [...news.filter(n => n.kind === "sponsored").slice(0, 2), ...news.filter(n => n.kind !== "sponsored")].slice(0, 5);
-    const tile = n => `<div class="cell reveal"><a class="tile ${n.kind === "sponsored" ? "ad" : "plain"}" href="${esc(n.url)}" target="_blank" rel="${n.kind === "sponsored" ? "sponsored noopener" : "noopener"}">
-      <span class="k"><span>${label[n.kind]}</span><em>${esc(n.kind === "sponsored" ? n.sponsor : fmt(String(n.date)))}</em></span>
-      <h3>${esc(n.title)}</h3><p>${esc(n.note)}</p><span class="go">${esc(n.source)} ↗</span></a></div>`;
-    const ask = `<div class="cell reveal"><a class="tile sun" href="${esc(((meta && meta.repo) || "https://github.com/eternal-f1ame/awesome-comics-ai") + "/issues/new?template=advertise.yml")}" target="_blank" rel="noopener">
+    $("news").innerHTML = items.map(newsTile).join("") + `<div class="cell reveal"><a class="tile sun" href="${esc(askUrl())}" target="_blank" rel="noopener">
       <span class="k"><span>Your work here</span></span><h3>Relevant work? Advertise here!</h3>
       <p>Put a paper, dataset, tool, platform or event in front of the people who read this map. Sponsored items are always marked.</p><span class="go">Get in touch ↗</span></a></div>`;
-    $("news").innerHTML = items.map(tile).join("") + ask;
-    $("news").querySelectorAll(".cell").forEach((el, i) => { el.style.transitionDelay = (i % 3) * 60 + "ms"; watch(el); });
+    reveal($("news"));
+  }
+
+  // the News page: sponsored placements first, then every item, newest first, by month
+  function newsPage() {
+    if ($("news-updated") && meta.updated) $("news-updated").textContent = "Updated " + meta.updated;
+    const two = n => String(n).padStart(2, "0");
+    const month = d => new Date(String(d) + "T12:00:00Z").toLocaleDateString("en-GB", { month: "long", year: "numeric" });
+    const ads = news.filter(n => n.kind === "sponsored"), rest = news.filter(n => n.kind !== "sponsored");
+    let html = ads.length ? `<p class="subhead"><span>Sponsored</span><span>${two(ads.length)}</span></p><div class="tiles three">${ads.map(newsTile).join("")}</div>` : "";
+    const groups = [];
+    rest.forEach(n => { const m = month(n.date); if (!groups.length || groups[groups.length - 1][0] !== m) groups.push([m, []]); groups[groups.length - 1][1].push(n); });
+    html += groups.map(([m, ns]) => `<p class="subhead"><span>${esc(m)}</span><span>${two(ns.length)}</span></p><div class="tiles three">${ns.map(newsTile).join("")}</div>`).join("");
+    $("news-list").innerHTML = html || '<p class="empty">No news yet.</p>';
+    reveal($("news-list"));
   }
 
   function papersPage() {
