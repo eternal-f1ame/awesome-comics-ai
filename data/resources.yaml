@@ -2,7 +2,7 @@
 meta:
   repo: "https://github.com/eternal-f1ame/awesome-comics-ai"
   site_url: "https://sochastic.me/awesome-comics-ai/"
-  updated: "2026-11-18"   # the day the list was last reviewed; the refresh pull request updates it
+  updated: "2026-11-18"   # the day of the last update; scripts/watch.py sets it on every run
 
 tools:
   - name: Magi

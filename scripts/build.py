@@ -63,7 +63,7 @@ def readme(papers, sections, resources):
         "([inclusion rule](#inclusion-rule)).",
         "",
         f"**{len(papers)} papers** in {len(sections)} sections, {recent} of them from {max(years) - 1}–{max(years)}. "
-        "Every entry is checked against arXiv, Crossref or the venue's own pages, and a monthly arXiv sweep finds new work "
+        "Every entry is checked against arXiv, Crossref or the venue's own pages, and the list updates itself every two weeks "
         "([how the list stays current](#how-the-list-stays-current))." + (f" Browse and search it on the [site]({resources['meta']['site_url']})." if resources["meta"].get("site_url") else ""),
         "",
         "## Contents",
@@ -106,10 +106,15 @@ def readme(papers, sections, resources):
           "- `data/papers.yaml` is the single source. `scripts/build.py` writes this README and the site from it, so the two never drift.",
           "- `scripts/verify.py` checks every entry: required fields, a known section, no duplicate titles, and, with `--online`, that each "
           "arXiv id resolves to the listed title.",
-          "- A monthly GitHub Action runs `scripts/refresh.py`, which promotes preprints that have been published, retires those past "
-          f"the {POLICY.PREPRINT_MONTHS}-month window and brings back retired ones published since, and opens a pull request with the change.",
-          "- The same Action runs `scripts/arxiv_sweep.py` and opens an issue with the new arXiv papers whose title or abstract "
-          "names comics, manga or webtoons. A maintainer adds the ones that belong.",
+          "- Every two weeks (the 1st and the 15th of each month) a GitHub Action updates the list with no one at the keyboard, and "
+          "commits the change to `main`; the site follows.",
+          "- In that Action, `scripts/refresh.py` promotes preprints that have been published, retires those past "
+          f"the {POLICY.PREPRINT_MONTHS}-month window, brings back retired ones published since and refreshes the citation counts of survey preprints.",
+          "- Then `scripts/watch.py` searches arXiv from shortly before the last run and adds each new paper whose title names comics, "
+          "manga or webtoons (or whose abstract names them at least three times), in the section that `scripts/scope.py` gives it, with its "
+          "code repository when the paper names one. The run's summary lists what it added and what it left out.",
+          "- A paper filed in the wrong section is fixed by editing its entry. A paper that does not belong is moved to `data/excluded.yaml`, "
+          "and the watcher never adds it again. `python scripts/watch.py --dry-run` shows what the next run would add.",
           "", "## Contributing", "",
           "Additions and corrections are welcome. Add or edit an entry in `data/papers.yaml`, run `python scripts/build.py`, and open a "
           "pull request; [CONTRIBUTING.md](CONTRIBUTING.md) gives the fields and the scope. A paper belongs here when comics are its "

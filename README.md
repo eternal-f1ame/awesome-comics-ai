@@ -2,7 +2,7 @@
 
 A curated, maintained map of research on comics in computer vision, language and graphics: manga, manhwa, manhua, webtoons, bandes dessinées, comic strips, graphic novels and single-panel cartoons. It covers how models read, search, translate, describe, create and reason about them, and the datasets, benchmarks and tools behind that work. It lists work from top venues and their workshops, the datasets the field builds on, and the newest preprints ([inclusion rule](#inclusion-rule)).
 
-**119 papers** in 17 sections, 30 of them from 2025–2026. Every entry is checked against arXiv, Crossref or the venue's own pages, and a monthly arXiv sweep finds new work ([how the list stays current](#how-the-list-stays-current)). Browse and search it on the [site](https://sochastic.me/awesome-comics-ai/).
+**119 papers** in 17 sections, 30 of them from 2025–2026. Every entry is checked against arXiv, Crossref or the venue's own pages, and the list updates itself every two weeks ([how the list stays current](#how-the-list-stays-current)). Browse and search it on the [site](https://sochastic.me/awesome-comics-ai/).
 
 ## Contents
 
@@ -313,8 +313,10 @@ Verified papers that do not meet the rule are kept, with the reason, in `data/no
 
 - `data/papers.yaml` is the single source. `scripts/build.py` writes this README and the site from it, so the two never drift.
 - `scripts/verify.py` checks every entry: required fields, a known section, no duplicate titles, and, with `--online`, that each arXiv id resolves to the listed title.
-- A monthly GitHub Action runs `scripts/refresh.py`, which promotes preprints that have been published, retires those past the 4-month window and brings back retired ones published since, and opens a pull request with the change.
-- The same Action runs `scripts/arxiv_sweep.py` and opens an issue with the new arXiv papers whose title or abstract names comics, manga or webtoons. A maintainer adds the ones that belong.
+- Every two weeks (the 1st and the 15th of each month) a GitHub Action updates the list with no one at the keyboard, and commits the change to `main`; the site follows.
+- In that Action, `scripts/refresh.py` promotes preprints that have been published, retires those past the 4-month window, brings back retired ones published since and refreshes the citation counts of survey preprints.
+- Then `scripts/watch.py` searches arXiv from shortly before the last run and adds each new paper whose title names comics, manga or webtoons (or whose abstract names them at least three times), in the section that `scripts/scope.py` gives it, with its code repository when the paper names one. The run's summary lists what it added and what it left out.
+- A paper filed in the wrong section is fixed by editing its entry. A paper that does not belong is moved to `data/excluded.yaml`, and the watcher never adds it again. `python scripts/watch.py --dry-run` shows what the next run would add.
 
 ## Contributing
 

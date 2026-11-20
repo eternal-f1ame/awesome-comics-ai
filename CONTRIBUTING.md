@@ -24,7 +24,7 @@ It must also meet the [inclusion rule](README.md#inclusion-rule): an A\* or A ve
      # project: https://...        # optional, a project page
    ```
 
-   For a preprint, set `venue: arXiv` and add `date:` with the day of its first arXiv version (YYYY-MM-DD). The monthly refresh replaces it with the published version when one appears, or retires it after four months.
+   For a preprint, set `venue: arXiv` and add `date:` with the day of its first arXiv version (YYYY-MM-DD). The refresh every two weeks replaces it with the published version when one appears, or retires it after four months.
 
    Use the published venue and year when the paper has one, and `arXiv` otherwise. Copy the title exactly as the paper prints it.
 

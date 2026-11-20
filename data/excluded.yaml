@@ -1,0 +1,3 @@
+# Papers the watcher (scripts/watch.py) must never add: arXiv papers that name comics but are not about them, found after a run
+# added them. Each entry gives the title, the arXiv id and the reason. Move a wrongly added entry here from papers.yaml.
+[]

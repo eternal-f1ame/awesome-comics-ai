@@ -1,7 +1,7 @@
 // Shared by every page. Each page names itself in <body data-page="...">; the list itself comes from papers.json.
 // The first visit loads the data, the five pages and the blog posts once. After that, a link between the pages swaps
-// only the content of <main>: no reload, the navigation stays, and its pill slides to the new tab. A blog post is a
-// file named blog-<slug>.html; its tab is Blog.
+// only the content of <main>: no reload, the header and the footer stay, and the line under the current page slides to
+// the new one. A blog post is a file named blog-<slug>.html; its tab is Blog.
 
 // theme: the system setting by default, the reader's choice once made (kept only on this device)
 (function () {
@@ -49,10 +49,10 @@
     return cache.get(file);
   }
 
-  // ---- the navigation pill ----
+  // ---- the line under the current page (above it, in the phone's bottom bar) ----
   const nav = document.querySelector(".nav");
   const pill = document.createElement("span");
-  pill.className = "nav-pill"; pill.setAttribute("aria-hidden", "true");
+  pill.className = "nav-line"; pill.setAttribute("aria-hidden", "true");
   nav.prepend(pill);
   let current = document.body.dataset.page;
   function setNav(page, instant) {
@@ -66,8 +66,11 @@
     if (!on) { pill.style.opacity = "0"; return; }
     const hidden = pill.style.opacity !== "1";
     if (instant || hidden || reduce) pill.style.transition = "none";
-    pill.style.width = on.offsetWidth + "px"; pill.style.height = on.offsetHeight + "px";
-    pill.style.transform = `translate(${on.offsetLeft}px, ${on.offsetTop}px)`;
+    const bottom = getComputedStyle(nav).position === "fixed", label = on.querySelector("span") || on;
+    const w = bottom ? Math.max(label.offsetWidth, 24) : label.offsetWidth;
+    const x = bottom ? on.offsetLeft + (on.offsetWidth - w) / 2 : on.offsetLeft + label.offsetLeft;
+    pill.style.width = w + "px";
+    pill.style.transform = `translate(${x}px, ${bottom ? 0 : on.offsetTop + on.offsetHeight - 1}px)`;
     if (instant || hidden || reduce) { void pill.offsetWidth; pill.style.transition = ""; }
     pill.style.opacity = "1";
   }
@@ -90,12 +93,12 @@
     const main = p.paper || (p.arxiv ? "https://arxiv.org/abs/" + p.arxiv : "");
     const ax = p.arxiv && !(p.paper || "").includes(p.arxiv) ? link("https://arxiv.org/abs/" + p.arxiv, "arXiv") : "";
     const venue = p.venue === "arXiv" ? `<span class="venue pre">preprint${p.date ? " " + esc(String(p.date).slice(0, 7)) : ""}</span>` : `<span class="venue">${esc(p.venue)}</span>`;
-    return `<div class="paper"><div class="yr mono">${p.year}</div><div><a class="t" href="${esc(main)}" target="_blank" rel="noopener">${esc(p.title)}</a>
-      <div class="meta">${venue}<span>${esc(p.authors || "")}</span>${ax}${link(p.code, "Code")}${link(p.project, "Project")}</div></div></div>`;
+    return `<div class="paper"><div class="yr">${p.year}</div><div class="pb"><a class="t" href="${esc(main)}" target="_blank" rel="noopener">${esc(p.title)}</a>
+      <div class="meta"><span>${esc(p.authors || "")}</span>${ax}${link(p.code, "Code")}${link(p.project, "Project")}</div></div><div class="pv">${venue}</div></div>`;
   }
 
   // ---- render the page that is in <main> now ----
-  let gen = 0;   // each render gets a number; work left over from a page that was left (the hero demo) stops itself
+  let gen = 0;   // each render gets a number; work left over from a page that was left stops itself
   async function mount(page) {
     const my = ++gen;
     document.querySelectorAll("main .reveal").forEach(watch);
@@ -103,7 +106,7 @@
       try { ({ sections, papers, resources, posts = [] } = await dataP); }
       catch (e) {
         const p = document.createElement("p"); p.className = "empty"; p.textContent = "The list could not be loaded. Read it in the README on GitHub.";
-        document.querySelector("main").insertBefore(p, document.querySelector("footer")); return;
+        document.querySelector("main").appendChild(p); return;
       }
       meta = resources.meta || {};
       const years = papers.map(p => p.year); maxY = Math.max(...years); minY = Math.min(...years);
@@ -112,6 +115,7 @@
     }
     if (my !== gen) return;
     if (meta.repo) document.querySelectorAll("[data-repo]").forEach(a => { a.href = meta.repo + a.dataset.repo; });
+    if ($("updated-foot") && meta.updated) $("updated-foot").textContent = "Updated " + meta.updated;
     const counts = { papers: `${papers.length} papers`, "papers-n": String(papers.length), topics: `${sections.length} topics`, tools: `${resources.tools.length} tools` };
     document.querySelectorAll("main [data-count]").forEach(el => { if (counts[el.dataset.count]) el.textContent = counts[el.dataset.count]; });
     ({ home, papers: papersPage, topics, blog, post, tools }[page] || (() => {}))(my);
@@ -164,7 +168,7 @@
     // numbers, counted up when they come into view
     const venues = new Set(papers.map(p => p.venue)).size;
     const stats = [[papers.length, "papers, each verified"], [sections.length, "topics"], [venues, "venues"], [maxY - minY + 1, `years, ${minY}–${maxY}`]];
-    $("stats").innerHTML = stats.map(([n, l]) => `<div><b class="mono" data-n="${n}">${reduce ? n : 0}</b><span>${esc(l)}</span></div>`).join("");
+    $("stats").innerHTML = stats.map(([n, l]) => `<div><b data-n="${n}">${reduce ? n : 0}</b><span>${esc(l)}</span></div>`).join("");
     if (!reduce) {
       const counter = new IntersectionObserver(es => es.forEach(e => {
         if (!e.isIntersecting) return; counter.disconnect();
@@ -179,28 +183,6 @@
     // the newest papers: by year, preprints by their first-version date
     const key = p => p.date ? String(p.date) : `${p.year}-00`;
     $("newest").innerHTML = [...papers].sort((a, b) => key(b).localeCompare(key(a)) || a.title.localeCompare(b.title)).slice(0, 6).map(row).join("");
-    // the hero demo: real queries over the real list
-    const demoQ = ["speaker", "colorization", "Manga109", "translation", "question answering"];
-    const typed = $("typed"), out = $("demo-results");
-    const show = query => {
-      const hits = papers.filter(p => matches(p, query.toLowerCase().split(/\s+/))).slice(0, 2);
-      out.innerHTML = hits.map(p => `<li><span class="venue">${esc(p.venue === "arXiv" ? "preprint" : p.venue)}</span><b>${esc(p.title)}</b></li>`).join("");
-      requestAnimationFrame(() => out.querySelectorAll("li").forEach((li, i) => setTimeout(() => li.classList.add("in"), 120 * i)));
-    };
-    if (reduce) { typed.textContent = demoQ[0]; show(demoQ[0]); return; }
-    (async function loop() {
-      const wait = ms => new Promise(r => setTimeout(r, ms));
-      for (let k = 0; ; k = (k + 1) % demoQ.length) {
-        const w = demoQ[k];
-        for (let i = 1; i <= w.length; i++) { if (my !== gen) return; typed.textContent = w.slice(0, i); await wait(70); }
-        if (my !== gen) return;
-        show(w); await wait(2600);
-        if (my !== gen) return;
-        out.querySelectorAll("li").forEach(li => li.classList.remove("in")); await wait(250);
-        for (let i = w.length; i >= 0; i--) { if (my !== gen) return; typed.textContent = w.slice(0, i); await wait(28); }
-        out.innerHTML = ""; await wait(300);
-      }
-    })();
   }
 
   function papersPage() {
@@ -252,18 +234,19 @@
   }
 
   function topics() {
-    $("topic-grid").innerHTML = sections.map((s, i) => `<a class="topic glass reveal" href="papers.html?topic=${encodeURIComponent(s.id)}">
-      <span class="n mono"><span>${String(i + 1).padStart(2, "0")}</span><em>${byCat(s.id).length} paper${byCat(s.id).length > 1 ? "s" : ""}</em></span>
-      <h3>${esc(short(s.title))}</h3><p>${esc(s.blurb)}</p><span class="go mono">Open the papers →</span></a>`).join("");
-    $("topic-grid").querySelectorAll(".topic").forEach((el, i) => { el.style.transitionDelay = (i % 4) * 60 + "ms"; watch(el); });
+    $("topic-grid").innerHTML = sections.map((s, i) => { const n = byCat(s.id).length; return `<div class="cell reveal"><a class="tile plain" href="papers.html?topic=${encodeURIComponent(s.id)}">
+      <span class="k"><span>${String(i + 1).padStart(2, "0")}</span><em>${n} paper${n > 1 ? "s" : ""}</em></span>
+      <h3>${esc(short(s.title))}</h3><p>${esc(s.blurb)}</p><span class="go">Open the papers →</span></a></div>`; }).join("");
+    $("topic-grid").querySelectorAll(".cell").forEach((el, i) => { el.style.transitionDelay = (i % 3) * 60 + "ms"; watch(el); });
   }
 
   function blog() {
     if (!posts.length) return;
     const fmt = d => new Date(d + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
-    $("posts").innerHTML = [...posts].sort((a, b) => String(b.date).localeCompare(String(a.date))).map(p => `<a class="postrow" href="${esc(p.file)}">
-      <time class="mono" datetime="${esc(p.date)}">${esc(fmt(String(p.date)))}</time><div><h2>${esc(p.title)}</h2><p>${esc(p.dek)}</p>
-      <span class="rt mono">${p.minutes} min read</span></div></a>`).join("");
+    $("posts").innerHTML = [...posts].sort((a, b) => String(b.date).localeCompare(String(a.date))).map((p, i) => `<div class="cell reveal"><a class="tile ${i === 0 ? "ink" : "plain"}" href="${esc(p.file)}">
+      <span class="k"><time datetime="${esc(p.date)}">${esc(fmt(String(p.date)))}</time><em>${p.minutes} min read</em></span>
+      <h3>${esc(p.title)}</h3><p>${esc(p.dek)}</p><span class="go">Read the post →</span></a></div>`).join("");
+    $("posts").querySelectorAll(".cell").forEach(watch);
   }
 
   function post() {
@@ -280,10 +263,12 @@
   }
 
   function tools() {
-    const card = (k, h, p, href) => `<a class="card glass reveal" href="${esc(href)}" target="_blank" rel="noopener"><span class="k mono"><span>${esc(k)}</span><span>↗</span></span><h4>${esc(h)}</h4><p>${esc(p)}</p></a>`;
-    $("tool-cards").innerHTML = resources.tools.map(t => card("tool", t.name, t.what, t.url)).join("");
-    $("workshop-cards").innerHTML = resources.workshops.map(w => card("workshop", w.name, w.what, w.url)).join("");
-    $("list-cards").innerHTML = resources.related.map(r => card("list", r.name, r.what, r.url)).join("");
-    document.querySelectorAll("main .cards .card").forEach(watch);
+    const tile = (k, h, p, href) => `<div class="cell reveal"><a class="tile plain" href="${esc(href)}" target="_blank" rel="noopener"><span class="k"><span>${esc(k)}</span><em>↗</em></span><h3>${esc(h)}</h3><p>${esc(p)}</p></a></div>`;
+    const two = n => String(n).padStart(2, "0");
+    $("tool-cards").innerHTML = resources.tools.map(t => tile("tool", t.name, t.what, t.url)).join("");
+    $("workshop-cards").innerHTML = resources.workshops.map(w => tile("workshop", w.name, w.what, w.url)).join("");
+    $("list-cards").innerHTML = resources.related.map(r => tile("list", r.name, r.what, r.url)).join("");
+    $("n-tools").textContent = two(resources.tools.length); $("n-workshops").textContent = two(resources.workshops.length); $("n-lists").textContent = two(resources.related.length);
+    document.querySelectorAll("main .tiles .cell").forEach(watch);
   }
 })();

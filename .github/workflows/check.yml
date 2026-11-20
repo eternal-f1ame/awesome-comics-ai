@@ -11,7 +11,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install pyyaml
+      - run: pip install pyyaml pytest
+      - name: Test the watcher's rules
+        run: python -m pytest -q tests
       - name: Check the entries
         run: python scripts/verify.py
       - name: Check that README.md and the site data were rebuilt
