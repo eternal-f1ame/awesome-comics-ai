@@ -54,7 +54,7 @@ def readme(papers, sections, resources):
     years = Counter(p["year"] for p in papers)
     recent = sum(n for y, n in years.items() if y >= max(years) - 1)
     L = [
-        "# Awesome Comics & Manga AI",
+        "# Awesome Comics & Manga AI [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)",
         "",
         "A curated, maintained map of research on comics in computer vision, language and graphics: manga, manhwa, manhua, "
         "webtoons, bandes dessinées, comic strips, graphic novels and single-panel cartoons. It covers how models read, "

@@ -1,4 +1,4 @@
-# Awesome Comics & Manga AI
+# Awesome Comics & Manga AI [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 A curated, maintained map of research on comics in computer vision, language and graphics: manga, manhwa, manhua, webtoons, bandes dessinées, comic strips, graphic novels and single-panel cartoons. It covers how models read, search, translate, describe, create and reason about them, and the datasets, benchmarks and tools behind that work. It lists work from top venues and their workshops, the datasets the field builds on, and the newest preprints ([inclusion rule](#inclusion-rule)).
 
