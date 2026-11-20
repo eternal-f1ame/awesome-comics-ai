@@ -15,6 +15,14 @@
   arxiv: '2310.00698'
   date: '2023-10-01'
   reason: arXiv preprint from 2023-10-01, older than 4 months and not published at a qualifying venue
+- title: 'Profit-Based Counterfactual Explanations for Product Improvement: A Case Study of Manga Sales in Japan'
+  authors: Keita Kinjo et al.
+  year: 2026
+  venue: arXiv
+  category: analysis
+  arxiv: '2607.01610'
+  date: '2026-07-02'
+  reason: arXiv preprint from 2026-07-02, older than 4 months and not published at a qualifying venue
 - title: Learning Gaussian Data Augmentation in Feature Space for One-shot Object Detection in Manga
   authors: Takara Taniguchi et al.
   year: 2024
