@@ -1254,5 +1254,71 @@
    "date": "2026-11-18",
    "minutes": 3
   }
+ ],
+ "news": [
+  {
+   "kind": "industry",
+   "title": "Mantra releases Mantra Typesetting commercially",
+   "note": "Its AI suggests the font, size and placement of each line of manga dialogue and hands the result to InDesign; Seiko Printing is the first adopter.",
+   "source": "Mantra",
+   "date": "2026-11-16",
+   "url": "https://mantra.co.jp/en/news/mantra-a-manga-ai-company-launches-commercial-release-of-mantra-typesetting-an-ai-powered"
+  },
+  {
+   "kind": "research",
+   "title": "MANPU 2026 meets at ICPR in Lyon",
+   "note": "The 7th IAPR workshop on comics analysis, processing and understanding, with its proceedings in Springer's LNCS.",
+   "source": "MANPU 2026",
+   "date": "2026-08-22",
+   "url": "https://manpu2026.imlab.jp/"
+  },
+  {
+   "kind": "industry",
+   "title": "Inio Asano pauses Mujina Into the Deep",
+   "note": "The Goodnight Punpun author names publishers' ban on generative AI among his reasons, and hopes it lifts before he resumes in 2027.",
+   "source": "Dexerto",
+   "date": "2026-07-18",
+   "url": "https://www.dexerto.com/anime/goodnight-punpun-creator-pauses-current-series-in-hopes-manga-industry-will-lift-ai-ban-3388752/"
+  },
+  {
+   "kind": "industry",
+   "title": "Naver Webtoon opens byUs, an AI story chat",
+   "note": "Readers write new storylines with characters from webtoons whose authors approved the use.",
+   "source": "Seoul Economic Daily",
+   "date": "2026-07-01",
+   "url": "https://en.sedaily.com/news/2026/07/01/naver-webtoon-launches-webtoon-based-story-chat-byus"
+  },
+  {
+   "kind": "industry",
+   "title": "WEBTOON and Genies turn comic characters into 3D avatars",
+   "note": "Opt-in tools let creators make interactive avatars of their characters, starting with three titles.",
+   "source": "WEBTOON Entertainment",
+   "date": "2026-04-27",
+   "url": "https://about.webtoon.com/press-release/243"
+  },
+  {
+   "kind": "industry",
+   "title": "WEBTOON adds opt-in AI translation to CANVAS",
+   "note": "English-language creators can translate their series into the platform's other languages; WEBTOON says it does not train on their art.",
+   "source": "K-Comics Beat",
+   "date": "2026-03-26",
+   "url": "https://kcomicsbeat.com/2026/03/26/webtoon-pushes-to-expand-indie-creators-reach-on-canvas-introduces-ai-powered-translation-program/"
+  },
+  {
+   "kind": "industry",
+   "title": "GlobalComix raises $13M and acquires INKR",
+   "note": "INKR's AI automates much of the work of adapting comics to new languages.",
+   "source": "The Next Web",
+   "date": "2026-03-18",
+   "url": "https://thenextweb.com/news/globalcomix-13m-inkr-acquisition"
+  },
+  {
+   "kind": "industry",
+   "title": "Xross Road opens a closed beta of HANASEE",
+   "note": "A multi-agent engine that turns novels and scripts into manga; the company raised a $1.5M pre-seed round.",
+   "source": "Anime News Network (press release)",
+   "date": "2026-02-10",
+   "url": "https://www.animenewsnetwork.com/press-release/2026-02-10/xross-road-backed-by-tv-asahi-group-raises-1.5m-pre-seed-launches-closed-beta-of-ai-manga-engine-/.234010"
+  }
  ]
 }

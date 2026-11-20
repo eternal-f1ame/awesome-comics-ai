@@ -23,7 +23,34 @@ def load():
     sections = yaml.safe_load((DATA / "sections.yaml").read_text(encoding="utf-8"))
     resources = yaml.safe_load((DATA / "resources.yaml").read_text(encoding="utf-8"))
     posts = yaml.safe_load((DATA / "posts.yaml").read_text(encoding="utf-8")) if (DATA / "posts.yaml").exists() else []
-    return papers, sections, resources, posts or []
+    news = yaml.safe_load((DATA / "news.yaml").read_text(encoding="utf-8")) if (DATA / "news.yaml").exists() else []
+    return papers, sections, resources, posts or [], news or []
+
+
+NEWS_KINDS = ("industry", "research", "sponsored")
+
+
+def check_news(news):
+    """Problems with data/news.yaml: every item needs a kind, a title, a note, a source, an ISO date and an https link; a
+    sponsored item also names its sponsor."""
+    import datetime as dt
+    bad = []
+    for i, n in enumerate(news):
+        where = f"news item {i} ({str(n.get('title', '?'))[:50]})"
+        for k in ("kind", "title", "note", "source", "date", "url"):
+            if not n.get(k):
+                bad.append(f"{where}: missing {k}")
+        if n.get("kind") not in NEWS_KINDS:
+            bad.append(f"{where}: kind must be one of {NEWS_KINDS}")
+        if n.get("kind") == "sponsored" and not n.get("sponsor"):
+            bad.append(f"{where}: a sponsored item names its sponsor")
+        if not str(n.get("url", "")).startswith("https://"):
+            bad.append(f"{where}: link is not https")
+        try:
+            dt.date.fromisoformat(str(n.get("date")))
+        except ValueError:
+            bad.append(f"{where}: date is not YYYY-MM-DD")
+    return bad
 
 
 def anchor(title):
@@ -123,16 +150,20 @@ def readme(papers, sections, resources):
     return "\n".join(L)
 
 
-def site_json(papers, sections, resources, posts):
+def site_json(papers, sections, resources, posts, news=()):
     sections = [s for s in sections if any(p["category"] == s["id"] for p in papers)]
+    news = sorted(news, key=lambda n: str(n["date"]), reverse=True)
     return json.dumps({"sections": sections, "papers": sorted(papers, key=lambda p: (-p["year"], p["title"].lower())),
-                       "resources": resources, "posts": posts}, ensure_ascii=False, indent=1) + "\n"
+                       "resources": resources, "posts": posts, "news": news}, ensure_ascii=False, indent=1) + "\n"
 
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--check", action="store_true")
     a = ap.parse_args()
-    papers, sections, resources, posts = load()
+    papers, sections, resources, posts, news = load()
+    problems = check_news(news)
+    if problems:
+        sys.exit("\n".join(problems))
     missing = [q["file"] for q in posts if not (ROOT / "docs" / q["file"]).exists()]
     if missing:
         sys.exit(f"a post in data/posts.yaml has no page in docs/: {missing}")
@@ -140,7 +171,7 @@ def main():
     bad = [p["title"] for p in papers if p.get("category") not in ids]
     if bad:
         sys.exit(f"unknown section for: {bad[:5]}")
-    outputs = {ROOT / "README.md": readme(papers, sections, resources), ROOT / "docs" / "papers.json": site_json(papers, sections, resources, posts)}
+    outputs = {ROOT / "README.md": readme(papers, sections, resources), ROOT / "docs" / "papers.json": site_json(papers, sections, resources, posts, news)}
     stale = [p for p, text in outputs.items() if not p.exists() or p.read_text(encoding="utf-8") != text]
     if a.check:
         if stale:

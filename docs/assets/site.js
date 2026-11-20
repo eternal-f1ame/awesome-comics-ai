@@ -84,7 +84,7 @@
 
   // ---- the data, loaded once ----
   const dataP = fetch("papers.json", { cache: "no-cache" }).then(r => r.json());
-  let sections, papers, resources, posts, meta, maxY, minY, recent;
+  let sections, papers, resources, posts, news, meta, maxY, minY, recent;
   const short = t => t.startsWith("Adjacent: ") ? t.slice(10, 11).toUpperCase() + t.slice(11) + " (adjacent)" : t;
   const byCat = id => papers.filter(p => p.category === id);
   const topicName = id => short((sections.find(s => s.id === id) || { title: id }).title);
@@ -112,7 +112,7 @@
     const my = ++gen;
     document.querySelectorAll("main .reveal").forEach(watch);
     if (!papers) {
-      try { ({ sections, papers, resources, posts = [] } = await dataP); }
+      try { ({ sections, papers, resources, posts = [], news = [] } = await dataP); }
       catch (e) {
         const p = document.createElement("p"); p.className = "empty"; p.textContent = "The list could not be loaded. Read it in the README on GitHub.";
         document.querySelector("main").appendChild(p); return;
@@ -191,6 +191,23 @@
     }
     // the newest papers, by the same order as the list
     $("newest").innerHTML = chrono(papers).slice(0, 6).map(p => row(p)).join("");
+    newsTiles();
+  }
+
+  // "Around the field": sponsored items first (at most two, always marked), then the newest news, then the box that invites more
+  function newsTiles() {
+    if (!$("news")) return;
+    const fmt = d => new Date(d + "T12:00:00Z").toLocaleDateString("en-GB", { month: "short", year: "numeric" });
+    const label = { industry: "Industry", research: "Research", sponsored: "Sponsored" };
+    const items = [...news.filter(n => n.kind === "sponsored").slice(0, 2), ...news.filter(n => n.kind !== "sponsored")].slice(0, 5);
+    const tile = n => `<div class="cell reveal"><a class="tile ${n.kind === "sponsored" ? "ad" : "plain"}" href="${esc(n.url)}" target="_blank" rel="${n.kind === "sponsored" ? "sponsored noopener" : "noopener"}">
+      <span class="k"><span>${label[n.kind]}</span><em>${esc(n.kind === "sponsored" ? n.sponsor : fmt(String(n.date)))}</em></span>
+      <h3>${esc(n.title)}</h3><p>${esc(n.note)}</p><span class="go">${esc(n.source)} ↗</span></a></div>`;
+    const ask = `<div class="cell reveal"><a class="tile sun" href="${esc(((meta && meta.repo) || "https://github.com/eternal-f1ame/awesome-comics-ai") + "/issues/new?template=advertise.yml")}" target="_blank" rel="noopener">
+      <span class="k"><span>Your work here</span></span><h3>Relevant work? Advertise here!</h3>
+      <p>Put a paper, dataset, tool, platform or event in front of the people who read this map. Sponsored items are always marked.</p><span class="go">Get in touch ↗</span></a></div>`;
+    $("news").innerHTML = items.map(tile).join("") + ask;
+    $("news").querySelectorAll(".cell").forEach((el, i) => { el.style.transitionDelay = (i % 3) * 60 + "ms"; watch(el); });
   }
 
   function papersPage() {

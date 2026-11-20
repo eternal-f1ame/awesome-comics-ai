@@ -1,0 +1,53 @@
+name: Feature or advertise on the site
+description: Put a paper, dataset, tool, platform, event or product about comics, manga or webtoons in front of the people who read this map.
+title: "[Feature] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for your interest. Items in the site's "Around the field" section are news, research events and sponsored placements about comics, manga and webtoons. A sponsored placement is always marked **Sponsored**. This issue is public; we reply here.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What would you like to feature?
+      options:
+        - A sponsored placement (advertisement)
+        - Research, a dataset or a benchmark release
+        - A tool or a product
+        - An event, a workshop or a call for papers
+        - Industry news from a comic, manga or webtoon platform
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      description: The work, product, event or organisation.
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      placeholder: https://
+    validations:
+      required: true
+  - type: textarea
+    id: about
+    attributes:
+      label: In one or two sentences
+      description: What it is and why it matters to people who work on comics and AI.
+    validations:
+      required: true
+  - type: input
+    id: when
+    attributes:
+      label: Dates
+      description: Optional. When it should run, or the date of the event or release.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: It is about comics, manga, manhwa, webtoons or other sequential art.
+          required: true
