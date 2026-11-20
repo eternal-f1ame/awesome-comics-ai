@@ -1,5 +1,7 @@
 # News for the home page's "Around the field" section: industry news from comic, manga and webtoon platforms, research events,
-# and sponsored placements. Each item was read at its source before it went in; write the title and the note in our own words.
+# and sponsored placements. scripts/news_watch.py adds industry news every two weeks, with the outlet's own headline and the first
+# sentence of its summary, cited and linked. An item added by hand is read at its source first and written in our own words.
+# A wrong item is moved to data/excluded.yaml (with its title, date and url), and the watcher never adds it again.
 # Fields: kind (industry | research | sponsored), title, note (one sentence), source (who published it), date (YYYY-MM-DD),
 # url (https). A sponsored item also names its sponsor and is shown first, marked "Sponsored". build.py checks every field.
 - kind: industry

@@ -140,6 +140,9 @@ def readme(papers, sections, resources):
           "- Then `scripts/watch.py` searches arXiv from shortly before the last run and adds each new paper whose title names comics, "
           "manga or webtoons (or whose abstract names them at least three times), in the section that `scripts/scope.py` gives it, with its "
           "code repository when the paper names one. The run's summary lists what it added and what it left out.",
+          "- Then `scripts/news_watch.py` adds industry news about AI and comics to the site's news section, from the newsrooms of "
+          "WEBTOON, KADOKAWA and Kodansha USA, Anime News Network, ICv2, Publishers Weekly, The Beat, K-Comics Beat and other outlets. "
+          "A story only Bleeding Cool reports does not go in; a story several outlets report is cited from the most reliable one.",
           "- A paper filed in the wrong section is fixed by editing its entry. A paper that does not belong is moved to `data/excluded.yaml`, "
           "and the watcher never adds it again. `python scripts/watch.py --dry-run` shows what the next run would add.",
           "", "## Contributing", "",

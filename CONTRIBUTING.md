@@ -34,7 +34,7 @@ It must also meet the [inclusion rule](README.md#inclusion-rule): an A\* or A ve
 
 ## Feature news or advertise
 
-The home page's "Around the field" section carries news from comic, manga and webtoon platforms, research events and sponsored placements, from `data/news.yaml`. To suggest an item or a placement, open an issue with the [Feature or advertise](https://github.com/eternal-f1ame/awesome-comics-ai/issues/new?template=advertise.yml) form. A sponsored placement is always marked as such.
+The home page's "Around the field" section carries news from comic, manga and webtoon platforms, research events and sponsored placements, from `data/news.yaml`; a watcher adds industry news to it every two weeks. To suggest an item or a placement, open an issue with the [Feature or advertise](https://github.com/eternal-f1ame/awesome-comics-ai/issues/new?template=advertise.yml) form. A sponsored placement is always marked as such.
 
 ## Report a problem
 

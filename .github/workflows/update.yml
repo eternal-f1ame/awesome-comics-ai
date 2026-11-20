@@ -1,6 +1,6 @@
 name: update the list
 # Every two weeks, with no one at the keyboard: promote published preprints and retire expired ones (refresh.py), add new papers
-# from arXiv (watch.py), rebuild README.md and the site data, check every entry, and commit the result to main.
+# from arXiv (watch.py), add industry news about AI and comics (news_watch.py), rebuild README.md and the site data, check every entry, and commit the result to main.
 on:
   schedule:
     - cron: "17 6 1,15 * *"
@@ -35,6 +35,12 @@ jobs:
           WATCH_HOLD: ${{ secrets.WATCH_HOLD }}
           SINCE: ${{ inputs.since }}
         run: python scripts/watch.py ${SINCE:+--since "$SINCE"} | tee watch.md
+      - name: Add industry news about AI and comics
+        continue-on-error: true          # the news must never hold back the papers
+        env:
+          WATCH_HOLD: ${{ secrets.WATCH_HOLD }}
+          SINCE: ${{ inputs.since }}
+        run: python scripts/news_watch.py ${SINCE:+--since "$SINCE"} | tee news.md
       - name: Rebuild README.md and the site data, and check every entry
         run: |
           python scripts/build.py
@@ -42,6 +48,7 @@ jobs:
       - name: Write the run summary
         run: |
           cat watch.md >> "$GITHUB_STEP_SUMMARY"
+          { echo; cat news.md 2>/dev/null || echo "## News: the step failed; see its log"; } >> "$GITHUB_STEP_SUMMARY"
           { echo; echo "## Refresh"; echo; sed 's/^/- /' refresh.log; } >> "$GITHUB_STEP_SUMMARY"
       - name: Commit to main
         run: |
@@ -49,8 +56,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data README.md docs/papers.json
           if git diff --cached --quiet; then echo "nothing changed"; exit 0; fi
-          added=$(grep -c '^- added' watch.md || true)
-          { echo "Update the list: $added new paper(s)"; echo; grep '^- added' watch.md | sed 's/\*\*//g'; echo; cat refresh.log; } > msg.txt
+          added=$(grep -c '^- added to' watch.md || true)
+          news=$(grep -c '^- added:' news.md 2>/dev/null || true)
+          { echo "Update the list: $added new paper(s), ${news:-0} news item(s)"; echo; grep '^- added' watch.md news.md 2>/dev/null | sed 's/^[^:]*://; s/\*\*//g'; echo; cat refresh.log; } > msg.txt
           git commit -q -F msg.txt
           git pull -q --rebase origin main
           git push origin HEAD:main
