@@ -87,14 +87,23 @@
   let sections, papers, resources, posts, meta, maxY, minY, recent;
   const short = t => t.startsWith("Adjacent: ") ? t.slice(10, 11).toUpperCase() + t.slice(11) + " (adjacent)" : t;
   const byCat = id => papers.filter(p => p.category === id);
-  const matches = (p, terms) => terms.every(t => (p.title + " " + p.venue + " " + p.year + " " + (p.authors || "")).toLowerCase().includes(t));
+  const topicName = id => short((sections.find(s => s.id === id) || { title: id }).title);
+  // when a paper appeared, for sorting newest first: a preprint's first-version day; else its year, with the month of its arXiv id
+  // when that id is from the same year (2507.10053 is July 2025); else the year alone, after the dated papers of that year
+  const when = p => {
+    if (p.date) return String(p.date);
+    const m = /^(\d{2})(\d{2})\./.exec(String(p.arxiv || ""));
+    return m && 2000 + +m[1] === p.year ? `${p.year}-${m[2]}` : `${p.year}-00`;
+  };
+  const chrono = list => [...list].sort((a, b) => when(b).localeCompare(when(a)) || a.title.localeCompare(b.title));
+  const matches = (p, terms) => terms.every(t => (p.title + " " + p.venue + " " + p.year + " " + (p.authors || "") + " " + topicName(p.category)).toLowerCase().includes(t));
   const link = (href, label) => href ? `<a href="${esc(href)}" target="_blank" rel="noopener">${label}&nbsp;↗</a>` : "";
-  function row(p) {
+  function row(p, active) {
     const main = p.paper || (p.arxiv ? "https://arxiv.org/abs/" + p.arxiv : "");
     const ax = p.arxiv && !(p.paper || "").includes(p.arxiv) ? link("https://arxiv.org/abs/" + p.arxiv, "arXiv") : "";
     const venue = p.venue === "arXiv" ? `<span class="venue pre">preprint${p.date ? " " + esc(String(p.date).slice(0, 7)) : ""}</span>` : `<span class="venue">${esc(p.venue)}</span>`;
     return `<div class="paper"><div class="yr">${p.year}</div><div class="pb"><a class="t" href="${esc(main)}" target="_blank" rel="noopener">${esc(p.title)}</a>
-      <div class="meta"><span>${esc(p.authors || "")}</span>${ax}${link(p.code, "Code")}${link(p.project, "Project")}</div></div><div class="pv">${venue}</div></div>`;
+      <div class="meta"><a class="tag${active === p.category ? " on" : ""}" href="papers.html?topic=${encodeURIComponent(p.category)}" data-topic="${esc(p.category)}">${esc(topicName(p.category))}</a><span>${esc(p.authors || "")}</span>${ax}${link(p.code, "Code")}${link(p.project, "Project")}</div></div><div class="pv">${venue}</div></div>`;
   }
 
   // ---- render the page that is in <main> now ----
@@ -180,57 +189,60 @@
       }), { threshold: .4 });
       counter.observe($("stats"));
     }
-    // the newest papers: by year, preprints by their first-version date
-    const key = p => p.date ? String(p.date) : `${p.year}-00`;
-    $("newest").innerHTML = [...papers].sort((a, b) => key(b).localeCompare(key(a)) || a.title.localeCompare(b.title)).slice(0, 6).map(row).join("");
+    // the newest papers, by the same order as the list
+    $("newest").innerHTML = chrono(papers).slice(0, 6).map(p => row(p)).join("");
   }
 
   function papersPage() {
-    // the address keeps the topic and the search, so a filtered list can be shared: papers.html?topic=datasets&q=manga
+    // one list, newest first, whatever the topic; a topic is a tag, and the menu (or a click on a tag) filters by it. Published
+    // papers only, until the reader includes the preprints. The address keeps all three, so a filtered list can be shared:
+    // papers.html?topic=datasets&q=manga&preprints=1
     const params = new URLSearchParams(location.search);
-    let active = sections.some(s => s.id === params.get("topic")) ? params.get("topic") : "all";
-    const q = $("q"), chips = $("chips");
+    const q = $("q"), pick = $("topic"), pre = $("preprints"), all = chrono(papers);
+    const isPre = p => p.venue === "arXiv";
+    let withPre = params.get("preprints") === "1";
+    pick.innerHTML = `<option value="all"></option>` + sections.map(s => `<option value="${esc(s.id)}"></option>`).join("");
+    pick.value = sections.some(s => s.id === params.get("topic")) ? params.get("topic") : "all";
     q.value = params.get("q") || "";
-    const mk = (id, label, n) => {
-      const b = document.createElement("button"); b.className = "chip"; b.type = "button"; b.dataset.id = id;
-      b.innerHTML = esc(label) + `<small>${n}</small>`; b.onclick = () => setActive(id, true); chips.appendChild(b);
-    };
-    mk("all", "All", papers.length);
-    sections.forEach(s => mk(s.id, short(s.title), byCat(s.id).length));
     function sync() {
       const u = new URL(location.href);
-      u.searchParams.delete("topic"); u.searchParams.delete("q");
-      if (active !== "all") u.searchParams.set("topic", active);
+      ["topic", "q", "preprints"].forEach(k => u.searchParams.delete(k));
+      if (pick.value !== "all") u.searchParams.set("topic", pick.value);
       if (q.value.trim()) u.searchParams.set("q", q.value.trim());
+      if (withPre) u.searchParams.set("preprints", "1");
       if (u.href !== location.href) history.replaceState(history.state, "", u);
-    }
-    function setActive(id, smooth) {
-      active = id;
-      [...chips.children].forEach(c => {
-        const on = c.dataset.id === active; c.setAttribute("aria-pressed", String(on));
-        if (on) chips.scrollTo({ left: c.offsetLeft - (chips.clientWidth - c.offsetWidth) / 2, behavior: smooth && !reduce ? "smooth" : "instant" });   // the chip row only
-      });
-      render(); sync();
     }
     ["speaker", "colorization", "Manga109", "translation", "benchmark"].forEach(t => {
       const b = document.createElement("button"); b.className = "pill"; b.type = "button"; b.textContent = t;
       b.onclick = () => { q.value = t; render(); sync(); }; $("try").appendChild(b);
     });
     q.addEventListener("input", () => { render(); sync(); });
+    pick.addEventListener("change", () => { render(); sync(); });
+    pre.addEventListener("click", () => { withPre = !withPre; render(); sync(); });
+    $("results").addEventListener("click", e => {          // a tag filters this list in place
+      const t = e.target.closest("[data-topic]");
+      if (!t) return;
+      e.preventDefault(); pick.value = t.dataset.topic; render(); sync();
+      scrollTo({ top: $("results").getBoundingClientRect().top + scrollY - 160, behavior: reduce ? "instant" : "smooth" });
+    });
     function render() {
       const terms = q.value.toLowerCase().split(/\s+/).filter(Boolean);
-      let html = "", n = 0;
-      sections.forEach((s, i) => {
-        if (active !== "all" && active !== s.id) return;
-        const ps = byCat(s.id).filter(p => matches(p, terms));
-        if (!ps.length) return;
-        n += ps.length;
-        html += `<div class="group"><div class="ghead"><span class="gn mono">${String(i + 1).padStart(2, "0")}</span><h3>${esc(short(s.title))}</h3><span class="gc mono">${ps.length}</span></div>${ps.map(row).join("")}</div>`;
-      });
-      $("results").innerHTML = html || '<p class="empty">No paper matches. Try fewer words, or open an issue if a paper is missing.</p>';
-      $("count").textContent = terms.length || active !== "all" ? `${n} of ${papers.length} papers` : "";
+      const shown = all.filter(p => withPre || !isPre(p));
+      // the menu counts what the reader would see: published papers, or every paper once preprints are in
+      pick.options[0].textContent = `All topics (${shown.length})`;
+      sections.forEach((s, i) => { pick.options[i + 1].textContent = `${short(s.title)} (${shown.filter(p => p.category === s.id).length})`; });
+      const hits = all.filter(p => (pick.value === "all" || p.category === pick.value) && matches(p, terms));
+      const ps = hits.filter(p => withPre || !isPre(p)), nPre = hits.filter(isPre).length;
+      pick.closest(".pick").classList.toggle("on", pick.value !== "all");
+      pre.setAttribute("aria-pressed", String(withPre));
+      pre.querySelector("small").textContent = nPre;
+      const kind = withPre ? "papers" : "published papers";
+      $("results").innerHTML = ps.map(p => row(p, pick.value)).join("") ||
+        `<p class="empty">No ${kind} match. ${!withPre && nPre ? `Include the preprints to see ${nPre} more.` : "Try fewer words or another topic, or open an issue if a paper is missing."}</p>`;
+      const filtered = terms.length || pick.value !== "all";
+      $("count").textContent = `${filtered ? `${ps.length} of ${shown.length}` : ps.length} ${kind}, newest first` + (withPre && nPre ? `, ${ps.filter(isPre).length} of them preprints` : "");
     }
-    setActive(active, false);
+    render(); sync();
   }
 
   function topics() {
