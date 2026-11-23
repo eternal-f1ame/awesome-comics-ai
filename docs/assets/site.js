@@ -210,7 +210,7 @@
   const reveal = box => box.querySelectorAll(".cell").forEach((el, i) => { el.style.transitionDelay = (i % 3) * 60 + "ms"; watch(el); });
 
   // the box that invites more, always the sixth tile: after the newest five, as on the home page
-  const askBody = go => `<span class="k"><span>Your work here</span></span><h3>Relevant work? Advertise here!</h3>
+  const askBody = go => `<span class="k"><span>Your work here</span></span><h3>Relevant content? Advertise here!</h3>
       <p>Put a paper, dataset, tool, platform or event in front of the people who read this map. Sponsored items are always marked.</p><span class="go">${go}</span>`;
   const askTile = () => FORM_KEY
     ? `<div class="cell reveal"><button class="tile sun" type="button" data-ask aria-haspopup="dialog">${askBody("Get in touch →")}</button></div>`
@@ -226,7 +226,7 @@
       <form class="ask-form" novalidate>
         <button class="ask-x" type="button" value="close" aria-label="Close">×</button>
         <p class="eyebrow">Advertise</p>
-        <h2 id="ask-title">Relevant work? Tell us about it.</h2>
+        <h2 id="ask-title">Relevant content? Tell us about it.</h2>
         <p class="ask-lead">Papers, datasets, tools, platforms and events about comics, manga or webtoons. A sponsored placement is always marked <b>Sponsored</b>. We reply by email.</p>
         <div class="ask-grid">
           ${field("feature", "What would you like to feature?", `<span class="pick"><select id="ask-feature" name="feature" required><option value="">Choose one</option>${FEATURES.map(f => `<option>${esc(f)}</option>`).join("")}</select><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>`)}
