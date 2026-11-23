@@ -24,7 +24,7 @@
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const PAGE_OF = { "index.html": "home", "papers.html": "papers", "topics.html": "topics", "blog.html": "blog", "news.html": "news", "tools.html": "tools" };
   const TAB_OF = { post: "blog" };                                             // the tab that a page lights up
-  const MOVED = { "essay.html": "blog-comics-are-a-modality.html" };           // old files, now elsewhere
+  const MOVED = { "essay.html": "blog.html", "blog-comics-are-a-modality.html": "blog.html" };   // old files, now elsewhere
   const isPost = f => /^blog-[a-z0-9-]+\.html$/.test(f);
   const dir = location.pathname.replace(/[^/]*$/, "");
   function fileOf(href) {
@@ -35,7 +35,7 @@
   }
 
   // links to the old one-page sections open their pages
-  const moved = { "#list": "papers.html", "#papers": "papers.html", "#topics": "topics.html", "#why": MOVED["essay.html"], "#essay": MOVED["essay.html"], "#tools": "tools.html", "#resources": "tools.html" };
+  const moved = { "#list": "papers.html", "#papers": "papers.html", "#topics": "topics.html", "#why": "blog.html", "#essay": "blog.html", "#tools": "tools.html", "#resources": "tools.html" };
   if (document.body.dataset.page === "home" && moved[location.hash]) { location.replace(moved[location.hash]); return; }
 
   // ---- the pages, each fetched once and kept ----
@@ -84,7 +84,7 @@
 
   // ---- the data, loaded once ----
   const dataP = fetch("papers.json", { cache: "no-cache" }).then(r => r.json());
-  let sections, papers, resources, posts, news, meta, maxY, minY, recent;
+  let sections, papers, resources, posts, news, meta, maxY, minY;
   const short = t => t.startsWith("Adjacent: ") ? t.slice(10, 11).toUpperCase() + t.slice(11) + " (adjacent)" : t;
   const byCat = id => papers.filter(p => p.category === id);
   const topicName = id => short((sections.find(s => s.id === id) || { title: id }).title);
@@ -119,7 +119,6 @@
       }
       meta = resources.meta || {};
       const years = papers.map(p => p.year); maxY = Math.max(...years); minY = Math.min(...years);
-      recent = papers.filter(p => p.year >= maxY - 2).length;
       setTimeout(() => [...Object.keys(PAGE_OF), ...posts.map(p => p.file)].forEach(f => load(f).catch(() => {})), 300);   // preload the other pages and the posts
     }
     if (my !== gen) return;
@@ -127,7 +126,7 @@
     if ($("updated-foot") && meta.updated) $("updated-foot").textContent = "Updated " + meta.updated;
     const counts = { papers: `${papers.length} papers`, "papers-n": String(papers.length), topics: `${sections.length} topics`, tools: `${resources.tools.length} tools` };
     document.querySelectorAll("main [data-count]").forEach(el => { if (counts[el.dataset.count]) el.textContent = counts[el.dataset.count]; });
-    ({ home, papers: papersPage, topics, blog, post, tools, news: newsPage }[page] || (() => {}))(my);
+    ({ home, papers: papersPage, topics, blog, tools, news: newsPage }[page] || (() => {}))(my);
   }
 
   // ---- move between pages without a reload ----
@@ -364,18 +363,6 @@
     $("posts").querySelectorAll(".cell").forEach(watch);
   }
 
-  function post() {
-    if (!$("recent-line")) return;
-    $("recent-line").textContent = `Of the ${papers.length} papers on this map, ${recent} appeared in ${maxY - 2}–${maxY}.`;
-    if ($("updated")) $("updated").textContent = meta.updated ? " · updated " + meta.updated : "";
-    const span = []; for (let y = minY; y <= maxY; y++) span.push(y);
-    const per = span.map(y => papers.filter(p => p.year === y).length), top = Math.max(...per);
-    $("bars").innerHTML = per.map((n, i) => `<div class="${span[i] >= maxY - 2 ? "hot" : ""}" data-h="${n ? Math.max(3, 100 * n / top) : 0}" title="${span[i]}: ${n}">${n ? `<span class="mono">${n}</span>` : ""}</div>`).join("");
-    $("axis").innerHTML = span.map((y, i) => `<span>${i % 4 === 0 || y === maxY ? "’" + String(y).slice(2) : ""}</span>`).join("");
-    $("bars-sub").textContent = `Every paper on the map by year; the last three years in colour (${recent} of ${papers.length}).`;
-    const grow = () => $("bars").querySelectorAll("div").forEach(d => { d.style.height = d.dataset.h + "%"; });
-    if (reduce) grow(); else new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { grow(); o.disconnect(); } }), { threshold: .3 }).observe($("panel"));
-  }
 
   function tools() {
     const tile = (k, h, p, href) => `<div class="cell reveal"><a class="tile plain" href="${esc(href)}" target="_blank" rel="noopener"><span class="k"><span>${esc(k)}</span><em>↗</em></span><h3>${esc(h)}</h3><p>${esc(p)}</p></a></div>`;
