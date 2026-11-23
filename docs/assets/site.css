@@ -213,6 +213,12 @@ h1, h2 { font-family: var(--serif); font-weight: 400; letter-spacing: -.014em; f
 .prose ol li { margin: 0 0 0.55em; padding-left: 0.25em; }
 .prose ol li::marker { font-family: var(--monof); font-size: 0.8em; color: var(--accent-text); }
 .prose ol small { display: block; font-size: 0.85em; color: var(--muted); }
+.prose ol.refs { font-family: var(--sans); font-size: 0.9375rem; line-height: 1.5; }
+.prose ul { margin: 0 0 1.4em; padding-left: 1.2em; }
+.prose ul li { margin: 0 0 0.55em; padding-left: 0.25em; }
+.prose ul li::marker { color: var(--accent-text); }
+.prose blockquote { margin: 0 0 1.6em; padding: 0.15em 0 0.15em 1.25rem; border-left: 3px solid var(--accent); font-style: italic; }
+.prose blockquote p:last-child { margin-bottom: 0; }
 .fig { margin: 2.25em 0 2.5em; padding: 1.25rem 0 0; border-top: 1px solid var(--ink); font-family: var(--sans); }
 .bars { display: flex; align-items: flex-end; gap: 0.375rem; height: 10rem; border-bottom: 1px solid var(--ink); }
 .bars div { flex: 1; background: var(--g3); height: 0; transition: height .9s cubic-bezier(.2, .8, .2, 1); position: relative; }
@@ -222,6 +228,8 @@ h1, h2 { font-family: var(--serif); font-weight: 400; letter-spacing: -.014em; f
 .axis span { flex: 1; text-align: center; }
 .fig figcaption { margin-top: 0.875rem; font-size: 0.875rem; line-height: 1.5; color: var(--muted); }
 .fig figcaption b { color: var(--ink); font-weight: 600; }
+.fig.shot { padding-top: 0; border-top: 0; }                       /* a picture, not a chart: no rule above it */
+.fig.shot img { display: block; width: 100%; max-width: 34rem; height: auto; margin: 0 auto; border: 1px solid var(--rule); background: #fff; }
 .postend { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font: 500 0.6875rem/1.4 var(--monof); letter-spacing: .12em; text-transform: uppercase; }
 .postend a { color: var(--ink); text-decoration: none; }
 .postend a:hover { text-decoration: underline; text-decoration-color: var(--accent-line); text-underline-offset: 3px; }

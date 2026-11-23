@@ -1241,6 +1241,13 @@
  },
  "posts": [
   {
+   "file": "blog-between-the-panels.html",
+   "title": "Between the Panels",
+   "dek": "What a vision-language model computes on a comic page, and which assumptions of image and video models a comic breaks.",
+   "date": "2026-11-22",
+   "minutes": 7
+  },
+  {
    "file": "blog-recognize.html",
    "title": "When should a model trust its own match?",
    "dek": "Re:Cognize, at NeurIPS 2026: recognising comic characters while the story is read, and the condition that decides when a model should remember its own match.",
