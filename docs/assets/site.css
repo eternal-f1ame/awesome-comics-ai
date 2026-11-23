@@ -200,6 +200,12 @@ h1, h2 { font-family: var(--serif); font-weight: 400; letter-spacing: -.014em; f
 .post h1 { font-size: clamp(2.375rem, 5.4vw, 3.5rem); line-height: 1.06; margin: 0 0 1.125rem; text-wrap: balance; }
 .post .dek { font-family: var(--serif); font-size: 1.375rem; line-height: 1.45; color: var(--muted); margin: 0; }
 .post .byline { margin: 1.5rem 0 0; padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule); font: 500 0.6875rem/1.5 var(--monof); letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
+.post .cover { margin: 2rem 0 0; }
+.post .cover img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }      /* line art on white: the white takes the colour of the page */
+.post .cover figcaption { margin-top: 0.625rem; font: 0.75rem/1.5 var(--sans); color: var(--faint); }
+.post .cover figcaption a { color: inherit; text-decoration-color: var(--accent-line); text-underline-offset: 3px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .post .cover img { filter: invert(1); mix-blend-mode: screen; } }      /* on the dark page the lines turn light */
+:root[data-theme="dark"] .post .cover img { filter: invert(1); mix-blend-mode: screen; }
 .prose { font-family: var(--serif); font-size: 1.25rem; line-height: 1.7; margin-top: 2.25rem; font-optical-sizing: auto; hanging-punctuation: first; }
 .prose p { margin: 0 0 1.15em; }
 .prose h2 { font-size: 1.75rem; line-height: 1.2; margin: 2.4em 0 0.6em; }
