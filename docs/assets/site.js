@@ -204,12 +204,81 @@
       <h3>${esc(n.title)}</h3><p>${esc(n.note)}</p><span class="go">${esc(n.source)} ↗</span></a></div>`;
   }
   const askUrl = () => ((meta && meta.repo) || "https://github.com/eternal-f1ame/awesome-comics-ai") + "/issues/new?template=advertise.yml";
+  // The form behind the "Advertise here!" box sends its fields to Web3Forms, which mails them to the maintainers. The key is
+  // public by design: it only names the inbox. Without a key the box opens the GitHub issue form, as before.
+  const FORM_KEY = "";
   const reveal = box => box.querySelectorAll(".cell").forEach((el, i) => { el.style.transitionDelay = (i % 3) * 60 + "ms"; watch(el); });
 
   // the box that invites more, always the sixth tile: after the newest five, as on the home page
-  const askTile = () => `<div class="cell reveal"><a class="tile sun" href="${esc(askUrl())}" target="_blank" rel="noopener">
-      <span class="k"><span>Your work here</span></span><h3>Relevant work? Advertise here!</h3>
-      <p>Put a paper, dataset, tool, platform or event in front of the people who read this map. Sponsored items are always marked.</p><span class="go">Get in touch ↗</span></a></div>`;
+  const askBody = go => `<span class="k"><span>Your work here</span></span><h3>Relevant work? Advertise here!</h3>
+      <p>Put a paper, dataset, tool, platform or event in front of the people who read this map. Sponsored items are always marked.</p><span class="go">${go}</span>`;
+  const askTile = () => FORM_KEY
+    ? `<div class="cell reveal"><button class="tile sun" type="button" data-ask aria-haspopup="dialog">${askBody("Get in touch →")}</button></div>`
+    : `<div class="cell reveal"><a class="tile sun" href="${esc(askUrl())}" target="_blank" rel="noopener">${askBody("Get in touch ↗")}</a></div>`;
+
+  // the form itself: one dialog, made on first use and kept outside <main>, so a page swap leaves it alone
+  const FEATURES = ["A sponsored placement (advertisement)", "Research, a dataset or a benchmark release", "A tool or a product", "An event, a workshop or a call for papers", "Industry news from a comic, manga or webtoon platform"];
+  function askDialog() {
+    let d = $("ask");
+    if (d) return d;
+    const field = (id, label, input, note = "") => `<div class="field"><label for="ask-${id}">${label}</label>${input}${note ? `<p class="note">${note}</p>` : ""}</div>`;
+    document.body.insertAdjacentHTML("beforeend", `<dialog class="ask" id="ask" aria-labelledby="ask-title">
+      <form class="ask-form" novalidate>
+        <button class="ask-x" type="button" value="close" aria-label="Close">×</button>
+        <p class="eyebrow">Advertise</p>
+        <h2 id="ask-title">Relevant work? Tell us about it.</h2>
+        <p class="ask-lead">Papers, datasets, tools, platforms and events about comics, manga or webtoons. A sponsored placement is always marked <b>Sponsored</b>. We reply by email.</p>
+        <div class="ask-grid">
+          ${field("feature", "What would you like to feature?", `<span class="pick"><select id="ask-feature" name="feature" required><option value="">Choose one</option>${FEATURES.map(f => `<option>${esc(f)}</option>`).join("")}</select><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>`)}
+          ${field("work", "Name", `<input id="ask-work" name="work" required maxlength="200" autocomplete="off">`, "The work, product, event or organisation.")}
+          ${field("link", "Link", `<input id="ask-link" name="link" type="url" required maxlength="500" placeholder="https://">`)}
+          ${field("about", "In one or two sentences", `<textarea id="ask-about" name="about" required rows="3" maxlength="1200"></textarea>`, "What it is and why it matters to people who work on comics and AI.")}
+          ${field("dates", "Dates", `<input id="ask-dates" name="dates" maxlength="120">`, "Optional. When it should run, or the date of the event or release.")}
+          <div class="two">
+            ${field("name", "Your name", `<input id="ask-name" name="name" required maxlength="120" autocomplete="name">`)}
+            ${field("email", "Your email", `<input id="ask-email" name="email" type="email" required maxlength="200" autocomplete="email">`, "Used only to reply.")}
+          </div>
+          <label class="check"><input type="checkbox" name="scope" value="yes" required><span>It is about comics, manga, manhwa, webtoons or other sequential art.</span></label>
+          <input class="trap" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+        </div>
+        <div class="ask-end"><button class="btn primary" type="submit">Send</button><p class="ask-status" role="status" aria-live="polite"></p></div>
+      </form>
+      <div class="ask-done" hidden><p class="eyebrow">Sent</p><h2>Thank you.</h2><p class="ask-lead">Your note is with the maintainers, and we will reply by email.</p><button class="btn" type="button" value="close">Close</button></div>
+    </dialog>`);
+    d = $("ask");
+    const form = d.querySelector("form"), status = d.querySelector(".ask-status"), send = form.querySelector('[type="submit"]');
+    const close = () => { if (reduce || !d.animate) { d.close(); return; } d.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "translateY(0.5rem)" }], { duration: 140, easing: "ease-in" }).finished.then(() => d.close()); };
+    d.addEventListener("click", e => { if (e.target === d || (e.target.closest("button") && e.target.closest("button").value === "close")) close(); });   // a click on the backdrop, the cross or Close
+    d.addEventListener("cancel", e => { e.preventDefault(); close(); });                                                                             // Escape
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      form.classList.add("tried");
+      if (!form.checkValidity()) { status.textContent = "Please fill in the marked fields."; const bad = form.querySelector(":invalid"); if (bad) bad.focus(); return; }
+      const data = Object.fromEntries(new FormData(form));
+      send.disabled = true; status.textContent = "Sending…";
+      try {
+        const r = await fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({ access_key: FORM_KEY, subject: `Advertise: ${data.work} (${data.feature})`, from_name: "Comics & Manga AI", ...data }) });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok || !j.success) throw new Error(j.message || String(r.status));
+        form.hidden = true; d.querySelector(".ask-done").hidden = false; d.querySelector(".ask-done .btn").focus();
+      } catch (err) {
+        status.innerHTML = `Sending failed. Please try again, or <a href="${esc(askUrl())}" target="_blank" rel="noopener">open a GitHub issue</a>.`;
+      } finally { send.disabled = false; }
+    });
+    return d;
+  }
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-ask]");
+    if (!b || !FORM_KEY) return;
+    const d = askDialog();
+    if (d.open) return;
+    const form = d.querySelector("form");
+    if (form.hidden) { form.reset(); form.classList.remove("tried"); form.hidden = false; d.querySelector(".ask-done").hidden = true; d.querySelector(".ask-status").textContent = ""; }
+    d.showModal();
+    if (!reduce && d.animate) d.animate([{ opacity: 0, transform: "translateY(0.75rem)" }, { opacity: 1, transform: "none" }], { duration: 260, easing: "cubic-bezier(.2,.8,.2,1)" });
+    d.querySelector("select").focus();
+  });
   const newsOrder = () => [...news.filter(n => n.kind === "sponsored"), ...news.filter(n => n.kind !== "sponsored")];
   const withAsk = items => items.slice(0, 5).map(newsTile).join("") + askTile() + items.slice(5).map(newsTile).join("");
 
