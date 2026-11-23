@@ -253,11 +253,15 @@
       e.preventDefault();
       form.classList.add("tried");
       if (!form.checkValidity()) { status.textContent = "Please fill in the marked fields."; const bad = form.querySelector(":invalid"); if (bad) bad.focus(); return; }
-      const data = Object.fromEntries(new FormData(form));
+      // FormData with only an Accept header is a "simple" request, which needs no CORS preflight; the Cloudflare edge in front of
+      // Web3Forms refuses preflights (403), so a JSON body would never reach it
+      const body = new FormData(form);
+      body.append("access_key", FORM_KEY);
+      body.append("subject", `Advertise: ${body.get("work")} (${body.get("feature")})`);
+      body.append("from_name", "Comics & Manga AI");
       send.disabled = true; status.textContent = "Sending…";
       try {
-        const r = await fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({ access_key: FORM_KEY, subject: `Advertise: ${data.work} (${data.feature})`, from_name: "Comics & Manga AI", ...data }) });
+        const r = await fetch("https://api.web3forms.com/submit", { method: "POST", headers: { Accept: "application/json" }, body });
         const j = await r.json().catch(() => ({}));
         if (!r.ok || !j.success) throw new Error(j.message || String(r.status));
         form.hidden = true; d.querySelector(".ask-done").hidden = false; d.querySelector(".ask-done .btn").focus();
