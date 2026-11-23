@@ -205,7 +205,7 @@
   const askUrl = () => ((meta && meta.repo) || "https://github.com/eternal-f1ame/awesome-comics-ai") + "/issues/new?template=advertise.yml";
   // The form behind the "Advertise here!" box sends its fields to Web3Forms, which mails them to the maintainers. The key is
   // public by design: it only names the inbox. Without a key the box opens the GitHub issue form, as before.
-  const FORM_KEY = "";
+  const FORM_KEY = "792b2a18-af39-4f3a-9710-394d7fae063b";
   const reveal = box => box.querySelectorAll(".cell").forEach((el, i) => { el.style.transitionDelay = (i % 3) * 60 + "ms"; watch(el); });
 
   // the box that invites more, always the sixth tile: after the newest five, as on the home page
