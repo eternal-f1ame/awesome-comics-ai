@@ -6,7 +6,7 @@ every change to the data, and commit its output with the change. `--check` exits
 
 Usage: python scripts/build.py [--check]
 """
-import argparse, json, pathlib, sys
+import argparse, hashlib, json, pathlib, re, sys
 from collections import Counter
 
 import yaml
@@ -160,6 +160,22 @@ def site_json(papers, sections, resources, posts, news=()):
                        "resources": resources, "posts": posts, "news": news}, ensure_ascii=False, indent=1) + "\n"
 
 
+ASSETS = ("site.css", "site.js")
+
+
+def asset_versions():
+    """The version of each shared file: the start of its sha256, so it changes exactly when the file does."""
+    return {f: hashlib.sha256((ROOT / "docs" / "assets" / f).read_bytes()).hexdigest()[:10] for f in ASSETS}
+
+
+def stamp_assets(html, versions):
+    """The page with each link to a shared file carrying that file's version (?v=...). GitHub Pages lets a browser keep a file
+    for ten minutes; a new version is a new address, so a changed stylesheet or script reaches the reader at once."""
+    for f, v in versions.items():
+        html = re.sub(r'assets/%s(?:\?v=[0-9a-f]+)?"' % re.escape(f), f'assets/{f}?v={v}"', html)
+    return html
+
+
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--check", action="store_true")
     a = ap.parse_args()
@@ -175,6 +191,9 @@ def main():
     if bad:
         sys.exit(f"unknown section for: {bad[:5]}")
     outputs = {ROOT / "README.md": readme(papers, sections, resources), ROOT / "docs" / "papers.json": site_json(papers, sections, resources, posts, news)}
+    versions = asset_versions()
+    for page in sorted((ROOT / "docs").glob("*.html")):
+        outputs[page] = stamp_assets(page.read_text(encoding="utf-8"), versions)
     stale = [p for p, text in outputs.items() if not p.exists() or p.read_text(encoding="utf-8") != text]
     if a.check:
         if stale:
@@ -182,7 +201,7 @@ def main():
         print("up to date"); return
     for p, text in outputs.items():
         p.parent.mkdir(parents=True, exist_ok=True); p.write_text(text, encoding="utf-8")
-    print(f"wrote README.md and docs/papers.json: {len(papers)} papers")
+    print(f"wrote README.md and docs/papers.json: {len(papers)} papers" + (f"; stamped {len(stale) - sum(p.suffix != '.html' for p in stale)} page(s) with the asset versions" if any(p.suffix == '.html' for p in stale) else ""))
 
 
 if __name__ == "__main__":
